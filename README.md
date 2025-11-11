@@ -1,38 +1,54 @@
-# sv
+# Hinesburg CMA Web Experience
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+SvelteKit-powered redesign of [Hinesburg CMA](https://hinesburgcma.org/), mirroring the bold, high-contrast storytelling of Real Life Church Sacramento while honoring the church’s existing color system and brand language.
 
-## Creating a project
+## Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+- **Svelte 5 runes syntax** with GSAP integration for section reveals and micro-interactions.
+- **Responsive navigation** with desktop hover “mega” dropdowns, mobile drawer, and light/dark theme toggle (state saved in `localStorage`).
+- **Homepage hero revamp** featuring location callouts, service badge, and app promo modeled after RLCS aesthetics.
+- **Route scaffolding** for all ministries, next steps, and resources with shared `sectionSurface` styling to keep content consistent.
+- **Cloudinary-ready media slots** for hero and section imagery, including a drone shot background in the hero.
+- **Light mode** support via CSS custom properties and body class toggles.
 
-```sh
-# create a new project in the current directory
-npx sv create
+## Local Development
 
-# create a new project in my-app
-npx sv create my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Install dependencies with your preferred package manager (pnpm recommended):
 
 ```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+pnpm install
 ```
 
-## Building
-
-To create a production version of your app:
+Start the dev server at `http://localhost:5173`:
 
 ```sh
-npm run build
+pnpm dev
 ```
 
-You can preview the production build with `npm run preview`.
+For a production build and preview:
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+```sh
+pnpm build
+pnpm preview
+```
+
+## Project Structure Highlights
+
+- `src/routes/+layout.svelte` – injects global styles, fonts, navigation, and footer with theme management.
+- `src/lib/components/Navigation.svelte` – anchor-position dropdown navigation and theme toggle.
+- `src/lib/css/styles.css` – global tokens (`--primaryColor`, etc.), shared section utilities, and light-mode overrides.
+- `src/routes/+page.svelte` – homepage content sections (hero, service strip, events, community highlights, next-gen).
+- `src/routes/*` – content pages for Visit Us, About Us, Ministry Areas, Grow With Us, and Resources.
+
+## Tooling & Conventions
+
+- SvelteKit + Vite
+- TypeScript enabled (`lang="ts"`)
+- Prettier/ESLint (tab indentation, single quotes, 100-char width)
+- pnpm workspace
+- Cloudinary-ready image URLs
+- No Tailwind (custom CSS + CSS variables)
+
+## Deployment
+
+Add the appropriate SvelteKit adapter for your hosting target (e.g., Vercel, Netlify, Cloudflare workers). Then follow your provider’s deployment flow using the production build output from `pnpm build`. For static asset caching of Cloudinary images, ensure proper cache headers or transformations on the CDN.
