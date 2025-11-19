@@ -10,9 +10,15 @@
 
 	const expectationCards: CardLink[] = [
 		{
+			title: "We're in Hinesburg",
+			description:
+				'We meet at 190 Pond Road in Hinesburg, directly across from the CVU athletic fields with plenty of parking.',
+			href: '/about-us/our-campus/'
+		},
+		{
 			title: 'Worship at 10:30am',
 			description:
-				'Arrive a few minutes early, grab a coffee, and settle into worship with a warm, welcoming community.',
+				'Arrive a few minutes early, grab a coffee, and make some friends before the service begins.',
 			href: '/visit-us/plan-your-visit/'
 		},
 		{
@@ -20,12 +26,6 @@
 			description:
 				'Age-specific programming for kids and students is available before and during the gathering.',
 			href: '/ministry-areas/kids/'
-		},
-		{
-			title: 'Find Us Easily',
-			description:
-				'We meet at 190 Pond Road in Hinesburg, directly across from the CVU athletic fields with plenty of parking.',
-			href: '/about-us/our-campus/'
 		},
 		{
 			title: 'Still Have Questions?',
@@ -55,66 +55,6 @@
 		}
 	];
 
-	const serviceSchedule: CardLink[] = [
-		{
-			title: 'In-Person Gatherings',
-			description: 'Sundays • 10:30am',
-			href: '/visit-us/plan-your-visit/'
-		},
-		{
-			title: 'Church Online',
-			description: 'Streaming Live • 10:30am',
-			href: '/resources/sermons-media/'
-		},
-		{
-			title: 'Kids Check-In',
-			description: 'Opens • 10:10am',
-			href: '/ministry-areas/kids/'
-		}
-	];
-
-	const communityHighlights: CardLink[] = [
-		{
-			title: 'Communities',
-			description:
-				'Find a semester-based community designed for every life stage—men, women, couples, and more.',
-			href: '/grow-with-us/groups/'
-		},
-		{
-			title: 'Discovery Track',
-			description:
-				'Learn our story, meet leaders, and discover your next step toward belonging at CAC.',
-			href: '/visit-us/your-next-steps/'
-		},
-		{
-			title: 'Serve Teams',
-			description:
-				'Make Sundays happen and impact the community through hospitality, worship, next gen, and more.',
-			href: '/grow-with-us/serve/'
-		}
-	];
-
-	const nextGenHighlights: CardLink[] = [
-		{
-			title: 'Real Life Kids',
-			description:
-				'Engaging programming for birth–5th grade with caring leaders, worship, and age-specific teaching.',
-			href: '/ministry-areas/kids/'
-		},
-		{
-			title: 'RLC YTH',
-			description:
-				'Weekly rhythm for middle and high school students to encounter Jesus together and live on mission.',
-			href: '/ministry-areas/students/'
-		},
-		{
-			title: 'Young Adults',
-			description:
-				'College students and young professionals gathering for worship, community, and serving opportunities.',
-			href: '/ministry-areas/young-adults/'
-		}
-	];
-
 	function cardsIn(gsap: Gsap, node: HTMLElement, index = 0) {
 		gsap.set(node, { y: 20, opacity: 0 });
 		const tween = gsap.to(node, {
@@ -127,6 +67,16 @@
 		return () => tween.kill();
 	}
 </script>
+
+<svelte:head>
+	<title
+		>Community Alliance Church - Hinesburg - Find Hope, Community, and Purpose in Hinesburg</title
+	>
+	<meta
+		name="description"
+		content="We are a church family practicing the way of Jesus together—growing in faith, serving our neighbors, and sending hope to the world. Join us Sundays at 10:30am in Hinesburg, Vermont."
+	/>
+</svelte:head>
 
 <header class="hero">
 	<div class="heroContent">
@@ -143,51 +93,55 @@
 	</div>
 </header>
 
-<section class="expectations" aria-labelledby="expectations-heading">
-	<div class="sectionSurface">
-		<div class="sectionHeader">
-			<h2 id="expectations-heading">What to Expect</h2>
-			<p>
-				Whether it is your first Sunday or a return visit, here is how you can feel at home at
-				Hinesburg CMA.
-			</p>
+<div class="expectationsContainer">
+	<section class="expectations" aria-labelledby="expectations-heading">
+		<div class="sectionSurface">
+			<div class="sectionHeader">
+				<h2 id="expectations-heading">What to Expect</h2>
+				<p>
+					Whether it is your first Sunday or a return visit, here is how you can feel at home at
+					Community Alliance Church - Hinesburg.
+				</p>
+			</div>
+			<div class="cardGrid">
+				{#each expectationCards as card, index}
+					<article
+						use:useGsap={{ init: (gsap: Gsap, node: HTMLElement) => cardsIn(gsap, node, index) }}
+					>
+						<h3>{card.title}</h3>
+						<p>{card.description}</p>
+						<a href={card.href}>Learn More</a>
+					</article>
+				{/each}
+			</div>
 		</div>
-		<div class="cardGrid">
-			{#each expectationCards as card, index}
-				<article
-					use:useGsap={{ init: (gsap: Gsap, node: HTMLElement) => cardsIn(gsap, node, index) }}
-				>
-					<h3>{card.title}</h3>
-					<p>{card.description}</p>
-					<a href={card.href}>Learn More</a>
-				</article>
-			{/each}
-		</div>
-	</div>
-</section>
+	</section>
+</div>
 
-<section class="pathways" aria-labelledby="pathways-heading">
-	<div class="sectionSurface">
-		<div class="sectionHeader">
-			<h2 id="pathways-heading">Take Your Next Step</h2>
-			<p>
-				Grow deeper in faith and community through rhythms that help you know Jesus and make him
-				known.
-			</p>
+<div class="pathwaysContainer">
+	<section class="pathways" aria-labelledby="pathways-heading">
+		<div class="sectionSurface">
+			<div class="sectionHeader">
+				<h2 id="pathways-heading">Take Your Next Step</h2>
+				<p>
+					Grow deeper in faith and community through rhythms that help you know Jesus and make him
+					known.
+				</p>
+			</div>
+			<div class="cardGrid">
+				{#each pathwayCards as card, index}
+					<article
+						use:useGsap={{ init: (gsap: Gsap, node: HTMLElement) => cardsIn(gsap, node, index) }}
+					>
+						<h3>{card.title}</h3>
+						<p>{card.description}</p>
+						<a href={card.href}>Explore</a>
+					</article>
+				{/each}
+			</div>
 		</div>
-		<div class="cardGrid">
-			{#each pathwayCards as card, index}
-				<article
-					use:useGsap={{ init: (gsap: Gsap, node: HTMLElement) => cardsIn(gsap, node, index) }}
-				>
-					<h3>{card.title}</h3>
-					<p>{card.description}</p>
-					<a href={card.href}>Explore</a>
-				</article>
-			{/each}
-		</div>
-	</div>
-</section>
+	</section>
+</div>
 
 <section class="mediaSpotlight" aria-labelledby="media-heading">
 	<div class="mediaContent">
@@ -200,14 +154,14 @@
 			</p>
 			<div class="heroActions">
 				<a class="primaryCta" href="/resources/sermons-media/">Watch Sermons</a>
-				<a class="secondaryCta" href="https://www.youtube.com/@HinesburgCMA">YouTube Channel</a>
+				<a class="secondaryCta" href="https://www.youtube.com/@HinesburgCAC">YouTube Channel</a>
 			</div>
 		</div>
 	</div>
 	<figure>
 		<img
 			src="https://res.cloudinary.com/demo/image/upload/f_auto,q_auto,w_840/church-worship.jpg"
-			alt="Worship gathering at Hinesburg CMA"
+			alt="Worship gathering at Community Alliance Church - Hinesburg"
 			loading="lazy"
 		/>
 	</figure>
@@ -226,7 +180,10 @@
 		<div class="eventCard">
 			<span class="eventDate">Sundays</span>
 			<h3>Worship Gathering</h3>
-			<p>10:30am | In person at Hinesburg CMA and streaming on demand every Monday morning.</p>
+			<p>
+				10:30am | In person at Community Alliance Church - Hinesburg and streaming on demand every
+				Monday morning.
+			</p>
 			<a href="/visit-us/plan-your-visit/">Plan Your Visit</a>
 		</div>
 		<div class="eventCard">
@@ -272,30 +229,22 @@
 </section>
 
 <style>
-	:global(body) {
-		background: radial-gradient(
-			circle at top,
-			color-mix(in oklab, var(--primaryColor) 22%, var(--backgroundColor)),
-			var(--backgroundColor)
-		);
-	}
-
 	.hero {
 		display: grid;
 		gap: clamp(1.5rem, 3vw, 3rem);
 		align-items: center;
 		justify-content: center;
 		padding: clamp(2rem, 6vw, 5rem) clamp(1.5rem, 5vw, 3.5rem);
-
 		margin: 0 auto;
 		position: relative;
 		overflow: hidden;
-		background: url('../lib/assets/DroneViewFrontChurch.jpg') no-repeat center center / cover;
+		background: url('https://res.cloudinary.com/de6fzsubp/image/upload/v1762883178/DroneViewFrontChurch.jpg')
+			no-repeat center center / cover;
 		&::before {
 			content: '';
 			position: absolute;
 			inset: 0;
-			background: rgba(0, 0, 0, 0.65);
+			background: rgba(0, 0, 0, 0.55);
 		}
 		box-shadow:
 			0 24px 80px color-mix(in oklab, black 55%, transparent),
@@ -306,7 +255,7 @@
 			max-width: 980px;
 			display: grid;
 			gap: clamp(1rem, 2vw, 1.6rem);
-
+			color: #fff;
 			& h1 {
 				font-size: clamp(2.25rem, 1.8vw + 1.8rem, 3.2rem);
 				margin: 0;
@@ -319,7 +268,6 @@
 				margin: clamp(0.75rem, 1.2vw, 1rem) 0 clamp(1.25rem, 2vw, 1.75rem);
 				max-width: 48ch;
 				font-size: clamp(1.05rem, 0.5vw + 1rem, 1.2rem);
-				color: color-mix(in oklab, var(--contrastColor) 82%, transparent);
 			}
 
 			& .eyebrow {
@@ -344,65 +292,51 @@
 		}
 	}
 
-	.heroActions {
-		display: grid;
-		grid-auto-flow: column;
-		gap: 1rem;
-		align-items: center;
-		justify-content: flex-start;
-
-		& .primaryCta,
-		& .secondaryCta {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			padding: 0.7rem 1.6rem;
-			border-radius: 999px;
-			font-weight: 700;
-		}
-	}
-
-	.primaryCta {
-		background-color: color-mix(in oklab, var(--primaryColor) 65%, transparent);
-		color: var(--contrastColor);
-		border: 1px solid color-mix(in oklab, var(--primaryColor) 80%, transparent);
-
-		&:hover {
-			background-color: color-mix(in oklab, var(--primaryColor) 75%, transparent);
-		}
-	}
-
-	.secondaryCta {
-		border: 1px solid color-mix(in oklab, var(--contrastColor) 65%, transparent);
-		color: var(--contrastColor);
-
-		&:hover {
-			background-color: color-mix(in oklab, var(--contrastColor) 15%, transparent);
-		}
-	}
-
-	.sectionHeader {
-		display: grid;
-		gap: 0.75rem;
-		margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
-		text-transform: uppercase;
-		letter-spacing: 0.12em;
-
-		& p {
-			max-width: 56ch;
-			margin: 0;
-			text-transform: none;
-			letter-spacing: normal;
-		}
-	}
-
 	.expectations,
 	.pathways,
 	.events,
 	.contactSection {
+		position: relative;
 		max-width: 1100px;
 		margin: 0 auto clamp(3rem, 6vw, 5rem);
+		z-index: 5;
+	}
+	.expectationsContainer {
 		padding: 0 clamp(1.5rem, 5vw, 3rem);
+	}
+	.pathwaysContainer {
+		position: relative;
+		background: url('https://res.cloudinary.com/de6fzsubp/image/upload/v1762883178/lobbyshot1')
+			no-repeat fixed center center / cover;
+		padding: clamp(2rem, 6vw, 5rem) clamp(1.5rem, 5vw, 3rem);
+		--clip-top-left: 5%;
+		--clip-bottom-left: 95%;
+		--clip-bottom-right: 90%;
+		clip-path: polygon(
+			0 var(--clip-top-left),
+			100% 0,
+			100% var(--clip-bottom-right),
+			0 var(--clip-bottom-left)
+		);
+		z-index: 0;
+
+		@media (max-width: 768px) {
+			--clip-top-left: 2%;
+			--clip-bottom-left: 98%;
+			--clip-bottom-right: 92%;
+		}
+
+		@media (max-width: 480px) {
+			--clip-top-left: 1%;
+			--clip-bottom-left: 99%;
+			--clip-bottom-right: 94%;
+		}
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.5);
+		}
 	}
 
 	.cardGrid {
@@ -551,11 +485,6 @@
 	}
 
 	@media (max-width: 680px) {
-		.heroActions {
-			grid-auto-flow: row;
-			justify-content: stretch;
-		}
-
 		.events {
 			& .sectionHeader {
 				grid-template-columns: 1fr;

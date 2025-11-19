@@ -30,6 +30,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Adults Ministry - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="Adults of every age find spaces to connect deeply, pursue Jesus, and live out their calling in our church and community. Small groups, classes, and care communities."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Adults</h1>
 	<p>

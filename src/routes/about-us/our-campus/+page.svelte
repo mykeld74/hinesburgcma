@@ -31,6 +31,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Our Campus - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="We gather at 190 Pond Road in Hinesburg, directly across from CVU. Our campus is designed to serve every generation with safe, welcoming spaces. Get directions and learn about accessibility."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Our Campus</h1>
 	<p>

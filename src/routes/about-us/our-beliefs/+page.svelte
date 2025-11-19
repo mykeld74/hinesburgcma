@@ -43,6 +43,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Our Beliefs - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="As part of the Christian & Missionary Alliance, we hold to historic Christian orthodoxy centered on Jesus and rooted in Scripture. Explore our core doctrines and statement of faith."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Our Beliefs</h1>
 	<p>

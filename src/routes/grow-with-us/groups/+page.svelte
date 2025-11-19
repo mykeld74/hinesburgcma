@@ -30,6 +30,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Groups - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="We grow best in community. Groups are where discipleship, friendship, and mission collide in the life of CAC. Find community groups, discipleship groups, and short-term studies."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Groups</h1>
 	<p>

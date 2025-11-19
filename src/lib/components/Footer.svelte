@@ -1,7 +1,7 @@
 <footer class="siteFooter">
 	<div class="footerInner">
 		<section class="footerBrand">
-			<h2>Hinesburg CMA</h2>
+			<h2>Community Alliance Church - Hinesburg</h2>
 			<p>Following Jesus, sharing hope, and serving our neighbors in the heart of Hinesburg.</p>
 			<a class="footerButton" href="/visit-us/plan-your-visit/">Plan Your Visit</a>
 		</section>
@@ -25,15 +25,17 @@
 		<section>
 			<h3>Stay Connected</h3>
 			<ul>
-				<li><a href="https://www.youtube.com/@HinesburgCMA">YouTube</a></li>
+				<li><a href="https://www.youtube.com/@HinesburgCAC">YouTube</a></li>
 				<li><a href="https://www.facebook.com/HinesburgCMA/">Facebook</a></li>
-				<li><a href="https://apps.apple.com/us/app/church-center-app/id1357742931">Get the CAC App</a></li>
+				<li>
+					<a href="https://apps.apple.com/us/app/church-center-app/id1357742931">Get the CAC App</a>
+				</li>
 				<li><a href="/resources/external-resources/">External Resources</a></li>
 			</ul>
 		</section>
 	</div>
 	<div class="footerNote">
-		<small>&copy; {new Date().getFullYear()} Hinesburg CMA. All rights reserved.</small>
+		<small>&copy; {new Date().getFullYear()} Community Alliance Church - Hinesburg. All rights reserved.</small>
 		<a href="/resources/cvu-parking/">CVU Parking</a>
 		<a href="/grow-with-us/your-next-steps/">Your Next Steps</a>
 	</div>
@@ -143,4 +145,3 @@
 		}
 	}
 </style>
-

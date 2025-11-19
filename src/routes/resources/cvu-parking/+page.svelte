@@ -31,6 +31,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>CVU Parking - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="On busy Sundays, we partner with Champlain Valley Union High School to provide additional parking. Learn about on-site parking, CVU overflow, shuttle service, and accessible parking options."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>CVU Parking</h1>
 	<p>

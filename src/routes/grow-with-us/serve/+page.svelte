@@ -35,6 +35,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Serve - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="Serving is one of the best ways to grow in discipleship, build relationships, and help others meet Jesus at CAC. Find your team and start serving today."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Serve</h1>
 	<p>

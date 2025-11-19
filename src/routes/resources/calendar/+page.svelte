@@ -8,10 +8,18 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Calendar - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="Stay up to date with everything happening at Community Alliance Church - Hinesburg. Filter by ministry, add events to your calendar, and share with friends. View all-church gatherings, kids & students events, groups, and more."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Calendar</h1>
 	<p>
-		Stay up to date with everything happening at Hinesburg CMA. Filter by ministry, add events to
+		Stay up to date with everything happening at Community Alliance Church - Hinesburg. Filter by ministry, add events to
 		your calendar, and share with friends.
 	</p>
 	<div class="pageHeroActions">

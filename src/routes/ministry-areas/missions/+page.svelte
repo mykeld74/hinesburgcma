@@ -31,10 +31,18 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Missions - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="Community Alliance Church - Hinesburg is committed to making Jesus known locally and globally through prayer, serving, and radical generosity. Support global partners and local initiatives."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Missions</h1>
 	<p>
-		Hinesburg CMA is committed to making Jesus known locally and globally through prayer, serving,
+		Community Alliance Church - Hinesburg is committed to making Jesus known locally and globally through prayer, serving,
 		and radical generosity.
 	</p>
 	<div class="pageHeroActions">

@@ -13,7 +13,7 @@
 		{
 			title: 'Mail',
 			description:
-				'Send gifts to Hinesburg CMA, 190 Pond Road, Hinesburg VT 05461. Please note fund designation.'
+				'Send gifts to Community Alliance Church - Hinesburg, 190 Pond Road, Hinesburg VT 05461. Please note fund designation.'
 		},
 		{
 			title: 'Non-Cash Gifts',
@@ -29,6 +29,14 @@
 		'Special Projects — invests in strategic initiatives and facility improvements.'
 	];
 </script>
+
+<svelte:head>
+	<title>Giving - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="Your generosity accelerates the mission of Jesus in Hinesburg and beyond. Give online, in person, or by mail. Support the General Fund, Great Commission Fund, Benevolence, and special projects."
+	/>
+</svelte:head>
 
 <section class="pageHero">
 	<h1>Giving</h1>

@@ -30,6 +30,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Your Next Steps - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="You belong here. These pathways will help you build relationships, grow in faith, and live on mission with our church family. Attend Next Steps, join a group, or serve on a team."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Your Next Steps</h1>
 	<p>

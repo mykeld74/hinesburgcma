@@ -49,6 +49,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Our Leadership - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="We are guided by a team of pastors, staff, elders, and ministry leaders who serve together to help our church follow Jesus on mission. Meet our pastoral team and ministry directors."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Our Leadership</h1>
 	<p>

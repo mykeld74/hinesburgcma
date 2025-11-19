@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
 	import logo from '$lib/assets/logo.webp';
 
 	type NavItem = {
@@ -67,6 +68,8 @@
 	let dropdownPosition = $state({ left: 0, width: 0 });
 	let navElement: HTMLElement | undefined;
 	let hideTimeout: ReturnType<typeof setTimeout> | null = null;
+	let innerWidth = $state(typeof window !== 'undefined' ? window.innerWidth : 1110);
+	const isMobile = $derived(innerWidth < 1110);
 
 	type NavigationProps = {
 		theme?: 'light' | 'dark';
@@ -87,10 +90,27 @@
 
 	function toggleDrawer() {
 		isDrawerOpen = !isDrawerOpen;
+		if (typeof document !== 'undefined') {
+			document.body.style.overflow = isDrawerOpen ? 'hidden' : '';
+		}
 	}
 
 	function closeDrawer() {
 		isDrawerOpen = false;
+		if (typeof document !== 'undefined') {
+			document.body.style.overflow = '';
+		}
+	}
+
+	function checkIsMobile() {
+		if (innerWidth < 1110) {
+			// Mobile view
+		} else {
+			// Desktop view - ensure drawer is closed
+			if (isDrawerOpen) {
+				closeDrawer();
+			}
+		}
 	}
 
 	function showGroup(group: NavGroup, trigger: HTMLElement) {
@@ -109,7 +129,7 @@
 		cancelHide();
 		hideTimeout = setTimeout(() => {
 			activeGroup = null;
-		}, 120);
+		}, 150);
 	}
 
 	function cancelHide() {
@@ -118,13 +138,22 @@
 		hideTimeout = null;
 	}
 
+	function closeDropdown() {
+		cancelHide();
+		activeGroup = null;
+	}
+
+	function handleDropdownLinkClick() {
+		closeDropdown();
+	}
+
 	function handleDesktopKeydown(event: KeyboardEvent, group: NavGroup) {
 		if (event.key === 'Enter' || event.key === ' ') {
 			event.preventDefault();
 			showGroup(group, event.currentTarget as HTMLElement);
 		} else if (event.key === 'Escape') {
 			event.preventDefault();
-			activeGroup = null;
+			closeDropdown();
 		}
 	}
 
@@ -136,7 +165,45 @@
 	function toggleThemeMode() {
 		onToggleTheme?.();
 	}
+
+	$effect(() => {
+		if (typeof document !== 'undefined' && isDrawerOpen) {
+			document.body.style.overflow = 'hidden';
+		} else if (typeof document !== 'undefined') {
+			document.body.style.overflow = '';
+		}
+	});
+
+	// Close dropdown when clicking outside or when navigating
+	$effect(() => {
+		if (!activeGroup) return;
+
+		function handleClickOutside(event: MouseEvent) {
+			const target = event.target as HTMLElement;
+			const dropdownPanel = document.querySelector('.dropdownPanel');
+			if (
+				navElement &&
+				!navElement.contains(target) &&
+				dropdownPanel &&
+				!dropdownPanel.contains(target)
+			) {
+				closeDropdown();
+			}
+		}
+
+		// Use a small delay to avoid closing immediately when opening
+		const timeoutId = setTimeout(() => {
+			document.addEventListener('click', handleClickOutside, true);
+		}, 100);
+
+		return () => {
+			clearTimeout(timeoutId);
+			document.removeEventListener('click', handleClickOutside, true);
+		};
+	});
 </script>
+
+<svelte:window bind:innerWidth onresize={checkIsMobile} />
 
 <nav
 	class="siteNav"
@@ -145,8 +212,8 @@
 	onpointerleave={scheduleHide}
 >
 	<div class="navInner">
-		<a class="brand" href="/" aria-label="Hinesburg CMA home">
-			<img src={logo} alt="Hinesburg CMA logo" />
+		<a class="brand" href="/" aria-label="Community Alliance Church - Hinesburg home">
+			<img src={logo} alt="Community Alliance Church - Hinesburg logo" />
 		</a>
 
 		<ul class="desktopGroups" aria-label="Primary sections">
@@ -179,40 +246,78 @@
 			type="button"
 			aria-controls="mobile-navigation"
 			aria-expanded={isDrawerOpen}
+			aria-label="Toggle mobile menu"
 			onclick={toggleDrawer}
 		>
-			<span class="menuToggleLabel">Menu</span>
-			<span class="menuToggleIcon" aria-hidden="true"></span>
+			<div class="hamburger" class:active={isDrawerOpen}>
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
 		</button>
 	</div>
-	<div class:drawerOpen={isDrawerOpen} class="navDrawer" id="mobile-navigation">
-		<div class="drawerContent">
-			{#each navGroups as group}
-				<section>
-					<h2>{group.label}</h2>
-					<ul>
-						{#each group.items as item}
-							<li>
-								<a href={item.href} onclick={closeDrawer}>{item.label}</a>
-							</li>
-						{/each}
-					</ul>
-				</section>
-			{/each}
-			<div class="drawerFooter">
-				<button
-					type="button"
-					onclick={() => {
-						toggleThemeMode();
+	{#if isDrawerOpen}
+		<div
+			class="mobileNavOverlay"
+			role="button"
+			tabindex="0"
+			aria-label="Close mobile menu"
+			onclick={closeDrawer}
+			onkeydown={(e) => {
+				if (e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					closeDrawer();
+				}
+			}}
+		>
+			<div
+				class="navDrawer"
+				id="mobile-navigation"
+				role="dialog"
+				aria-modal="true"
+				tabindex="0"
+				transition:fly={{ x: 400, duration: 300 }}
+				onclick={(e) => e.stopPropagation()}
+				onkeydown={(e) => {
+					if (e.key === 'Escape') {
 						closeDrawer();
-					}}
-				>
-					Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
-				</button>
+					}
+					e.stopPropagation();
+				}}
+			>
+				<div class="mobileNavHeader">
+					<a href="/" onclick={closeDrawer}>
+						<img src={logo} alt="Community Alliance Church - Hinesburg logo" />
+					</a>
+				</div>
+				<div class="drawerContent">
+					{#each navGroups as group}
+						<div class="mobileNavSection">
+							<h3 class="mobileNavLabel">{group.label}</h3>
+							<ul class="mobileNavLinks">
+								{#each group.items as item}
+									<li>
+										<a href={item.href} onclick={closeDrawer}>{item.label}</a>
+									</li>
+								{/each}
+							</ul>
+						</div>
+					{/each}
+					<div class="drawerFooter">
+						<button
+							type="button"
+							onclick={() => {
+								toggleThemeMode();
+								closeDrawer();
+							}}
+						>
+							Switch to {theme === 'light' ? 'Dark' : 'Light'} Mode
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="navBackdrop" aria-hidden="true" hidden={!isDrawerOpen} onclick={closeDrawer}></div>
+	{/if}
 	{#if activeGroup}
 		<div
 			class="dropdownPanel"
@@ -224,7 +329,7 @@
 				<ul>
 					{#each activeGroup?.items ?? [] as item}
 						<li>
-							<a href={item.href}>{item.label}</a>
+							<a href={item.href} onclick={handleDropdownLinkClick}>{item.label}</a>
 						</li>
 					{/each}
 				</ul>
@@ -362,112 +467,42 @@
 
 		& .menuToggle {
 			display: none;
-			align-items: center;
-			gap: 0.5rem;
-			padding: 0.5rem 0.75rem;
-			border-radius: 999px;
-			border: 1px solid color-mix(in oklab, var(--primaryColor) 35%, transparent);
-			background: transparent;
-			color: var(--contrastColor);
-			font-weight: 600;
-			text-transform: uppercase;
-			letter-spacing: 0.14em;
-			font-size: 0.85rem;
+			position: fixed;
+			top: 1rem;
+			right: 1.5rem;
+			z-index: 1000;
+			background: none;
+			border: none;
+			cursor: pointer;
+			padding: 0.5rem;
 
-			& .menuToggleIcon {
-				position: relative;
-				width: 18px;
-				height: 14px;
+			& .hamburger {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+				width: 24px;
+				height: 18px;
 
-				&,
-				&::before,
-				&::after {
+				& span {
 					display: block;
-					content: '';
-					background-color: var(--contrastColor);
-					border-radius: 2px;
-					height: 2px;
-					width: 18px;
-				}
-
-				&::before {
-					position: absolute;
-					top: 0;
-				}
-
-				&::after {
-					position: absolute;
-					bottom: 0;
-				}
-			}
-		}
-
-		& .navDrawer {
-			position: fixed;
-			inset: 0 0 0 auto;
-			width: min(320px, 100%);
-			height: 100%;
-			transform: translateX(100%);
-			transition: transform 0.3s ease;
-			background-color: color-mix(in oklab, var(--backgroundColor) 96%, black 4%);
-			z-index: 12;
-			overflow-y: auto;
-
-			&.drawerOpen {
-				transform: translateX(0);
-			}
-
-			& .drawerContent {
-				display: grid;
-				padding: clamp(1.5rem, 4vw, 2rem);
-				gap: 1.25rem;
-
-				& h2 {
-					font-size: 0.85rem;
-					margin: 0 0 0.75rem;
-					color: color-mix(in oklab, var(--contrastColor) 75%, transparent);
-				}
-
-				& ul {
-					list-style: none;
-					margin: 0;
-					padding: 0;
-					display: grid;
-					gap: 0.4rem;
-				}
-
-				& a {
-					color: var(--contrastColor);
-					font-weight: 600;
-					text-transform: uppercase;
-					letter-spacing: 0.12em;
-					font-size: 0.74rem;
-				}
-			}
-
-			& .drawerFooter {
-				margin-top: 1.5rem;
-
-				& button {
 					width: 100%;
-					padding: 0.8rem 1rem;
-					border-radius: 999px;
-					border: 1px solid color-mix(in oklab, var(--primaryColor) 35%, transparent);
-					background: color-mix(in oklab, var(--surfaceColor) 92%, black 8%);
-					color: color-mix(in oklab, var(--contrastColor) 90%, white 10%);
-					font-size: 0.74rem;
-					font-weight: 600;
-					text-transform: uppercase;
-					letter-spacing: 0.16em;
+					height: 2px;
+					background-color: var(--contrastColor);
+					transition: all 0.3s ease-in-out;
+				}
+
+				&.active span:nth-child(1) {
+					transform: translateY(8px) rotate(45deg);
+				}
+
+				&.active span:nth-child(2) {
+					opacity: 0;
+				}
+
+				&.active span:nth-child(3) {
+					transform: translateY(-8px) rotate(-45deg);
 				}
 			}
-		}
-
-		& .navBackdrop {
-			position: fixed;
-			inset: 0;
-			background-color: color-mix(in oklab, black 45%, transparent);
-			z-index: 11;
 		}
 
 		@media (max-width: 960px) {
@@ -496,7 +531,7 @@
 			top: calc(100% + 12px);
 			left: 0;
 			width: 100%;
-			padding: 0 clamp(1rem, 4vw, 1.5rem);
+			padding: 12px clamp(1rem, 4vw, 1.5rem) 0;
 			display: flex;
 			justify-content: center;
 			pointer-events: auto;
@@ -516,6 +551,7 @@
 				padding: clamp(1.75rem, 3vw, 2.25rem);
 				display: grid;
 				gap: clamp(1rem, 2vw, 1.5rem);
+				margin-top: -12px;
 
 				& ul {
 					list-style: none;
@@ -550,6 +586,102 @@
 			@media (max-width: 960px) {
 				display: none;
 			}
+		}
+	}
+
+	.mobileNavOverlay {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: 999;
+	}
+
+	.navDrawer {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 100%;
+		height: 100vh;
+		background-color: color-mix(in oklab, var(--backgroundColor) 96%, black 4%);
+		padding: 1rem 1rem 10rem 2rem;
+		overflow-y: auto;
+		z-index: 1000;
+	}
+
+	.mobileNavHeader {
+		max-width: 100px;
+		margin: 0 auto;
+		margin-bottom: 2rem;
+
+		img {
+			width: 100%;
+			height: auto;
+			object-fit: contain;
+		}
+	}
+
+	.drawerContent {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+
+	.mobileNavSection {
+		border-bottom: 1px solid color-mix(in oklab, var(--contrastColor) 12%, transparent);
+		padding-bottom: 1rem;
+	}
+
+	.mobileNavLabel {
+		font-size: 1.4rem;
+		font-weight: 700;
+		margin-bottom: 1rem;
+		color: var(--contrastColor);
+		text-decoration: underline;
+	}
+
+	.mobileNavLinks {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+		display: grid;
+		gap: 0.75rem;
+
+		li {
+			margin-bottom: 0;
+		}
+
+		a {
+			color: var(--contrastColor);
+			text-decoration: none;
+			font-size: 1.2em;
+			display: block;
+			padding: 0;
+			transition: color 0.3s ease;
+
+			&:hover {
+				color: var(--accentColor);
+			}
+		}
+	}
+
+	.drawerFooter {
+		margin-top: 1.5rem;
+
+		button {
+			width: 100%;
+			padding: 0.8rem 1rem;
+			border-radius: 999px;
+			border: 1px solid color-mix(in oklab, var(--primaryColor) 35%, transparent);
+			background: color-mix(in oklab, var(--surfaceColor) 92%, black 8%);
+			color: color-mix(in oklab, var(--contrastColor) 90%, white 10%);
+			font-size: 0.74rem;
+			font-weight: 600;
+			text-transform: uppercase;
+			letter-spacing: 0.16em;
+			cursor: pointer;
 		}
 	}
 

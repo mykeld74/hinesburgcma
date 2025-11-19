@@ -25,6 +25,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Kids Ministry - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="We partner with families to help kids meet, know, and follow Jesus through joyful gatherings and discipleship all week long. Age-specific programming from birth through 5th grade."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Kids Ministry</h1>
   

@@ -3,7 +3,7 @@
 		{
 			year: '1978',
 			description:
-				'Hinesburg CMA launched with a vision to reach families in the Champlain Valley.'
+				'Community Alliance Church - Hinesburg launched with a vision to reach families in the Champlain Valley.'
 		},
 		{
 			year: '1995',
@@ -45,6 +45,14 @@
 		}
 	];
 </script>
+
+<svelte:head>
+	<title>Our Story - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="We are a multi-generational church committed to practicing the way of Jesus together in Hinesburg and beyond. Learn about our history, values, and mission."
+	/>
+</svelte:head>
 
 <section class="pageHero">
 	<h1>Our Story</h1>

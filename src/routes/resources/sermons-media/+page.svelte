@@ -2,20 +2,17 @@
 	const channels = [
 		{
 			title: 'Watch Online',
-			description:
-				'Stream Sunday gatherings and on-demand teaching on YouTube and Church Center.',
-			link: 'https://www.youtube.com/@HinesburgCMA'
+			description: 'Stream Sunday gatherings and on-demand teaching on YouTube and Church Center.',
+			link: 'https://www.youtube.com/@HinesburgCAC'
 		},
 		{
 			title: 'Podcast',
-			description:
-				'Subscribe to weekly sermon audio wherever you listen to podcasts.',
+			description: 'Subscribe to weekly sermon audio wherever you listen to podcasts.',
 			link: 'https://podcasts.apple.com/'
 		},
 		{
 			title: 'Discussion Guides',
-			description:
-				'Download guides to help your group or family dig deeper throughout the week.',
+			description: 'Download guides to help your group or family dig deeper throughout the week.',
 			link: '/grow-with-us/groups/'
 		}
 	];
@@ -23,33 +20,38 @@
 	const series = [
 		{
 			title: 'Following Jesus Daily',
-			description:
-				'Practices that ground us in the life of Jesus in every season.',
+			description: 'Practices that ground us in the life of Jesus in every season.',
 			tags: 'discipleship, formation'
 		},
 		{
 			title: 'Hope in the Psalms',
-			description:
-				'Exploring the prayers and songs that shape our worship and trust in God.',
+			description: 'Exploring the prayers and songs that shape our worship and trust in God.',
 			tags: 'worship, Old Testament'
 		},
 		{
 			title: 'Be the Church',
-			description:
-				'A call to live on mission together in our neighborhoods and networks.',
+			description: 'A call to live on mission together in our neighborhoods and networks.',
 			tags: 'mission, community'
 		}
 	];
 </script>
 
+<svelte:head>
+	<title>Sermons & Media - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="Access current and past teaching, worship gatherings, and resources that help you grow throughout the week. Watch sermons online, listen to podcasts, and download discussion guides."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Sermons & Media</h1>
 	<p>
-		Access current and past teaching, worship gatherings, and resources that help you grow throughout
-		the week.
+		Access current and past teaching, worship gatherings, and resources that help you grow
+		throughout the week.
 	</p>
 	<div class="pageHeroActions">
-		<a href="https://www.youtube.com/@HinesburgCMA">Watch on YouTube</a>
+		<a href="https://www.youtube.com/@HinesburgCAC">Watch on YouTube</a>
 		<a href="/resources/calendar/">Upcoming Series</a>
 	</div>
 </section>
@@ -83,12 +85,11 @@
 <section class="pageSection">
 	<h2>Share Your Story</h2>
 	<p>
-		God is at work in our church. Tell us how he is moving in your life so we can celebrate and share
-		hope with others.
+		God is at work in our church. Tell us how he is moving in your life so we can celebrate and
+		share hope with others.
 	</p>
 	<div class="pageHeroActions">
 		<a href="mailto:info@hinesburgcma.org">Share a Story</a>
 		<a href="/grow-with-us/serve/">Join the Creative Team</a>
 	</div>
 </section>
-

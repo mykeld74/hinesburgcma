@@ -25,6 +25,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Young Adults - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="College students and young professionals gather to pursue Jesus, develop friendships, and step into their God-given purpose. Community nights, house groups, and serving opportunities."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Young Adults</h1>
 	<p>

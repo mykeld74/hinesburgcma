@@ -1,6 +1,6 @@
-# Hinesburg CMA Web Experience
+# Community Alliance Church - Hinesburg Web Experience
 
-SvelteKit-powered redesign of [Hinesburg CMA](https://hinesburgcma.org/), mirroring the bold, high-contrast storytelling of Real Life Church Sacramento while honoring the church’s existing color system and brand language.
+SvelteKit-powered redesign of [Community Alliance Church - Hinesburg](https://hinesburgcma.org/), mirroring the bold, high-contrast storytelling of Real Life Church Sacramento while honoring the church's existing color system and brand language.
 
 ## Features
 

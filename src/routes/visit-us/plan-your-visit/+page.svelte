@@ -31,6 +31,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Plan Your Visit - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="We cannot wait to welcome you. Explore what to expect before you arrive and how to make the most of your first Sunday with us. Service at 10:30am, 190 Pond Road, Hinesburg VT."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Plan Your Visit</h1>
 	<p>

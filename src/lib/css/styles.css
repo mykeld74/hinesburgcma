@@ -3,73 +3,76 @@
 	--accentColor: oklch(0.819 0.1656 122.08);
 	--contrastColor: oklch(0.98 0.03 250);
 	--backgroundColor: oklch(0.22 0.02 250);
-	--surfaceColor: color-mix(in oklab, var(--backgroundColor) 92%, black 8%);
-	--surfaceStrong: color-mix(in oklab, var(--backgroundColor) 82%, black 18%);
+	--surfaceColor: color-mix(in oklch, var(--backgroundColor) 92%, black 8%);
+	--surfaceStrong: color-mix(in oklch, var(--backgroundColor) 82%, black 18%);
 	color-scheme: light dark;
 }
 
 body {
 	font-family: 'Lato', sans-serif;
+	font-size: 20px;
 	background:
 		radial-gradient(
 			120% 120% at 20% 20%,
-			color-mix(in oklab, var(--primaryColor) 18%, transparent),
+			color-mix(in oklch, var(--primaryColor) 18%, transparent),
 			transparent 55%
 		),
 		var(--backgroundColor);
 	color: var(--contrastColor);
 	line-height: 1.75;
 	margin: 0;
-	font-feature-settings:
-		'ss01' on,
-		'liga' on;
+}
 
-	& main {
-		display: block;
-		background: linear-gradient(
-			180deg,
-			color-mix(in oklab, var(--backgroundColor) 96%, black 4%) 0%,
-			color-mix(in oklab, var(--backgroundColor) 88%, black 12%) 65%,
-			var(--backgroundColor) 100%
-		);
+main {
+	display: block;
+	background: linear-gradient(
+		180deg,
+		color-mix(in oklch, var(--backgroundColor) 96%, black 4%) 0%,
+		color-mix(in oklch, var(--backgroundColor) 88%, black 12%) 65%,
+		var(--backgroundColor) 100%
+	);
+	min-height: calc(100vh - 320px);
+	padding-top: clamp(1rem, 2.5vw, 2rem);
+	&.isHome {
+		padding-top: 0;
 	}
+}
 
-	& a {
-		color: var(--primaryColor);
-		text-decoration: none;
+a {
+	color: var(--primaryColor);
+	text-decoration: none;
 
-		&:hover {
-			text-decoration: underline;
-		}
+	&:hover {
+		text-decoration: underline;
 	}
+}
 
-	& h1,
-	& h2,
-	& h3,
-	& h4,
-	& h5,
-	& h6 {
-		font-family: 'Raleway', sans-serif;
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-	}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Raleway', sans-serif;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
 }
 
 body.dark-mode {
 	color-scheme: dark;
 }
 
-body.light-mode {
-	--backgroundColor: oklch(0.96 0.02 255);
+.light-mode {
+	--backgroundColor: oklch(1 0 0);
 	--contrastColor: oklch(0.3 0.04 255);
-	--surfaceColor: color-mix(in oklab, white 90%, var(--backgroundColor) 10%);
-	--surfaceStrong: color-mix(in oklab, white 82%, var(--backgroundColor) 18%);
+	--surfaceColor: color-mix(in oklch, white 90%, var(--backgroundColor) 10%);
+	--surfaceStrong: color-mix(in oklch, white 82%, var(--backgroundColor) 18%);
 	color-scheme: light;
 	background:
 		radial-gradient(
 			120% 120% at 20% 20%,
-			color-mix(in oklab, var(--primaryColor) 28%, transparent),
+			color-mix(in oklch, var(--primaryColor) 28%, transparent),
 			transparent 55%
 		),
 		var(--backgroundColor);
@@ -77,18 +80,10 @@ body.light-mode {
 	& main {
 		background: linear-gradient(
 			180deg,
-			color-mix(in oklab, white 95%, var(--backgroundColor) 5%) 0%,
-			color-mix(in oklab, white 90%, var(--backgroundColor) 10%) 65%,
+			color-mix(in oklch, white 95%, var(--backgroundColor) 5%) 0%,
+			color-mix(in oklch, white 90%, var(--backgroundColor) 10%) 65%,
 			var(--backgroundColor) 100%
 		);
-	}
-
-	& a {
-		color: color-mix(in oklab, var(--primaryColor) 70%, black 8%);
-	}
-
-	& .hero::before {
-		background: rgba(255, 255, 255, 0.82);
 	}
 }
 
@@ -99,13 +94,13 @@ body.light-mode {
 	font-size: 0.75rem;
 	text-transform: uppercase;
 	letter-spacing: 0.14em;
-	color: color-mix(in oklab, var(--contrastColor) 90%, white 10%);
+	color: color-mix(in oklch, var(--contrastColor) 90%, white 10%);
 }
 
 .pageHero {
 	max-width: 1100px;
 	margin: 0 auto clamp(2.5rem, 4vw, 4rem);
-	padding: 0 clamp(1.5rem, 5vw, 3rem);
+	padding: clamp(1rem, 2.5vw, 2rem) clamp(1.5rem, 5vw, 3.5rem);
 	display: grid;
 	gap: clamp(1rem, 2vw, 1.5rem);
 	position: relative;
@@ -118,15 +113,15 @@ body.light-mode {
 		background:
 			linear-gradient(
 				135deg,
-				color-mix(in oklab, var(--surfaceStrong) 60%, transparent),
-				color-mix(in oklab, var(--primaryColor) 40%, transparent)
+				color-mix(in oklch, var(--surfaceStrong) 60%, transparent),
+				color-mix(in oklch, var(--primaryColor) 40%, transparent)
 			),
 			linear-gradient(
 				135deg,
-				color-mix(in oklab, var(--primaryColor) 15%, transparent),
-				color-mix(in oklab, var(--backgroundColor) 96%, black 4%)
+				color-mix(in oklch, var(--primaryColor) 15%, transparent),
+				color-mix(in oklch, var(--backgroundColor) 96%, black 4%)
 			);
-		box-shadow: 0 42px 120px color-mix(in oklab, black 70%, transparent);
+		box-shadow: 0 42px 120px color-mix(in oklch, black 70%, transparent);
 		opacity: 0.95;
 		z-index: 0;
 	}
@@ -145,7 +140,7 @@ body.light-mode {
 	& p {
 		margin: 0;
 		max-width: 60ch;
-		color: color-mix(in oklab, var(--contrastColor) 85%, transparent);
+		color: color-mix(in oklch, var(--contrastColor) 85%, transparent);
 	}
 
 	&Actions {
@@ -161,19 +156,19 @@ body.light-mode {
 			padding: 0.65rem 1.4rem;
 			border-radius: 999px;
 			font-weight: 600;
-			border: 1px solid color-mix(in oklab, var(--primaryColor) 45%, transparent);
+			border: 1px solid color-mix(in oklch, var(--primaryColor) 45%, transparent);
 			color: var(--contrastColor);
-			background: color-mix(in oklab, var(--primaryColor) 25%, transparent);
+			background: color-mix(in oklch, var(--primaryColor) 25%, transparent);
 
 			&:nth-child(2) {
 				background: transparent;
-				border-color: color-mix(in oklab, var(--contrastColor) 55%, transparent);
-				color: color-mix(in oklab, var(--contrastColor) 92%, white 8%);
+				border-color: color-mix(in oklch, var(--contrastColor) 55%, transparent);
+				color: color-mix(in oklch, var(--contrastColor) 92%, white 8%);
 			}
 
 			&:hover {
 				transform: translateY(-4px);
-				box-shadow: 0 20px 36px color-mix(in oklab, black 50%, transparent);
+				box-shadow: 0 20px 36px color-mix(in oklch, black 50%, transparent);
 			}
 		}
 	}
@@ -189,13 +184,13 @@ body.light-mode {
 	& .sectionSurface {
 		background: linear-gradient(
 			160deg,
-			color-mix(in oklab, var(--surfaceColor) 85%, transparent) 0%,
-			color-mix(in oklab, var(--surfaceStrong) 75%, transparent) 100%
+			color-mix(in oklch, var(--surfaceColor) 85%, transparent) 0%,
+			color-mix(in oklch, var(--surfaceStrong) 75%, transparent) 100%
 		);
 		border-radius: 28px;
 		padding: clamp(1.75rem, 4vw, 3rem);
-		box-shadow: 0 28px 60px color-mix(in oklab, black 52%, transparent);
-		border: 1px solid color-mix(in oklab, var(--primaryColor) 35%, transparent);
+		box-shadow: 0 28px 60px color-mix(in oklch, black 52%, transparent);
+		border: 1px solid color-mix(in oklch, var(--primaryColor) 35%, transparent);
 		display: grid;
 		gap: clamp(1.2rem, 2vw, 1.8rem);
 		position: relative;
@@ -207,7 +202,7 @@ body.light-mode {
 			border-radius: inherit;
 			background: radial-gradient(
 				140% 90% at 0% 0%,
-				color-mix(in oklab, var(--primaryColor) 20%, transparent),
+				color-mix(in oklch, var(--primaryColor) 20%, transparent),
 				transparent 56%
 			);
 			opacity: 0.4;
@@ -228,7 +223,7 @@ body.light-mode {
 	& p {
 		margin: 0;
 		max-width: 70ch;
-		color: color-mix(in oklab, var(--contrastColor) 85%, transparent);
+		color: color-mix(in oklch, var(--contrastColor) 85%, transparent);
 	}
 
 	& ul,
@@ -243,11 +238,11 @@ body.light-mode {
 	& li {
 		padding: clamp(0.85rem, 2vw, 1.05rem) clamp(1rem, 2.5vw, 1.4rem);
 		border-radius: 18px;
-		border: 1px solid color-mix(in oklab, var(--primaryColor) 40%, transparent);
-		background: color-mix(in oklab, var(--surfaceColor) 88%, black 12%);
+		border: 1px solid color-mix(in oklch, var(--primaryColor) 40%, transparent);
+		background: color-mix(in oklch, var(--surfaceColor) 88%, black 12%);
 		box-shadow:
-			inset 0 0 0 1px color-mix(in oklab, var(--contrastColor) 6%, transparent),
-			0 16px 24px color-mix(in oklab, black 35%, transparent);
+			inset 0 0 0 1px color-mix(in oklch, var(--contrastColor) 6%, transparent),
+			0 16px 24px color-mix(in oklch, black 35%, transparent);
 		font-weight: 600;
 		text-transform: uppercase;
 		letter-spacing: 0.12em;
@@ -264,9 +259,9 @@ body.light-mode {
 		gap: 0.6rem;
 		padding: clamp(1.1rem, 2vw, 1.5rem);
 		border-radius: 20px;
-		border: 1px solid color-mix(in oklab, var(--primaryColor) 25%, transparent);
-		background: color-mix(in oklab, var(--surfaceColor) 88%, black 12%);
-		box-shadow: 0 26px 42px color-mix(in oklab, black 50%, transparent);
+		border: 1px solid color-mix(in oklch, var(--primaryColor) 25%, transparent);
+		background: color-mix(in oklch, var(--surfaceColor) 88%, black 12%);
+		box-shadow: 0 26px 42px color-mix(in oklch, black 50%, transparent);
 		position: relative;
 
 		&::before {
@@ -276,8 +271,8 @@ body.light-mode {
 			border-radius: inherit;
 			background: linear-gradient(
 				145deg,
-				color-mix(in oklab, var(--primaryColor) 25%, transparent),
-				color-mix(in oklab, var(--surfaceColor) 96%, transparent)
+				color-mix(in oklch, var(--primaryColor) 25%, transparent),
+				color-mix(in oklch, var(--surfaceColor) 96%, transparent)
 			);
 			opacity: 0.4;
 			pointer-events: none;
@@ -303,13 +298,13 @@ body.light-mode {
 	border-collapse: collapse;
 	border-radius: 22px;
 	overflow: hidden;
-	box-shadow: 0 18px 32px color-mix(in oklab, black 45%, transparent);
+	box-shadow: 0 18px 32px color-mix(in oklch, black 45%, transparent);
 
 	& th,
 	& td {
 		padding: 0.75rem 1rem;
 		text-align: left;
-		border-bottom: 1px solid color-mix(in oklab, var(--primaryColor) 25%, transparent);
+		border-bottom: 1px solid color-mix(in oklch, var(--primaryColor) 25%, transparent);
 	}
 
 	& th {
@@ -318,5 +313,64 @@ body.light-mode {
 		text-transform: uppercase;
 		letter-spacing: 0.08em;
 		font-size: 0.8rem;
+	}
+}
+
+.heroActions {
+	display: grid;
+	grid-auto-flow: column;
+	gap: 1rem;
+	align-items: center;
+	justify-content: flex-start;
+
+	@media (max-width: 680px) {
+		grid-auto-flow: row;
+		justify-content: stretch;
+	}
+}
+
+.primaryCta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.7rem 1.6rem;
+	border-radius: 999px;
+	font-weight: 700;
+	color: #fff;
+	background-color: color-mix(in oklch, var(--primaryColor) 65%, transparent);
+	border: 1px solid color-mix(in oklch, var(--primaryColor) 80%, transparent);
+
+	&:hover {
+		background-color: color-mix(in oklch, var(--primaryColor) 75%, transparent);
+	}
+}
+
+.secondaryCta {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.7rem 1.6rem;
+	border-radius: 999px;
+	font-weight: 700;
+	color: #fff;
+	border: 1px solid color-mix(in oklch, var(--contrastColor) 65%, transparent);
+
+	&:hover {
+		background-color: color-mix(in oklch, var(--contrastColor) 15%, transparent);
+	}
+}
+
+.sectionHeader {
+	display: grid;
+	gap: 0.75rem;
+	margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+
+	& p {
+		max-width: 56ch;
+		margin: 0;
+		text-transform: none;
+		letter-spacing: normal;
 	}
 }

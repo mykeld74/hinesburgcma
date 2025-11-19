@@ -26,6 +26,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Your Next Steps - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="Whether you have visited once or call CAC home, we have designed clear pathways to help you grow in faith, relationships, and mission. Discover your next step."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Your Next Steps</h1>
 	<p>

@@ -30,6 +30,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Prayer & Care - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="You are not alone. Our pastors, prayer team, and care network walk beside you with compassion, prayer, and practical help. Submit prayer requests and access care resources."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Prayer & Care</h1>
 	<p>

@@ -27,6 +27,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>External Resources - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="Take next steps all week long with trusted resources that support spiritual growth, family discipleship, and mission. Access Church Center app, RightNow Media, C&MA resources, and Bible reading plans."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>External Resources</h1>
 	<p>

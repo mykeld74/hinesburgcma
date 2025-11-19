@@ -26,6 +26,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Baptism - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="We love celebrating life change. If you are ready to take the next step of baptism, we would be honored to walk with you. Learn about biblical foundations and the baptism process."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Baptism</h1>
 	<p>

@@ -25,6 +25,14 @@
 	];
 </script>
 
+<svelte:head>
+	<title>Student Ministry - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="Students in grades 6–12 find community, grow as disciples, and discover their calling to live on mission with Jesus. Weekly gatherings, retreats, and mission trips."
+	/>
+</svelte:head>
+
 <section class="pageHero">
 	<h1>Student Ministry</h1>
 	<p>

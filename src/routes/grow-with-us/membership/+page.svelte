@@ -3,7 +3,7 @@
 		{
 			title: 'Shared Story',
 			description:
-				'Discover the heart, history, and mission of Hinesburg CMA as part of the Christian & Missionary Alliance.'
+				'Discover the heart, history, and mission of Community Alliance Church - Hinesburg as part of the Christian & Missionary Alliance.'
 		},
 		{
 			title: 'Shared Beliefs',
@@ -29,6 +29,14 @@
 		'Celebrate during a Sunday gathering as we welcome new members.'
 	];
 </script>
+
+<svelte:head>
+	<title>Membership - Community Alliance Church - Hinesburg</title>
+	<meta
+		name="description"
+		content="Membership is more than status—it is a commitment to be rooted, growing, and sent as part of the body of Christ at CAC. Learn about membership essentials and the process."
+	/>
+</svelte:head>
 
 <section class="pageHero">
 	<h1>Membership</h1>
