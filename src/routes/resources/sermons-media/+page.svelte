@@ -45,46 +45,42 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1>Sermons & Media</h1>
-	<p>
+	<h1 class="pageHeroChild pageHeroTitle">Sermons & Media</h1>
+	<p class="pageHeroChild pageHeroText">
 		Access current and past teaching, worship gatherings, and resources that help you grow
 		throughout the week.
 	</p>
-	<div class="pageHeroActions">
-		<a href="https://www.youtube.com/@HinesburgCAC">Watch on YouTube</a>
-		<a href="/resources/calendar/">Upcoming Series</a>
-	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Latest Series</h2>
+	<h2 class="pageSectionTitle">Latest Series</h2>
 	<div class="cardGridSimple">
 		{#each series as item}
 			<article>
-				<h3>{item.title}</h3>
-				<p>{item.description}</p>
-				<small>{item.tags}</small>
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{item.title}</h3>
+				<p class="cardGridSimpleChild">{item.description}</p>
+				<small class="cardGridSimpleChild">{item.tags}</small>
 			</article>
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Stay Connected</h2>
+	<h2 class="pageSectionTitle">Stay Connected</h2>
 	<div class="cardGridSimple">
 		{#each channels as channel}
 			<article>
-				<h3>{channel.title}</h3>
-				<p>{channel.description}</p>
-				<a href={channel.link}>Go to {channel.title}</a>
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{channel.title}</h3>
+				<p class="cardGridSimpleChild">{channel.description}</p>
+				<a href={channel.link} class="cardGridSimpleChild">Go to {channel.title}</a>
 			</article>
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Share Your Story</h2>
-	<p>
+	<h2 class="pageSectionTitle">Share Your Story</h2>
+	<p class="pageSectionText">
 		God is at work in our church. Tell us how he is moving in your life so we can celebrate and
 		share hope with others.
 	</p>

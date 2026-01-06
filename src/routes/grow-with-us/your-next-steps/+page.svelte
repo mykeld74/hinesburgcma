@@ -39,41 +39,37 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1>Your Next Steps</h1>
-	<p>
+	<h1 class="pageHeroChild pageHeroTitle">Your Next Steps</h1>
+	<p class="pageHeroChild pageHeroText">
 		You belong here. These pathways will help you build relationships, grow in faith, and live on
 		mission with our church family.
 	</p>
-	<div class="pageHeroActions">
-		<a href="/visit-us/plan-your-visit/">Plan a Visit</a>
-		<a href="mailto:info@hinesburgcma.org">Talk with a Pastor</a>
-	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Take a Step Forward</h2>
+	<h2 class="pageSectionTitle">Take a Step Forward</h2>
 	<div class="cardGridSimple">
 		{#each pathways as pathway}
 			<article>
-				<h3>{pathway.title}</h3>
-				<p>{pathway.description}</p>
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{pathway.title}</h3>
+				<p class="cardGridSimpleChild">{pathway.description}</p>
 			</article>
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Helpful Tools</h2>
-	<ul>
+	<h2 class="pageSectionTitle">Helpful Tools</h2>
+	<ul class="pageSectionList">
 		{#each tools as tool}
-			<li>{tool}</li>
+			<li class="pageSectionListItem">{tool}</li>
 		{/each}
 	</ul>
 </section>
 
 <section class="pageSection">
-	<h2>We Are Here to Help</h2>
-	<p>
+	<h2 class="pageSectionTitle">We Are Here to Help</h2>
+	<p class="pageSectionText">
 		Reach out and let us know where you would like support. Our team would love to guide you.
 	</p>
 	<div class="pageHeroActions">

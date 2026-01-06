@@ -39,41 +39,37 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1>Groups</h1>
-	<p>
+	<h1 class="pageHeroChild pageHeroTitle">Groups</h1>
+	<p class="pageHeroChild pageHeroText">
 		We grow best in community. Groups are where discipleship, friendship, and mission collide in the
 		life of CAC.
 	</p>
-	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Find a Group</a>
-		<a href="/resources/calendar/">Group Launch Dates</a>
-	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Types of Groups</h2>
+	<h2 class="pageSectionTitle">Types of Groups</h2>
 	<div class="cardGridSimple">
 		{#each groupTypes as group}
 			<article>
-				<h3>{group.title}</h3>
-				<p>{group.description}</p>
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{group.title}</h3>
+				<p class="cardGridSimpleChild">{group.description}</p>
 			</article>
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2>How to Join</h2>
-	<ol>
+	<h2 class="pageSectionTitle">How to Join</h2>
+	<ol class="pageSectionList">
 		{#each process as step}
-			<li>{step}</li>
+			<li class="pageSectionListItem">{step}</li>
 		{/each}
 	</ol>
 </section>
 
 <section class="pageSection">
-	<h2>Lead a Group</h2>
-	<p>
+	<h2 class="pageSectionTitle">Lead a Group</h2>
+	<p class="pageSectionText">
 		We are always equipping new leaders. Reach out if you sense God calling you to disciple others
 		through community.
 	</p>

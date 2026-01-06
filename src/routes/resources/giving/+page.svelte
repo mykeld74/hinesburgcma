@@ -39,41 +39,37 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1>Giving</h1>
-	<p>
+	<h1 class="pageHeroChild pageHeroTitle">Giving</h1>
+	<p class="pageHeroChild pageHeroText">
 		Your generosity accelerates the mission of Jesus in Hinesburg and beyond. Thank you for giving
 		cheerfully and faithfully.
 	</p>
-	<div class="pageHeroActions">
-		<a href="https://hinesburgcma.churchcenter.com/giving">Give Online</a>
-		<a href="mailto:info@hinesburgcma.org">Ask a Question</a>
-	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Ways to Give</h2>
+	<h2 class="pageSectionTitle">Ways to Give</h2>
 	<div class="cardGridSimple">
 		{#each waysToGive as way}
 			<article>
-				<h3>{way.title}</h3>
-				<p>{way.description}</p>
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{way.title}</h3>
+				<p class="cardGridSimpleChild">{way.description}</p>
 			</article>
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Giving Funds</h2>
-	<ul>
+	<h2 class="pageSectionTitle">Giving Funds</h2>
+	<ul class="pageSectionList">
 		{#each funds as fund}
-			<li>{fund}</li>
+			<li class="pageSectionListItem">{fund}</li>
 		{/each}
 	</ul>
 </section>
 
 <section class="pageSection">
-	<h2>Contribution Questions</h2>
-	<p>
+	<h2 class="pageSectionTitle">Contribution Questions</h2>
+	<p class="pageSectionText">
 		Our finance team is ready to assist with statements, recurring gifts, and special giving options.
 	</p>
 	<div class="pageHeroActions">

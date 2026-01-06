@@ -40,41 +40,37 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1>CVU Parking</h1>
-	<p>
+	<h1 class="pageHeroChild pageHeroTitle">CVU Parking</h1>
+	<p class="pageHeroChild pageHeroText">
 		On busy Sundays, we partner with Champlain Valley Union High School to provide additional parking.
 		Here is everything you need to know.
 	</p>
-	<div class="pageHeroActions">
-		<a href="https://goo.gl/maps/jD4GvYhCkDRnQ6A1A">Open in Maps</a>
-		<a href="mailto:info@hinesburgcma.org">Contact the Office</a>
-	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Parking Overview</h2>
+	<h2 class="pageSectionTitle">Parking Overview</h2>
 	<div class="cardGridSimple">
 		{#each details as detail}
 			<article>
-				<h3>{detail.title}</h3>
-				<p>{detail.description}</p>
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{detail.title}</h3>
+				<p class="cardGridSimpleChild">{detail.description}</p>
 			</article>
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Helpful Tips</h2>
-	<ul>
+	<h2 class="pageSectionTitle">Helpful Tips</h2>
+	<ul class="pageSectionList">
 		{#each tips as tip}
-			<li>{tip}</li>
+			<li class="pageSectionListItem">{tip}</li>
 		{/each}
 	</ul>
 </section>
 
 <section class="pageSection">
-	<h2>Need Assistance?</h2>
-	<p>
+	<h2 class="pageSectionTitle">Need Assistance?</h2>
+	<p class="pageSectionText">
 		If you have mobility needs or questions before you arrive, please reach out so we can support you.
 	</p>
 	<div class="pageHeroActions">

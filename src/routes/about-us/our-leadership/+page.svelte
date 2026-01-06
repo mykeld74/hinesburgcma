@@ -1,50 +1,247 @@
 <script lang="ts">
+	import Image from '$lib/components/Image.svelte';
+
 	type Leader = {
 		name: string;
 		role: string;
-		description: string;
+		description: string | string[];
 		email?: string;
+		image?: string;
 	};
 
-	const pastors: Leader[] = [
+	let selectedLeader: Leader | null = $state(null);
+	let isModalOpen = $state(false);
+
+	function openModal(leader: Leader) {
+		selectedLeader = leader;
+		// Wait for DOM to update before adding open class to trigger animation
+		requestAnimationFrame(() => {
+			isModalOpen = true;
+		});
+		document.body.style.overflow = 'hidden';
+	}
+
+	function closeModal() {
+		isModalOpen = false;
+		// Wait for animation to complete before clearing leader
+		setTimeout(() => {
+			if (!isModalOpen) {
+				selectedLeader = null;
+			}
+		}, 300);
+		document.body.style.overflow = '';
+	}
+
+	function handleBackdropClick(e: MouseEvent) {
+		if (e.target === e.currentTarget) {
+			closeModal();
+		}
+	}
+
+	function handleKeydown(e: KeyboardEvent) {
+		if (e.key === 'Escape' && isModalOpen) {
+			closeModal();
+		}
+	}
+
+	const pastorsAndElders: Leader[] = [
 		{
-			name: 'Lead Pastor',
-			role: 'Vision & Teaching',
-			description:
-				'Guides the mission and teaching ministries of CAC alongside our elders and leadership teams.'
+			name: 'Scott & Amy Mansfield',
+			role: 'Lead Pastors',
+			email: 'smansfield@hinesburgcma.org',
+			description: [
+				'Pastor Scott Mansfield has served Community Alliance Church since June of 2002. He is the teaching pastor and works with a team of elders, staff, and a leadership team to provide pastoral care, oversight of vision and mission, as well as disciple-making ministries, both inside and outside of the church walls.',
+
+				'Prior to their calling to Hinesburg, VT, Scott and Amy lived in Colorado. They served with an inner-city ministry in Denver for many years, caring for at-risk young adults, teens and families through Christian counseling, family support, residential treatment and emancipation services.',
+
+				'Scott and Amy are new "empty nesters," having raised their three children on the family farm in Starksboro. Through the years, they\'ve spent countless hours with their children and their friends, enjoying lots of soccer, baseball, basketball and football games together. Brandon, their oldest, is newly married and enjoys being a sugar maker on the farm. Abigail recently completed her masters degree and is beginning her career in the Boston area, in the field of strength and conditioning. Adam, their youngest, is away at college in Florida playing football. Mookie, the Australian Shepherd, and Steven, the cat, keep Scott and Amy company these days at home.',
+
+				'In their spare time, Amy can be found in her gardens and Scott can be found in his woodshop. They enjoy making furniture, helping with hay, growing vegetables and flowers, helping with the Christmas tree farm, and occasionally chasing wayward cows.'
+			],
+			image: 'MansfieldSA'
 		},
 		{
-			name: 'Associate Pastor',
-			role: 'Discipleship & Groups',
-			description:
-				'Equips adults to grow together through groups, classes, and serving environments.'
+			name: 'Rolly & Kathy Delfausse',
+			role: 'Elders',
+			email: 'kdelfausse@myfairpoint.net',
+			description: '',
+			image: 'delfausse'
+		},
+		{
+			name: 'Dave & Janet Russell',
+			role: 'Elders',
+			email: 'therussellfarm@gmail.com',
+			description: [
+				'David and Janet Russell have been at CAC for nearly 40 years,  David serves as an elder supporting Paster Scott and Janet helps with working with the Pre-K children when needed.',
+				'David and Janet have lived on their dairy farm in Starksboro for 54 years. They have a Christmas tree business with horse drawn rides.  They have 3 adult daughters and 6 grandchildren.',
+				'David enjoys baking pies and making homemade ice cream.'
+			],
+			image: 'russellDJ'
 		}
 	];
 
 	const directors: Leader[] = [
 		{
-			name: 'Kids Ministry Director',
-			role: 'Birth–5th Grade',
-			description:
-				'Leads our next generation team and partners with parents to help kids know and follow Jesus.'
+			name: 'Bill Cooper',
+			role: 'Worship Director',
+			email: 'william_c_cooper@msn.com',
+			description: [
+				'William, a life long Vermonter, lives with his wife Melinda in South Burlington.  Both have served at CAC through the years with children, youth and worship ministries.  Their own children, Sierra and Teagan (now all grown up), were raised with the help of the Community Alliance Church family.  Bill took the position of Worship Director in 2010, and enjoys his roll as Worship Leader & Leadership Team member.  Bill is also a business owner in South Burlington, where he has enjoyed a 30 year career as an independent insurance agent.',
+
+				'God has richly blessed Melinda and I over the many years we have been involved here at CAC.  We look forward to all He has planned for us in the years to come.'
+			],
+			image: 'Cooper'
+		},
+
+		{
+			name: 'Amanda Wheeler',
+			role: 'Family Ministries Director',
+			email: 'awheeler@hinesburgcma.org',
+			description: [
+				"Amanda works at CAC as the Family Ministries Director. She has served in this role since February of 2020. Amanda oversees the Children's Ministry Programs for kids aged PreK through 5th grade, as well as the program's fantastic volunteers. She also works with the Student Ministry leaders to maintain connections amongst all of the family ministries at CAC. Amanda loves investing in the youngest members of God's church by teaching, playing with and building relationships with the kids and their families. She is passionate about helping kids experience the wonders that can be found in a daily life with Our Creator, God.",
+				"Amanda has a BFA from the New York State College of Ceramics at Alfred University, with concentrations in graphic design and photography. She worked as an Information Architect for several years after college. God then showed her a different path, through volunteer work first, then full-time employment, at an emergency shelter for survivors of domestic violence. After her kids were born, Amanda was a full-time, stay-at-home mother for years. Amanda and her family live in Hinesburg. She met her husband, Matt, in 2001, two months after she moved to Vermont. They began dating and then were married in 2006. Amanda and Matt have two awesome kids together: Noah and Laena. Noah shares Amanda's sense of humor and love of words, while Laena shares Amanda's love of crafting and learning to care for God's earth.",
+
+				"Among Amanda's favorite things are: cats, strong coffee, mustard greens, insects, Calvin and Hobbes, and being in her gardens."
+			],
+			image: 'mattandamandawheeler'
 		},
 		{
-			name: 'Student Ministry Director',
-			role: 'Middle & High School',
-			description:
-				'Invests in students through weekly gatherings, mentoring, retreats, and serving opportunities.'
+			name: 'Brandon & Mary Kate Mansfield',
+			role: 'Students & Young Adult Ministries',
+			email: 'bmans09@gmail.com',
+			description: [
+				'Brandon and Mary-Kate Mansfield lead our Student Ministry Team here at CAC and have been serving since September of 2022. As Student Ministry leaders, Brandon and Mary-Kate focus on creating and writing curriculum for the group (which we call Youth Group) as well as heading up local events and trips to camps throughout the year. Their passion is to continually disciple and share the gospel with youth and to compliment what students are learning at home, all while building real friendships with them.',
+
+				"In addition to working at CAC, Brandon works for a construction company in Vergennes, runs their maple sugaring business and works on his family's diversified farm in Starksboro. Mary-Kate is a physical therapist for Addison County Home Health and Addison County Outpatient Therapy. Together, they also volunteer for Addison County YoungLife.",
+
+				'Brandon and Mary-Kate both grew up in Addison County and were good friends and high school sweethearts at Mount Abraham. In October of 2022, Brandon and Mary-Kate were married. They currently reside in Bristol with their Aussie/Golden Retriever, Lady May. In their free time, Brandon and Mary-Kate can be found skiing, lifting weights, reading books by the water, playing pickleball, and going for walks with Lady May.',
+
+				'Among their favorite things are: Chocolate Creemees (with chocolate sprinkles!); vacationing in Cape Cod; cooking up steak and potatoes, watching the Denver Broncos (Brandon) and Buffalo Bills (Mary-Kate).'
+			],
+			image: 'brandonandmarykate'
+		}
+	];
+
+	const ministrySupport: Leader[] = [
+		{
+			name: 'Ray & Carol Bulaga',
+			role: 'Community Group Coordinators',
+			description: '',
+			email: 'info@hinesburgcma.org',
+			image: 'bulaga'
 		},
 		{
-			name: 'Worship Director',
-			role: 'Worship & Creative',
-			description:
-				'Oversees Sunday gatherings, creative arts, and the teams who lead our church in worship.'
+			name: 'Amy Mansfield',
+			role: "Women's Ministry",
+			description: 'Leading and supporting women in their faith journey.',
+			email: 'amansfield@hinesburgcma.org',
+			image: 'MansfieldSA'
 		},
 		{
-			name: 'Operations Director',
-			role: 'Care & Administration',
-			description:
-				'Coordinates care, communications, facilities, and finances so our mission thrives.'
+			name: 'George Aube',
+			role: 'Ministry Support',
+			description: ''
+		}
+	];
+
+	const electedMinistrySupport: Leader[] = [
+		{
+			name: 'Keith & Virgina Finn',
+			role: 'Missions Team',
+			description: 'Leading our church in local and global missions.',
+			email: 'huckleberryfinn1968@gmail.com',
+			image: 'finns'
+		},
+		{
+			name: 'Lance & Kelly Fournier',
+			role: 'Missions Team',
+			description: 'Leading our church in local and global missions.',
+			email: 'kellyfournier0@gmail.com',
+			image: 'fourniers'
+		},
+		{
+			name: 'Terri Thibault',
+			role: 'Care Team',
+			description: 'Providing care and support to our church community.',
+			email: 'terri_norm@yahoo.com',
+			image: 'terri'
+		},
+		{
+			name: 'Jesse Tipton',
+			role: 'Downtown Ministry Director',
+			description: 'Directing our downtown ministry outreach.',
+			email: 'jessetipton4@gmail.com'
+		},
+		{
+			name: 'Claire Aube',
+			role: 'Care Team',
+			description: 'Providing care and support to our church community.',
+			email: 'chiaube1950@gmail.com'
+		}
+	];
+
+	const electedOperations: Leader[] = [
+		{
+			name: 'Rolly Delfausse',
+			role: 'Treasurer',
+			description: 'Managing church finances and financial oversight.',
+			email: 'rolly.delfausse@protonmail.com',
+			image: 'Delfausse'
+		},
+
+		{
+			name: 'Liza Rixon',
+			role: 'Executive Secretary',
+			description: 'Managing administrative operations and communications.',
+			email: 'lizarixon@gmail.com',
+			image: 'liza'
+		},
+		{
+			name: 'Lance Fournier',
+			role: 'Grounds Coordinator',
+			description: 'Coordinating maintenance and care of church grounds.',
+			email: 'lance4nier@myfairpoint.net',
+			image: 'fourniers'
+		},
+		{
+			name: 'Matt Wheeler',
+			role: 'Parsonage & Gardens Groundskeeping',
+			description: 'Maintaining parsonage and garden grounds.',
+			email: 'wheelemm@gmail.com',
+			image: 'mattandamandawheeler'
+		},
+		{
+			name: 'Dianne Lampman',
+			role: 'CAC Cleaning Team',
+			description: 'Coordinating cleaning and maintenance of church facilities.',
+			email: 'dlampman@sbschools.net',
+			image: 'diane'
+		},
+
+		{
+			name: 'Donna Myers',
+			role: 'CAC Cleaning Team',
+			description: 'Coordinating cleaning and maintenance of church facilities.',
+			email: 'donnanalette@gmavt.net',
+			image: 'donna'
+		},
+		{
+			name: 'Fred Haulenbeek',
+			role: 'Assistant Treasurer',
+			description: 'Assisting with financial management and oversight.',
+			email: 'fredhaul@gmail.com'
+		},
+		{
+			name: 'Renee Durochia',
+			role: 'CAC Cleaning Team',
+			description: 'Coordinating cleaning and maintenance of church facilities.',
+			email: 'Reneedurochia@example.com'
+		},
+		{
+			name: 'Brian Thon',
+			role: 'Safety Team',
+			description: 'Ensuring safety and security for church events and facilities.',
+			email: 'brian.thon@gmail.com'
 		}
 	];
 </script>
@@ -58,42 +255,161 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1>Our Leadership</h1>
-	<p>
-		We are guided by a team of pastors, staff, elders, and ministry leaders who serve together to help
-		our church follow Jesus on mission.
+	<h1 class="pageHeroChild pageHeroTitle">Our Leadership</h1>
+	<p class="pageHeroChild pageHeroText">
+		We are guided by a team of pastors, staff, elders, and ministry leaders who serve together to
+		help our church follow Jesus on mission.
 	</p>
 </section>
 
 <section class="pageSection">
-	<h2>Pastoral Team</h2>
+	<h2 class="pageSectionTitle">Pastors & Elders</h2>
 	<div class="cardGridSimple">
-		{#each pastors as leader}
-			<article>
-				<h3>{leader.name}</h3>
-				<strong>{leader.role}</strong>
-				<p>{leader.description}</p>
-			</article>
+		{#each pastorsAndElders as leader}
+			<div
+				class="leaderCard"
+				role="button"
+				tabindex="0"
+				aria-label={`${leader.name} - ${leader.role}. Click to view details.`}
+				onclick={() => openModal(leader)}
+				onkeydown={(e) => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						openModal(leader);
+					}
+				}}
+			>
+				{#if leader.image}
+					<div class="leaderCardImage">
+						<Image source={leader.image} altTag={leader.name} class="leaderImage" />
+					</div>
+				{/if}
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{leader.name}</h3>
+				<strong class="cardGridSimpleChild">{leader.role}</strong>
+			</div>
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Ministry Directors</h2>
+	<h2 class="pageSectionTitle">Ministry Directors</h2>
 	<div class="cardGridSimple">
 		{#each directors as leader}
-			<article>
-				<h3>{leader.name}</h3>
-				<strong>{leader.role}</strong>
-				<p>{leader.description}</p>
-			</article>
+			<div
+				class="leaderCard"
+				role="button"
+				tabindex="0"
+				aria-label={`${leader.name} - ${leader.role}. Click to view details.`}
+				onclick={() => openModal(leader)}
+				onkeydown={(e) => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						openModal(leader);
+					}
+				}}
+			>
+				{#if leader.image}
+					<div class="leaderCardImage">
+						<Image source={leader.image} altTag={leader.name} class="leaderImage" />
+					</div>
+				{/if}
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{leader.name}</h3>
+				<strong class="cardGridSimpleChild">{leader.role}</strong>
+			</div>
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Contact Our Team</h2>
-	<p>
+	<h2 class="pageSectionTitle">Ministry Support</h2>
+	<div class="cardGridSimple">
+		{#each ministrySupport as leader}
+			<div
+				class="leaderCard"
+				role="button"
+				tabindex="0"
+				aria-label={`${leader.name} - ${leader.role}. Click to view details.`}
+				onclick={() => openModal(leader)}
+				onkeydown={(e) => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						openModal(leader);
+					}
+				}}
+			>
+				{#if leader.image}
+					<div class="leaderCardImage">
+						<Image source={leader.image} altTag={leader.name} class="leaderImage" />
+					</div>
+				{/if}
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{leader.name}</h3>
+				<strong class="cardGridSimpleChild">{leader.role}</strong>
+			</div>
+		{/each}
+	</div>
+</section>
+
+<section class="pageSection">
+	<h2 class="pageSectionTitle">Elected Ministry Support</h2>
+	<div class="cardGridSimple">
+		{#each electedMinistrySupport as leader}
+			<div
+				class="leaderCard"
+				role="button"
+				tabindex="0"
+				aria-label={`${leader.name} - ${leader.role}. Click to view details.`}
+				onclick={() => openModal(leader)}
+				onkeydown={(e) => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						openModal(leader);
+					}
+				}}
+			>
+				{#if leader.image}
+					<div class="leaderCardImage">
+						<Image source={leader.image} altTag={leader.name} class="leaderImage" />
+					</div>
+				{/if}
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{leader.name}</h3>
+				<strong class="cardGridSimpleChild">{leader.role}</strong>
+			</div>
+		{/each}
+	</div>
+</section>
+
+<section class="pageSection">
+	<h2 class="pageSectionTitle">Elected Operations</h2>
+	<div class="cardGridSimple">
+		{#each electedOperations as leader}
+			<div
+				class="leaderCard"
+				role="button"
+				tabindex="0"
+				aria-label={`${leader.name} - ${leader.role}. Click to view details.`}
+				onclick={() => openModal(leader)}
+				onkeydown={(e) => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						openModal(leader);
+					}
+				}}
+			>
+				{#if leader.image}
+					<div class="leaderCardImage">
+						<Image source={leader.image} altTag={leader.name} class="leaderImage" />
+					</div>
+				{/if}
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{leader.name}</h3>
+				<strong class="cardGridSimpleChild">{leader.role}</strong>
+			</div>
+		{/each}
+	</div>
+</section>
+
+<section class="pageSection">
+	<h2 class="pageSectionTitle">Contact Our Team</h2>
+	<p class="pageSectionText">
 		Reach out to the office and we will connect you with the right leader to answer questions, pray,
 		or help you take a next step.
 	</p>
@@ -103,3 +419,209 @@
 	</div>
 </section>
 
+{#if selectedLeader}
+	<div
+		class="modalBackdrop"
+		class:open={isModalOpen}
+		onclick={handleBackdropClick}
+		onkeydown={handleKeydown}
+		role="dialog"
+		aria-modal="true"
+		aria-labelledby="modal-title"
+		tabindex="-1"
+	>
+		<div class="modalContent" class:open={isModalOpen}>
+			<button class="modalClose" onclick={closeModal} aria-label="Close modal">×</button>
+			{#if selectedLeader.image}
+				<div class="leaderModalHeader">
+					<h2 id="modal-title" class="modalTitle">{selectedLeader.name}</h2>
+					<div class="leaderCardImage">
+						<Image source={selectedLeader.image} altTag={selectedLeader.name} class="leaderImage" />
+					</div>
+				</div>
+			{:else}
+				<h2 id="modal-title" class="modalTitle">{selectedLeader.name}</h2>
+			{/if}
+			<strong class="modalRole">{selectedLeader.role}</strong>
+
+			<div class="modalDescription">
+				{#if Array.isArray(selectedLeader.description) && selectedLeader.description.length > 0}
+					{#each selectedLeader.description as paragraph}
+						<p>{paragraph}</p>
+					{/each}
+				{:else if !Array.isArray(selectedLeader.description)}
+					<p>{selectedLeader.description}</p>
+				{/if}
+			</div>
+			{#if selectedLeader.email}
+				<a href="mailto:{selectedLeader.email}" class="modalEmail">Email {selectedLeader.name}</a>
+			{/if}
+		</div>
+	</div>
+{/if}
+
+<style>
+	.leaderCard {
+		display: grid;
+		grid-template-rows: auto 1fr;
+		gap: 0.6rem;
+		padding: clamp(1.1rem, 2vw, 1.5rem);
+		border-radius: 20px;
+		box-shadow: 0 26px 42px color-mix(in oklch, black 50%, transparent);
+		position: relative;
+		align-items: self-start;
+		cursor: pointer;
+	}
+
+	.leaderCard::before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background: linear-gradient(145deg, var(--accentColor), var(--primaryColor));
+		pointer-events: none;
+		z-index: 0;
+	}
+
+	.leaderCard::after {
+		content: '';
+		position: absolute;
+		inset: 5px;
+		border-radius: calc(20px - 5px);
+		background: color-mix(in oklch, var(--backgroundColor) 90%, black 10%);
+		pointer-events: none;
+		z-index: 1;
+	}
+
+	.leaderCard:hover {
+		transform: translateY(-2px);
+		transition: transform 0.2s ease;
+	}
+
+	.leaderCard h3,
+	.leaderCard strong,
+	.leaderCardImage {
+		position: relative;
+		z-index: 2;
+	}
+	.leaderCardImage {
+		width: calc(100% - 8rem);
+		max-width: 200px;
+		aspect-ratio: 1/1;
+		margin: 0 10px 0 0;
+	}
+
+	.modalBackdrop {
+		position: fixed;
+		inset: 0;
+		background: color-mix(in oklch, var(--backgroundColor) 85%, black 15%);
+		z-index: 1000;
+		opacity: 0;
+		pointer-events: none;
+		transition: opacity 0.5s ease;
+		display: grid;
+		place-items: center;
+	}
+
+	.modalBackdrop.open {
+		opacity: 1;
+		pointer-events: auto;
+	}
+
+	.modalContent {
+		width: calc(100% - 4rem);
+		max-width: 900px;
+		background: color-mix(in oklch, var(--backgroundColor) 96%, black 4%);
+		border-radius: 20px;
+		padding: clamp(2rem, 4vw, 3rem);
+		max-height: 85vh;
+		overflow-y: auto;
+		transform: translateY(100vh);
+		transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+		box-shadow: 0 -26px 42px color-mix(in oklch, black 50%, transparent);
+	}
+
+	.modalContent.open {
+		transform: translateY(0);
+	}
+
+	.modalClose {
+		position: absolute;
+		top: 1rem;
+		right: 1rem;
+		background: transparent;
+		border: none;
+		font-size: 2rem;
+		line-height: 1;
+		cursor: pointer;
+		color: var(--contrastColor);
+		width: 2.5rem;
+		height: 2.5rem;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		transition: background 0.2s ease;
+	}
+
+	.modalClose:hover {
+		background: color-mix(in oklch, var(--backgroundColor) 80%, black 20%);
+	}
+
+	.modalTitle {
+		margin: 0 0 0.5rem 0;
+		font-size: clamp(1.5rem, 3vw, 2.25rem);
+		text-transform: none;
+		letter-spacing: 0.02em;
+	}
+
+	.modalRole {
+		display: block;
+		margin-bottom: 1.5rem;
+		font-size: clamp(1rem, 2vw, 1.25rem);
+		color: var(--accentColor);
+	}
+
+	.modalDescription {
+		margin-bottom: 2rem;
+		line-height: 1.75;
+	}
+
+	.modalDescription p {
+		margin: 0 0 1rem 0;
+	}
+
+	.modalDescription p:last-child {
+		margin-bottom: 0;
+	}
+
+	.modalEmail {
+		display: inline-block;
+		padding: 0.75rem 1.5rem;
+		background: var(--accentColor);
+		color: var(--backgroundColor);
+		border-radius: 8px;
+		text-decoration: none;
+		font-weight: 600;
+		transition:
+			background 0.2s ease,
+			transform 0.2s ease;
+	}
+
+	.modalEmail:hover {
+		background: color-mix(in oklch, var(--accentColor) 90%, black 10%);
+		transform: translateY(-2px);
+	}
+
+	.leaderModalHeader {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.cardGridSimpleTitle {
+		font-size: clamp(1rem, 0.5vw + 2rem, 2rem);
+	}
+</style>

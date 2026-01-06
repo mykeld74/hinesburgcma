@@ -39,41 +39,37 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1>Membership</h1>
-	<p>
+	<h1 class="pageHeroChild pageHeroTitle">Membership</h1>
+	<p class="pageHeroChild pageHeroText">
 		Membership is more than status—it is a commitment to be rooted, growing, and sent as part of the
 		body of Christ at CAC.
 	</p>
-	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Start Membership Process</a>
-		<a href="/grow-with-us/serve/">Find a Place to Serve</a>
-	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Membership Essentials</h2>
+	<h2 class="pageSectionTitle">Membership Essentials</h2>
 	<div class="cardGridSimple">
 		{#each essentials as essential}
 			<article>
-				<h3>{essential.title}</h3>
-				<p>{essential.description}</p>
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{essential.title}</h3>
+				<p class="cardGridSimpleChild">{essential.description}</p>
 			</article>
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Steps to Membership</h2>
-	<ol>
+	<h2 class="pageSectionTitle">Steps to Membership</h2>
+	<ol class="pageSectionList">
 		{#each steps as step}
-			<li>{step}</li>
+			<li class="pageSectionListItem">{step}</li>
 		{/each}
 	</ol>
 </section>
 
 <section class="pageSection">
-	<h2>Stay Connected</h2>
-	<p>
+	<h2 class="pageSectionTitle">Stay Connected</h2>
+	<p class="pageSectionText">
 		Connect with our team for upcoming class dates or to discuss any questions you have before you
 		begin.
 	</p>

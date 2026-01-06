@@ -39,41 +39,37 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1>Prayer & Care</h1>
-	<p>
+	<h1 class="pageHeroChild pageHeroTitle">Prayer & Care</h1>
+	<p class="pageHeroChild pageHeroText">
 		You are not alone. Our pastors, prayer team, and care network walk beside you with compassion,
 		prayer, and practical help.
 	</p>
-	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Submit a Prayer Need</a>
-		<a href="tel:+18024822132">Call the Office</a>
-	</div>
 </section>
 
 <section class="pageSection">
-	<h2>How We Support You</h2>
+	<h2 class="pageSectionTitle">How We Support You</h2>
 	<div class="cardGridSimple">
 		{#each teams as team}
 			<article>
-				<h3>{team.title}</h3>
-				<p>{team.description}</p>
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{team.title}</h3>
+				<p class="cardGridSimpleChild">{team.description}</p>
 			</article>
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Take a Step</h2>
-	<ul>
+	<h2 class="pageSectionTitle">Take a Step</h2>
+	<ul class="pageSectionList">
 		{#each steps as step}
-			<li>{step}</li>
+			<li class="pageSectionListItem">{step}</li>
 		{/each}
 	</ul>
 </section>
 
 <section class="pageSection">
-	<h2>Need Immediate Assistance?</h2>
-	<p>
+	<h2 class="pageSectionTitle">Need Immediate Assistance?</h2>
+	<p class="pageSectionText">
 		If you are facing an urgent crisis, please dial 911. For non-emergency pastoral care, contact the
 		office and we will connect you with a pastor quickly.
 	</p>

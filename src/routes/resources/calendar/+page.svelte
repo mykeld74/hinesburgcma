@@ -471,22 +471,18 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1>Calendar</h1>
-	<p>
+	<h1 class="pageHeroChild pageHeroTitle">Calendar</h1>
+	<p class="pageHeroChild pageHeroText">
 		Stay up to date with everything happening at Community Alliance Church - Hinesburg. Filter by
 		ministry, add events to your calendar, and share with friends.
 	</p>
-	<div class="pageHeroActions">
-		<a href="https://hinesburgcma.churchcenter.com/calendar">Open Church Center</a>
-		<a href="https://hinesburgcma.churchcenter.com/calendar/subscribe">Subscribe via ICS</a>
-	</div>
 </section>
 
 {#if error}
 	<section class="pageSection">
 		<div class="errorMessage">
-			<h2>Calendar Integration Temporarily Unavailable</h2>
-			<p>
+			<h2 class="pageSectionTitle">Calendar Integration Temporarily Unavailable</h2>
+			<p class="pageSectionText">
 				We're working on connecting our calendar to the website. In the meantime, you can access our
 				full calendar through the links below.
 			</p>
@@ -511,7 +507,7 @@
 {#if allEvents.length > 0}
 	<section class="pageSection">
 		<div class="calendarHeader">
-			<h2>Calendar</h2>
+			<h2 class="pageSectionTitle">Calendar</h2>
 			<div class="calendarNavigation">
 				<button type="button" class="calendarNavButton" onclick={previousMonth}>←</button>
 				<button type="button" class="calendarNavButton" onclick={goToToday}>Today</button>
@@ -630,22 +626,22 @@
 	</section>
 {:else if !error}
 	<section class="pageSection">
-		<p>No upcoming events at this time. Check back soon!</p>
+		<p class="pageSectionText">No upcoming events at this time. Check back soon!</p>
 	</section>
 {/if}
 
 <section class="pageSection">
-	<h2>Event Categories</h2>
-	<ul>
+	<h2 class="pageSectionTitle">Event Categories</h2>
+	<ul class="pageSectionList">
 		{#each filters.slice(1) as filter}
-			<li>{filter}</li>
+			<li class="pageSectionListItem">{filter}</li>
 		{/each}
 	</ul>
 </section>
 
 <section class="pageSection">
-	<h2>Need Help?</h2>
-	<p>Our team can help you register for events, volunteer opportunities, and retreats.</p>
+	<h2 class="pageSectionTitle">Need Help?</h2>
+	<p class="pageSectionText">Our team can help you register for events, volunteer opportunities, and retreats.</p>
 	<div class="pageHeroActions">
 		<a href="mailto:info@hinesburgcma.org">Email the Office</a>
 		<a href="tel:+18024822132">Call (802) 482-2132</a>

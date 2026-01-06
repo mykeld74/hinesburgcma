@@ -44,41 +44,37 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1>Serve</h1>
-	<p>
+	<h1 class="pageHeroChild pageHeroTitle">Serve</h1>
+	<p class="pageHeroChild pageHeroText">
 		Serving is one of the best ways to grow in discipleship, build relationships, and help others meet
 		Jesus at CAC.
 	</p>
-	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Start Serving</a>
-		<a href="/resources/calendar/">Serve Tour Dates</a>
-	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Find Your Team</h2>
+	<h2 class="pageSectionTitle">Find Your Team</h2>
 	<div class="cardGridSimple">
 		{#each teams as team}
 			<article>
-				<h3>{team.title}</h3>
-				<p>{team.description}</p>
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{team.title}</h3>
+				<p class="cardGridSimpleChild">{team.description}</p>
 			</article>
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2>How Serving Works</h2>
-	<ul>
+	<h2 class="pageSectionTitle">How Serving Works</h2>
+	<ul class="pageSectionList">
 		{#each process as step}
-			<li>{step}</li>
+			<li class="pageSectionListItem">{step}</li>
 		{/each}
 	</ul>
 </section>
 
 <section class="pageSection">
-	<h2>Ready to Jump In?</h2>
-	<p>
+	<h2 class="pageSectionTitle">Ready to Jump In?</h2>
+	<p class="pageSectionText">
 		Share your interests and availability. Our team will help you find the right spot and equip you
 		with everything you need.
 	</p>

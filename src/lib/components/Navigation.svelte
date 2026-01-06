@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
+	import { tick } from 'svelte';
 	import logo from '$lib/assets/logo.webp';
+	import logoDark from '$lib/assets/logoDark.webp';
 
 	type NavItem = {
 		label: string;
@@ -113,6 +115,36 @@
 		}
 	}
 
+	function cancelHide() {
+		if (hideTimeout) {
+			clearTimeout(hideTimeout);
+			hideTimeout = null;
+		}
+	}
+
+	let isDropdownVisible = $state(false);
+	let shouldRenderDropdown = $state(false);
+
+	$effect(() => {
+		if (activeGroup) {
+			shouldRenderDropdown = true;
+			isDropdownVisible = false;
+			// Small delay to ensure initial state is rendered before transition
+			tick().then(() => {
+				setTimeout(() => {
+					isDropdownVisible = true;
+				}, 10);
+			});
+		} else {
+			// Start exit animation
+			isDropdownVisible = false;
+			// Remove from DOM after animation completes
+			setTimeout(() => {
+				shouldRenderDropdown = false;
+			}, 200);
+		}
+	});
+
 	function showGroup(group: NavGroup, trigger: HTMLElement) {
 		cancelHide();
 		const navRect = navElement?.getBoundingClientRect();
@@ -125,17 +157,34 @@
 		activeGroup = group;
 	}
 
+	function handlePointerLeave(event: PointerEvent) {
+		if (!activeGroup) return;
+
+		const relatedTarget = event.relatedTarget as HTMLElement | null;
+
+		// Don't close if pointer is moving to dropdown or another nav button
+		if (relatedTarget) {
+			const isMovingToDropdown = relatedTarget.closest('.dropdownPanel');
+			const isMovingToNavButton = relatedTarget.closest('.desktopGroups button');
+
+			if (isMovingToDropdown || isMovingToNavButton) {
+				cancelHide();
+				return;
+			}
+		}
+
+		// Schedule close with 200ms delay
+		scheduleHide();
+	}
+
 	function scheduleHide() {
 		cancelHide();
 		hideTimeout = setTimeout(() => {
-			activeGroup = null;
-		}, 150);
-	}
-
-	function cancelHide() {
-		if (!hideTimeout) return;
-		clearTimeout(hideTimeout);
-		hideTimeout = null;
+			hideTimeout = null;
+			if (activeGroup) {
+				activeGroup = null;
+			}
+		}, 200);
 	}
 
 	function closeDropdown() {
@@ -166,6 +215,8 @@
 		onToggleTheme?.();
 	}
 
+	const logoImg = $derived(theme === 'dark' ? logo : logoDark);
+
 	$effect(() => {
 		if (typeof document !== 'undefined' && isDrawerOpen) {
 			document.body.style.overflow = 'hidden';
@@ -174,31 +225,34 @@
 		}
 	});
 
-	// Close dropdown when clicking outside or when navigating
+	// Close dropdown when clicking outside
 	$effect(() => {
 		if (!activeGroup) return;
 
 		function handleClickOutside(event: MouseEvent) {
 			const target = event.target as HTMLElement;
-			const dropdownPanel = document.querySelector('.dropdownPanel');
-			if (
-				navElement &&
-				!navElement.contains(target) &&
-				dropdownPanel &&
-				!dropdownPanel.contains(target)
-			) {
+			if (!target) return;
+
+			// Check if click is outside both nav and dropdown
+			const clickedNav = navElement?.contains(target);
+			const clickedDropdown = target.closest('.dropdownPanel');
+			const clickedNavButton = target.closest('.desktopGroups button');
+
+			// Don't close if clicking on nav buttons (they should open their own dropdowns)
+			if (clickedNavButton) {
+				return;
+			}
+
+			// Close if clicking outside both nav and dropdown
+			if (!clickedNav && !clickedDropdown) {
 				closeDropdown();
 			}
 		}
 
-		// Use a small delay to avoid closing immediately when opening
-		const timeoutId = setTimeout(() => {
-			document.addEventListener('click', handleClickOutside, true);
-		}, 100);
+		document.addEventListener('mousedown', handleClickOutside, true);
 
 		return () => {
-			clearTimeout(timeoutId);
-			document.removeEventListener('click', handleClickOutside, true);
+			document.removeEventListener('mousedown', handleClickOutside, true);
 		};
 	});
 </script>
@@ -209,11 +263,11 @@
 	class="siteNav"
 	bind:this={navElement}
 	onpointerenter={cancelHide}
-	onpointerleave={scheduleHide}
+	onpointerleave={(e) => handlePointerLeave(e)}
 >
 	<div class="navInner">
 		<a class="brand" href="/" aria-label="Community Alliance Church - Hinesburg home">
-			<img src={logo} alt="Community Alliance Church - Hinesburg logo" />
+			<img src={logoImg} alt="Community Alliance Church - Hinesburg logo" />
 		</a>
 
 		<ul class="desktopGroups" aria-label="Primary sections">
@@ -287,7 +341,7 @@
 			>
 				<div class="mobileNavHeader">
 					<a href="/" onclick={closeDrawer}>
-						<img src={logo} alt="Community Alliance Church - Hinesburg logo" />
+						<img src={logoImg} alt="Community Alliance Church - Hinesburg logo" />
 					</a>
 				</div>
 				<div class="drawerContent">
@@ -318,12 +372,13 @@
 			</div>
 		</div>
 	{/if}
-	{#if activeGroup}
+	{#if shouldRenderDropdown}
 		<div
 			class="dropdownPanel"
+			class:active={isDropdownVisible}
 			style={dropdownStyle()}
 			onpointerenter={cancelHide}
-			onpointerleave={scheduleHide}
+			onpointerleave={(e) => handlePointerLeave(e)}
 		>
 			<div class="dropdownContent" aria-label={activeGroup?.label}>
 				<ul>
@@ -352,7 +407,7 @@
 		border-bottom: 1px solid color-mix(in oklab, var(--primaryColor) 28%, transparent);
 		box-shadow: 0 22px 48px color-mix(in oklab, black 55%, transparent);
 
-		& .navInner {
+		.navInner {
 			display: grid;
 			grid-template-columns: auto 1fr auto;
 			align-items: center;
@@ -364,7 +419,7 @@
 			z-index: 2;
 		}
 
-		& .brand {
+		.brand {
 			display: inline-flex;
 			align-items: center;
 			gap: 0.75rem;
@@ -373,14 +428,13 @@
 			text-transform: uppercase;
 			letter-spacing: 0.12em;
 
-			& img {
+			img {
 				width: clamp(140px, 18vw, 160px);
 				object-fit: contain;
-				filter: drop-shadow(0 8px 12px color-mix(in oklab, black 65%, transparent));
 			}
 		}
 
-		& .desktopGroups {
+		.desktopGroups {
 			display: flex;
 			align-items: center;
 			justify-content: flex-end;
@@ -390,7 +444,7 @@
 			padding: 0;
 			justify-self: end;
 
-			& button {
+			button {
 				display: inline-flex;
 				align-items: center;
 				position: relative;
@@ -431,7 +485,7 @@
 			}
 		}
 
-		& .themeToggle {
+		.themeToggle {
 			display: inline-flex;
 			align-items: center;
 			gap: 0.45rem;
@@ -456,16 +510,16 @@
 				box-shadow: 0 12px 22px color-mix(in oklab, black 45%, transparent);
 			}
 
-			& .themeIcon {
+			.themeIcon {
 				font-size: 0.95rem;
 			}
 
-			& .themeText {
+			.themeText {
 				white-space: nowrap;
 			}
 		}
 
-		& .menuToggle {
+		.menuToggle {
 			display: none;
 			position: fixed;
 			top: 1rem;
@@ -476,14 +530,14 @@
 			cursor: pointer;
 			padding: 0.5rem;
 
-			& .hamburger {
+			.hamburger {
 				display: flex;
 				flex-direction: column;
 				justify-content: space-between;
 				width: 24px;
 				height: 18px;
 
-				& span {
+				span {
 					display: block;
 					width: 100%;
 					height: 2px;
@@ -506,43 +560,54 @@
 		}
 
 		@media (max-width: 960px) {
-			& .navInner {
+			.navInner {
 				grid-template-columns: auto auto;
 				grid-template-rows: auto auto;
 				gap: 0.75rem;
 			}
 
-			& .desktopGroups {
+			.desktopGroups {
 				display: none;
 			}
 
-			& .themeToggle {
+			.themeToggle {
 				display: none;
 			}
 
-			& .menuToggle {
+			.menuToggle {
 				display: inline-flex;
 				justify-self: end;
 			}
 		}
 
-		& .dropdownPanel {
+		.dropdownPanel {
 			position: absolute;
 			top: calc(100% + 12px);
 			left: 0;
-			width: 100%;
-			padding: 12px clamp(1rem, 4vw, 1.5rem) 0;
+			width: fit-content;
+			max-width: 100%;
+			padding: 0;
 			display: flex;
 			justify-content: center;
 			pointer-events: auto;
 			z-index: 1;
-			transform: translateX(calc(var(--anchor-left) - 50%));
+			opacity: 0;
+			transform: translateX(calc(var(--anchor-left) - 50%)) scale(0.6);
+			transform-origin: center top;
+			transition:
+				opacity 0.2s ease,
+				transform 0.2s ease;
 
-			& .dropdownContent {
+			&.active {
+				opacity: 1;
+				transform: translateX(calc(var(--anchor-left) - 50%)) scale(1);
+			}
+
+			.dropdownContent {
 				background: linear-gradient(
 					150deg,
-					color-mix(in oklab, var(--surfaceColor) 88%, transparent),
-					color-mix(in oklab, var(--surfaceStrong) 70%, transparent)
+					color-mix(in oklab, var(--surfaceColor) 96%, transparent),
+					color-mix(in oklab, var(--surfaceStrong) 80%, transparent)
 				);
 				border-radius: 28px;
 				border: 1px solid color-mix(in oklab, var(--primaryColor) 28%, transparent);
@@ -551,16 +616,16 @@
 				padding: clamp(1.75rem, 3vw, 2.25rem);
 				display: grid;
 				gap: clamp(1rem, 2vw, 1.5rem);
-				margin-top: -12px;
+				margin-top: 0;
 
-				& ul {
+				ul {
 					list-style: none;
 					margin: 0;
 					padding: 0;
 					display: grid;
 					gap: 0.55rem;
 
-					& a {
+					a {
 						display: inline-flex;
 						align-items: center;
 						justify-content: space-between;
@@ -655,6 +720,7 @@
 
 		a {
 			color: var(--contrastColor);
+
 			text-decoration: none;
 			font-size: 1.2em;
 			display: block;

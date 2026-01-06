@@ -35,41 +35,37 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1>Baptism</h1>
-	<p>
+	<h1 class="pageHeroChild pageHeroTitle">Baptism</h1>
+	<p class="pageHeroChild pageHeroText">
 		We love celebrating life change. If you are ready to take the next step of baptism, we would be
 		honored to walk with you.
 	</p>
-	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Sign Up for Baptism</a>
-		<a href="/resources/sermons-media/">Watch Baptism Stories</a>
-	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Biblical Foundations</h2>
+	<h2 class="pageSectionTitle">Biblical Foundations</h2>
 	<div class="cardGridSimple">
 		{#each foundations as foundation}
 			<article>
-				<h3>{foundation.title}</h3>
-				<p>{foundation.description}</p>
+				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{foundation.title}</h3>
+				<p class="cardGridSimpleChild">{foundation.description}</p>
 			</article>
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2>Steps Toward Baptism</h2>
-	<ol>
+	<h2 class="pageSectionTitle">Steps Toward Baptism</h2>
+	<ol class="pageSectionList">
 		{#each steps as step}
-			<li>{step}</li>
+			<li class="pageSectionListItem">{step}</li>
 		{/each}
 	</ol>
 </section>
 
 <section class="pageSection">
-	<h2>We Are Here for You</h2>
-	<p>
+	<h2 class="pageSectionTitle">We Are Here for You</h2>
+	<p class="pageSectionText">
 		Reach out and we will help you discern your next step, answer questions, and prepare you for an
 		upcoming baptism gathering.
 	</p>

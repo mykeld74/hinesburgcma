@@ -6,6 +6,11 @@
 	--surfaceColor: color-mix(in oklch, var(--backgroundColor) 92%, black 8%);
 	--surfaceStrong: color-mix(in oklch, var(--backgroundColor) 82%, black 18%);
 	color-scheme: light dark;
+	--footerBackground: radial-gradient(
+		circle at top left,
+		color-mix(in oklab, var(--primaryColor) 30%, black),
+		var(--backgroundColor)
+	);
 }
 
 body {
@@ -32,14 +37,11 @@ main {
 		var(--backgroundColor) 100%
 	);
 	min-height: calc(100vh - 320px);
-	padding-top: clamp(1rem, 2.5vw, 2rem);
-	&.isHome {
-		padding-top: 0;
-	}
+	padding-top: 0;
 }
 
-a {
-	color: var(--primaryColor);
+:where(a) {
+	color: var(--accentColor);
 	text-decoration: none;
 
 	&:hover {
@@ -47,12 +49,7 @@ a {
 	}
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+:where(h1, h2, h3, h4, h5, h6) {
 	font-family: 'Raleway', sans-serif;
 	font-weight: 700;
 	text-transform: uppercase;
@@ -66,6 +63,7 @@ body.dark-mode {
 .light-mode {
 	--backgroundColor: oklch(1 0 0);
 	--contrastColor: oklch(0.3 0.04 255);
+	--accentColor: oklch(0.6226 0.1656 122.08);
 	--surfaceColor: color-mix(in oklch, white 90%, var(--backgroundColor) 10%);
 	--surfaceStrong: color-mix(in oklch, white 82%, var(--backgroundColor) 18%);
 	color-scheme: light;
@@ -76,8 +74,13 @@ body.dark-mode {
 			transparent 55%
 		),
 		var(--backgroundColor);
+	--footerBackground: radial-gradient(
+		circle at top left,
+		color-mix(in oklab, var(--primaryColor) 30%, oklch(1 0 0)),
+		var(--backgroundColor)
+	);
 
-	& main {
+	main {
 		background: linear-gradient(
 			180deg,
 			color-mix(in oklch, white 95%, var(--backgroundColor) 5%) 0%,
@@ -90,86 +93,68 @@ body.dark-mode {
 .sectionLabel {
 	display: inline-flex;
 	align-items: center;
-	gap: 0.5rem;
-	font-size: 0.75rem;
+	font-size: clamp(1.25rem, 2vw + 0.6rem, 2.25rem);
 	text-transform: uppercase;
-	letter-spacing: 0.14em;
+	text-decoration: underline;
+	margin: 0;
 	color: color-mix(in oklch, var(--contrastColor) 90%, white 10%);
+	z-index: 2;
 }
 
 .pageHero {
-	max-width: 1100px;
 	margin: 0 auto clamp(2.5rem, 4vw, 4rem);
 	padding: clamp(1rem, 2.5vw, 2rem) clamp(1.5rem, 5vw, 3.5rem);
 	display: grid;
 	gap: clamp(1rem, 2vw, 1.5rem);
 	position: relative;
+	border-radius: 0;
+	border-bottom: 1px solid color-mix(in oklch, var(--primaryColor) 40%, transparent);
+	/* box-shadow: 0 10px 20px color-mix(in oklch, black 55%, transparent); */
+}
 
-	&::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		border-radius: 32px;
-		background:
-			linear-gradient(
-				135deg,
-				color-mix(in oklch, var(--surfaceStrong) 60%, transparent),
-				color-mix(in oklch, var(--primaryColor) 40%, transparent)
-			),
-			linear-gradient(
-				135deg,
-				color-mix(in oklch, var(--primaryColor) 15%, transparent),
-				color-mix(in oklch, var(--backgroundColor) 96%, black 4%)
-			);
-		box-shadow: 0 42px 120px color-mix(in oklch, black 70%, transparent);
-		opacity: 0.95;
-		z-index: 0;
-	}
+.pageHeroChild {
+	position: relative;
+	z-index: 1;
+}
 
-	& > * {
-		position: relative;
-		z-index: 1;
-	}
+.pageHeroTitle {
+	margin: 0;
+	font-size: clamp(2rem, 1.2vw + 1.7rem, 2.6rem);
+	line-height: 1.1;
+}
 
-	& h1 {
-		margin: 0;
-		font-size: clamp(2rem, 1.2vw + 1.7rem, 2.6rem);
-		line-height: 1.1;
-	}
+.pageHeroText {
+	font-size: clamp(1.1rem, 0.5vw + 2rem, 1.65rem);
+	color: color-mix(in oklch, var(--contrastColor) 85%, transparent);
+	margin: 1rem 0 0;
+}
 
-	& p {
-		margin: 0;
-		max-width: 60ch;
-		color: color-mix(in oklch, var(--contrastColor) 85%, transparent);
-	}
+.pageHeroActions {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	margin-top: 0.75rem;
 
-	&Actions {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 0.75rem;
-		margin-top: 0.75rem;
+	a {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.65rem 1.4rem;
+		border-radius: 999px;
+		font-weight: 600;
+		border: 1px solid color-mix(in oklch, var(--primaryColor) 45%, transparent);
+		color: var(--contrastColor);
+		background: color-mix(in oklch, var(--primaryColor) 25%, transparent);
 
-		& a {
-			display: inline-flex;
-			align-items: center;
-			justify-content: center;
-			padding: 0.65rem 1.4rem;
-			border-radius: 999px;
-			font-weight: 600;
-			border: 1px solid color-mix(in oklch, var(--primaryColor) 45%, transparent);
-			color: var(--contrastColor);
-			background: color-mix(in oklch, var(--primaryColor) 25%, transparent);
+		&:nth-child(2) {
+			background: transparent;
+			border-color: color-mix(in oklch, var(--contrastColor) 55%, transparent);
+			color: color-mix(in oklch, var(--contrastColor) 92%, white 8%);
+		}
 
-			&:nth-child(2) {
-				background: transparent;
-				border-color: color-mix(in oklch, var(--contrastColor) 55%, transparent);
-				color: color-mix(in oklch, var(--contrastColor) 92%, white 8%);
-			}
-
-			&:hover {
-				transform: translateY(-4px);
-				box-shadow: 0 20px 36px color-mix(in oklch, black 50%, transparent);
-			}
+		&:hover {
+			transform: translateY(-4px);
+			box-shadow: 0 20px 36px color-mix(in oklch, black 50%, transparent);
 		}
 	}
 }
@@ -180,117 +165,132 @@ body.dark-mode {
 	padding: 0 clamp(1.5rem, 5vw, 3rem);
 	display: grid;
 	gap: clamp(1rem, 3vw, 2rem);
+}
 
-	& .sectionSurface {
-		background: linear-gradient(
-			160deg,
-			color-mix(in oklch, var(--surfaceColor) 85%, transparent) 0%,
-			color-mix(in oklch, var(--surfaceStrong) 75%, transparent) 100%
+.pageSectionTitle {
+	margin: 0;
+	font-size: clamp(1.6rem, 0.9vw + 1.4rem, 2rem);
+}
+
+.pageSectionText {
+	margin: 0;
+
+	color: color-mix(in oklch, var(--contrastColor) 85%, transparent);
+}
+
+.pageSectionList {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	display: grid;
+	gap: 0.75rem;
+}
+
+.pageSectionListItem {
+	padding: clamp(0.85rem, 2vw, 1.05rem) clamp(1rem, 2.5vw, 1.4rem);
+	border-radius: 18px;
+	border: 1px solid color-mix(in oklch, var(--primaryColor) 40%, transparent);
+	background: color-mix(in oklch, var(--surfaceColor) 88%, black 12%);
+	box-shadow:
+		inset 0 0 0 1px color-mix(in oklch, var(--contrastColor) 6%, transparent),
+		0 16px 24px color-mix(in oklch, black 35%, transparent);
+	font-weight: 600;
+	text-transform: uppercase;
+	letter-spacing: 0.12em;
+}
+
+/* .sectionSurface {
+	background: linear-gradient(
+		160deg,
+		color-mix(in oklch, var(--surfaceColor) 85%, transparent) 0%,
+		color-mix(in oklch, var(--surfaceStrong) 75%, transparent) 100%
+	);
+	border-radius: 28px;
+	padding: clamp(1.75rem, 4vw, 3rem);
+	box-shadow: 0 28px 60px color-mix(in oklch, black 52%, transparent);
+	border: 1px solid color-mix(in oklch, var(--primaryColor) 35%, transparent);
+	display: grid;
+	gap: clamp(1.2rem, 2vw, 1.8rem);
+	position: relative;
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background: radial-gradient(
+			140% 90% at 0% 0%,
+			color-mix(in oklch, var(--primaryColor) 20%, transparent),
+			transparent 56%
 		);
-		border-radius: 28px;
-		padding: clamp(1.75rem, 4vw, 3rem);
-		box-shadow: 0 28px 60px color-mix(in oklch, black 52%, transparent);
-		border: 1px solid color-mix(in oklch, var(--primaryColor) 35%, transparent);
-		display: grid;
-		gap: clamp(1.2rem, 2vw, 1.8rem);
-		position: relative;
-
-		&::after {
-			content: '';
-			position: absolute;
-			inset: 0;
-			border-radius: inherit;
-			background: radial-gradient(
-				140% 90% at 0% 0%,
-				color-mix(in oklch, var(--primaryColor) 20%, transparent),
-				transparent 56%
-			);
-			opacity: 0.4;
-			pointer-events: none;
-		}
-
-		& > * {
-			position: relative;
-			z-index: 1;
-		}
+		opacity: 0.4;
+		pointer-events: none;
 	}
+} */
 
-	& h2 {
-		margin: 0;
-		font-size: clamp(1.6rem, 0.9vw + 1.4rem, 2rem);
-	}
+.sectionSurfaceChild {
+	position: relative;
+	z-index: 1;
+}
 
-	& p {
-		margin: 0;
-		max-width: 70ch;
-		color: color-mix(in oklch, var(--contrastColor) 85%, transparent);
-	}
-
-	& ul,
-	& ol {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-		display: grid;
-		gap: 0.75rem;
-	}
-
-	& li {
-		padding: clamp(0.85rem, 2vw, 1.05rem) clamp(1rem, 2.5vw, 1.4rem);
-		border-radius: 18px;
-		border: 1px solid color-mix(in oklch, var(--primaryColor) 40%, transparent);
-		background: color-mix(in oklch, var(--surfaceColor) 88%, black 12%);
-		box-shadow:
-			inset 0 0 0 1px color-mix(in oklch, var(--contrastColor) 6%, transparent),
-			0 16px 24px color-mix(in oklch, black 35%, transparent);
-		font-weight: 600;
-		text-transform: uppercase;
-		letter-spacing: 0.12em;
-	}
+.infoSection {
+	max-width: 1100px;
+	margin: 0 auto clamp(2.5rem, 4vw, 4rem);
+	padding: 0 clamp(1.5rem, 5vw, 3rem);
 }
 
 .cardGridSimple {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 	gap: clamp(1rem, 3vw, 2rem);
+}
 
-	& article {
-		display: grid;
-		gap: 0.6rem;
-		padding: clamp(1.1rem, 2vw, 1.5rem);
-		border-radius: 20px;
-		border: 1px solid color-mix(in oklch, var(--primaryColor) 25%, transparent);
-		background: color-mix(in oklch, var(--surfaceColor) 88%, black 12%);
-		box-shadow: 0 26px 42px color-mix(in oklch, black 50%, transparent);
-		position: relative;
+.cardGridSimple article {
+	display: grid;
+	grid-template-rows: auto 1fr;
+	gap: 0.6rem;
+	padding: clamp(1.1rem, 2vw, 1.5rem);
+	border-radius: 20px;
+	box-shadow: 0 26px 42px color-mix(in oklch, black 50%, transparent);
+	position: relative;
+	align-items: self-start;
 
-		&::before {
-			content: '';
-			position: absolute;
-			inset: 0;
-			border-radius: inherit;
-			background: linear-gradient(
-				145deg,
-				color-mix(in oklch, var(--primaryColor) 25%, transparent),
-				color-mix(in oklch, var(--surfaceColor) 96%, transparent)
-			);
-			opacity: 0.4;
-			pointer-events: none;
-		}
-
-		& > * {
-			position: relative;
-			z-index: 1;
-		}
-
-		& h3 {
-			margin: 0;
-			font-size: 1.15rem;
-			text-transform: none;
-			letter-spacing: 0.02em;
-			font-weight: 700;
-		}
+	&:before {
+		content: '';
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background: linear-gradient(145deg, var(--accentColor), var(--primaryColor));
+		pointer-events: none;
+		z-index: 0;
 	}
+
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 5px;
+		border-radius: calc(20px - 5px);
+		background: color-mix(in oklch, var(--backgroundColor) 90%, black 10%);
+		pointer-events: none;
+		z-index: 1;
+	}
+}
+
+.cardGridSimpleChild {
+	position: relative;
+	z-index: 2;
+}
+
+.cardGridSimpleTitle {
+	margin: 0;
+	font-size: clamp(1rem, 0.5vw + 2rem, 2.25rem);
+	text-transform: none;
+	letter-spacing: 0.02em;
+	font-weight: 700;
+	color: var(--contrastColor);
+	position: relative;
+	text-decoration: underline;
+	z-index: 2;
 }
 
 .infoTable {
@@ -299,21 +299,21 @@ body.dark-mode {
 	border-radius: 22px;
 	overflow: hidden;
 	box-shadow: 0 18px 32px color-mix(in oklch, black 45%, transparent);
+}
 
-	& th,
-	& td {
-		padding: 0.75rem 1rem;
-		text-align: left;
-		border-bottom: 1px solid color-mix(in oklch, var(--primaryColor) 25%, transparent);
-	}
+.infoTable th,
+.infoTable td {
+	padding: 0.75rem 1rem;
+	text-align: left;
+	border-bottom: 1px solid color-mix(in oklch, var(--primaryColor) 25%, transparent);
+}
 
-	& th {
-		color: var(--accentColor);
-		font-weight: 700;
-		text-transform: uppercase;
-		letter-spacing: 0.08em;
-		font-size: 0.8rem;
-	}
+.infoTable th {
+	color: var(--accentColor);
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 0.08em;
+	font-size: 0.8rem;
 }
 
 .heroActions {
@@ -353,10 +353,11 @@ body.dark-mode {
 	border-radius: 999px;
 	font-weight: 700;
 	color: #fff;
-	border: 1px solid color-mix(in oklch, var(--contrastColor) 65%, transparent);
+	background-color: color-mix(in oklch, var(--primaryColor) 65%, transparent);
+	border: 1px solid color-mix(in oklch, var(--primaryColor) 80%, transparent);
 
 	&:hover {
-		background-color: color-mix(in oklch, var(--contrastColor) 15%, transparent);
+		background-color: color-mix(in oklch, var(--primaryColor) 75%, transparent);
 	}
 }
 
@@ -366,11 +367,48 @@ body.dark-mode {
 	margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
 	text-transform: uppercase;
 	letter-spacing: 0.12em;
+}
 
-	& p {
-		max-width: 56ch;
-		margin: 0;
-		text-transform: none;
-		letter-spacing: normal;
+.sectionHeaderText {
+	max-width: 56ch;
+	margin: 0;
+	text-transform: none;
+	letter-spacing: normal;
+}
+
+.blockSection {
+	width: calc(100% - 2rem);
+	margin: 0 auto clamp(1.25rem, 3vw, 1.8rem);
+	background: color-mix(in oklch, var(--surfaceColor) 88%, black 12%);
+	border: 1px solid color-mix(in oklch, var(--primaryColor) 40%, transparent);
+	border-radius: 20px;
+	padding: clamp(1.25rem, 3vw, 1.8rem);
+	box-shadow:
+		inset 0 0 0 1px color-mix(in oklch, var(--contrastColor) 6%, transparent),
+		0 16px 24px color-mix(in oklch, black 35%, transparent);
+	position: relative;
+
+	&:before {
+		content: '';
+
+		position: absolute;
+		inset: 0;
+		border-radius: inherit;
+		background: linear-gradient(145deg, var(--accentColor), var(--primaryColor));
+		pointer-events: none;
+		z-index: 0;
 	}
+	&::after {
+		content: '';
+		position: absolute;
+		inset: 5px;
+		border-radius: calc(20px - 5px);
+		background: color-mix(in oklch, var(--backgroundColor) 90%, black 10%);
+		pointer-events: none;
+		z-index: 1;
+	}
+}
+.blockSectionContent {
+	position: relative;
+	z-index: 2;
 }
