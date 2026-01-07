@@ -10,7 +10,8 @@
 	img {
 		width: 100%;
 	}
-	.leaderImage {
+	.leaderImage,
+	.modalLeaderImage {
 		border-radius: 10px;
 	}
 </style>

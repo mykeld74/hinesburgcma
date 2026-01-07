@@ -1,9 +1,10 @@
 <script lang="ts">
 	import Image from '$lib/components/Image.svelte';
+	import LeaderCard from '$lib/components/LeaderCard.svelte';
 
 	type Leader = {
 		name: string;
-		role: string;
+		role: string | string[];
 		description: string | string[];
 		email?: string;
 		image?: string;
@@ -47,7 +48,7 @@
 	const pastorsAndElders: Leader[] = [
 		{
 			name: 'Scott & Amy Mansfield',
-			role: 'Lead Pastors',
+			role: 'Lead Pastor/Elder',
 			email: 'smansfield@hinesburgcma.org',
 			description: [
 				'Pastor Scott Mansfield has served Community Alliance Church since June of 2002. He is the teaching pastor and works with a team of elders, staff, and a leadership team to provide pastoral care, oversight of vision and mission, as well as disciple-making ministries, both inside and outside of the church walls.',
@@ -62,14 +63,14 @@
 		},
 		{
 			name: 'Rolly & Kathy Delfausse',
-			role: 'Elders',
+			role: 'Elder',
 			email: 'kdelfausse@myfairpoint.net',
 			description: '',
 			image: 'delfausse'
 		},
 		{
 			name: 'Dave & Janet Russell',
-			role: 'Elders',
+			role: 'Elder',
 			email: 'therussellfarm@gmail.com',
 			description: [
 				'David and Janet Russell have been at CAC for nearly 40 years,  David serves as an elder supporting Paster Scott and Janet helps with working with the Pre-K children when needed.',
@@ -77,6 +78,94 @@
 				'David enjoys baking pies and making homemade ice cream.'
 			],
 			image: 'russellDJ'
+		},
+		{
+			name: 'Ray & Carol Bulaga',
+			email: 'rjbulaga@aol.com',
+			role: 'Elder',
+			description: '',
+			image: 'bulaga'
+		},
+		{
+			name: 'Jeff & Kristen Hammond',
+			email: 'streetmachine19@comcast.net',
+			role: 'Elder',
+			description: '',
+			image: 'hammond'
+		},
+		{
+			name: 'Brandon & Mary-Kate Mansfield',
+			email: 'bmans09@gmail.com',
+			role: 'Elder',
+			description: [
+				'Brandon and Mary-Kate Mansfield lead our Student Ministry Team here at CAC and have been serving since September of 2022. As Student Ministry leaders, Brandon and Mary-Kate focus on creating and writing curriculum for the group (which we call Youth Group) as well as heading up local events and trips to camps throughout the year. Their passion is to continually disciple and share the gospel with youth and to compliment what students are learning at home, all while building real friendships with them.',
+
+				"In addition to working at CAC, Brandon works for a construction company in Vergennes, runs their maple sugaring business and works on his family's diversified farm in Starksboro. Mary-Kate is a physical therapist for Addison County Home Health and Addison County Outpatient Therapy. Together, they also volunteer for Addison County YoungLife.",
+
+				'Brandon and Mary-Kate both grew up in Addison County and were good friends and high school sweethearts at Mount Abraham. In October of 2022, Brandon and Mary-Kate were married. They currently reside in Bristol with their Aussie/Golden Retriever, Lady May. In their free time, Brandon and Mary-Kate can be found skiing, lifting weights, reading books by the water, playing pickleball, and going for walks with Lady May.',
+
+				'Among their favorite things are: Chocolate Creemees (with chocolate sprinkles!); vacationing in Cape Cod; cooking up steak and potatoes, watching the Denver Broncos (Brandon) and Buffalo Bills (Mary-Kate).'
+			],
+			image: 'brandonandmarykate'
+		}
+	];
+
+	const deacons: Leader[] = [
+		{
+			name: 'Kevin McDonald',
+			role: 'Deacon',
+			email: 'treecamo1@aol.com',
+			description: '',
+			image: 'mcdonald'
+		},
+		{
+			name: 'Gayla McDonald',
+			role: 'Deacon',
+			email: 'gmcdonald@gmavt.net',
+			description: '',
+			image: 'mcdonald'
+		},
+		{
+			name: 'Donna Meyers',
+			role: 'Deacon',
+			email: 'donnanalette@gmavt.net',
+			description: '',
+			image: 'donna'
+		},
+		{
+			name: 'Denver Wilson',
+			role: 'Deacon',
+			email: 'denverwilson82@hotmail.com',
+			description: '',
+			image: 'wilson'
+		},
+		{
+			name: 'George Aube',
+			role: 'Deacon',
+			email: 'georgea@gmavt.net',
+			description: '',
+			image: 'aube'
+		},
+		{
+			name: 'Claire Aube',
+			role: 'Deacon',
+			email: 'chiaube1950@gmail.com',
+			description: '',
+			image: 'aube'
+		},
+		{
+			name: 'Brian Thon',
+			role: 'Deacon',
+			email: 'brian.thon@gmail.com',
+			description: '',
+			image: 'thon'
+		},
+		{
+			name: 'Terri Thibault',
+			role: 'Deacon',
+			email: 'terri_norm@yahoo.com',
+			description: '',
+			image: 'terri'
 		}
 	];
 
@@ -133,14 +222,22 @@
 		{
 			name: 'Amy Mansfield',
 			role: "Women's Ministry",
-			description: 'Leading and supporting women in their faith journey.',
+			description: '',
 			email: 'amansfield@hinesburgcma.org',
 			image: 'MansfieldSA'
 		},
 		{
+			name: 'Dave Russell',
+			role: "Men's Ministry",
+			description: '',
+			email: 'amansfield@hinesburgcma.org',
+			image: 'russellDJ'
+		},
+		{
 			name: 'George Aube',
 			role: 'Ministry Support',
-			description: ''
+			description: '',
+			image: 'aube'
 		}
 	];
 
@@ -169,14 +266,23 @@
 		{
 			name: 'Jesse Tipton',
 			role: 'Downtown Ministry Director',
-			description: 'Directing our downtown ministry outreach.',
-			email: 'jessetipton4@gmail.com'
+			description: '',
+			email: 'jessetipton4@gmail.com',
+			image: 'tipton'
+		},
+		{
+			name: 'Liza Rixon',
+			role: ['Downtown Ministry Director', 'Dominican Republic Team Leader'],
+			description: '',
+			email: 'lizarixon@gmail.com',
+			image: 'liza'
 		},
 		{
 			name: 'Claire Aube',
 			role: 'Care Team',
-			description: 'Providing care and support to our church community.',
-			email: 'chiaube1950@gmail.com'
+			description: '',
+			email: 'chiaube1950@gmail.com',
+			image: 'aube'
 		}
 	];
 
@@ -184,36 +290,43 @@
 		{
 			name: 'Rolly Delfausse',
 			role: 'Treasurer',
-			description: 'Managing church finances and financial oversight.',
+			description: '',
 			email: 'rolly.delfausse@protonmail.com',
 			image: 'Delfausse'
+		},
+		{
+			name: 'Fred Haulenbeek',
+			role: 'Assistant Treasurer',
+			description: '',
+			email: 'fredhaul@gmail.com',
+			image: 'haulenbeek'
 		},
 
 		{
 			name: 'Liza Rixon',
 			role: 'Executive Secretary',
-			description: 'Managing administrative operations and communications.',
+			description: '',
 			email: 'lizarixon@gmail.com',
 			image: 'liza'
 		},
 		{
 			name: 'Lance Fournier',
 			role: 'Grounds Coordinator',
-			description: 'Coordinating maintenance and care of church grounds.',
+			description: '',
 			email: 'lance4nier@myfairpoint.net',
 			image: 'fourniers'
 		},
 		{
 			name: 'Matt Wheeler',
 			role: 'Parsonage & Gardens Groundskeeping',
-			description: 'Maintaining parsonage and garden grounds.',
+			description: '',
 			email: 'wheelemm@gmail.com',
 			image: 'mattandamandawheeler'
 		},
 		{
 			name: 'Dianne Lampman',
 			role: 'CAC Cleaning Team',
-			description: 'Coordinating cleaning and maintenance of church facilities.',
+			description: '',
 			email: 'dlampman@sbschools.net',
 			image: 'diane'
 		},
@@ -221,27 +334,37 @@
 		{
 			name: 'Donna Myers',
 			role: 'CAC Cleaning Team',
-			description: 'Coordinating cleaning and maintenance of church facilities.',
+			description: '',
 			email: 'donnanalette@gmavt.net',
 			image: 'donna'
 		},
 		{
 			name: 'Fred Haulenbeek',
 			role: 'Assistant Treasurer',
-			description: 'Assisting with financial management and oversight.',
-			email: 'fredhaul@gmail.com'
+			description: '',
+			email: 'fredhaul@gmail.com',
+			image: 'haulenbeek'
 		},
 		{
 			name: 'Renee Durochia',
 			role: 'CAC Cleaning Team',
-			description: 'Coordinating cleaning and maintenance of church facilities.',
-			email: 'Reneedurochia@example.com'
+			description: '',
+			email: 'Reneedurochia@example.com',
+			image: 'durochia'
+		},
+		{
+			name: 'Josh Leckey',
+			role: 'Dominican Republic Team Leader',
+			description: '',
+			email: 'joshdleckey@gmail.com',
+			image: 'leckey'
 		},
 		{
 			name: 'Brian Thon',
 			role: 'Safety Team',
-			description: 'Ensuring safety and security for church events and facilities.',
-			email: 'brian.thon@gmail.com'
+			description: '',
+			email: 'brian.thon@gmail.com',
+			image: 'thon'
 		}
 	];
 </script>
@@ -266,56 +389,24 @@
 	<h2 class="pageSectionTitle">Pastors & Elders</h2>
 	<div class="cardGridSimple">
 		{#each pastorsAndElders as leader}
-			<div
-				class="leaderCard"
-				role="button"
-				tabindex="0"
-				aria-label={`${leader.name} - ${leader.role}. Click to view details.`}
-				onclick={() => openModal(leader)}
-				onkeydown={(e) => {
-					if (e.key === 'Enter' || e.key === ' ') {
-						e.preventDefault();
-						openModal(leader);
-					}
-				}}
-			>
-				{#if leader.image}
-					<div class="leaderCardImage">
-						<Image source={leader.image} altTag={leader.name} class="leaderImage" />
-					</div>
-				{/if}
-				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{leader.name}</h3>
-				<strong class="cardGridSimpleChild">{leader.role}</strong>
-			</div>
+			<LeaderCard {leader} {openModal} />
 		{/each}
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2 class="pageSectionTitle">Ministry Directors</h2>
+	<h2 class="pageSectionTitle">Ministry Leaders</h2>
 	<div class="cardGridSimple">
 		{#each directors as leader}
-			<div
-				class="leaderCard"
-				role="button"
-				tabindex="0"
-				aria-label={`${leader.name} - ${leader.role}. Click to view details.`}
-				onclick={() => openModal(leader)}
-				onkeydown={(e) => {
-					if (e.key === 'Enter' || e.key === ' ') {
-						e.preventDefault();
-						openModal(leader);
-					}
-				}}
-			>
-				{#if leader.image}
-					<div class="leaderCardImage">
-						<Image source={leader.image} altTag={leader.name} class="leaderImage" />
-					</div>
-				{/if}
-				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{leader.name}</h3>
-				<strong class="cardGridSimpleChild">{leader.role}</strong>
-			</div>
+			<LeaderCard {leader} {openModal} />
+		{/each}
+	</div>
+</section>
+<section class="pageSection">
+	<h2 class="pageSectionTitle">Deacons</h2>
+	<div class="cardGridSimple">
+		{#each deacons as leader}
+			<LeaderCard {leader} {openModal} />
 		{/each}
 	</div>
 </section>
@@ -324,27 +415,7 @@
 	<h2 class="pageSectionTitle">Ministry Support</h2>
 	<div class="cardGridSimple">
 		{#each ministrySupport as leader}
-			<div
-				class="leaderCard"
-				role="button"
-				tabindex="0"
-				aria-label={`${leader.name} - ${leader.role}. Click to view details.`}
-				onclick={() => openModal(leader)}
-				onkeydown={(e) => {
-					if (e.key === 'Enter' || e.key === ' ') {
-						e.preventDefault();
-						openModal(leader);
-					}
-				}}
-			>
-				{#if leader.image}
-					<div class="leaderCardImage">
-						<Image source={leader.image} altTag={leader.name} class="leaderImage" />
-					</div>
-				{/if}
-				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{leader.name}</h3>
-				<strong class="cardGridSimpleChild">{leader.role}</strong>
-			</div>
+			<LeaderCard {leader} {openModal} />
 		{/each}
 	</div>
 </section>
@@ -353,27 +424,7 @@
 	<h2 class="pageSectionTitle">Elected Ministry Support</h2>
 	<div class="cardGridSimple">
 		{#each electedMinistrySupport as leader}
-			<div
-				class="leaderCard"
-				role="button"
-				tabindex="0"
-				aria-label={`${leader.name} - ${leader.role}. Click to view details.`}
-				onclick={() => openModal(leader)}
-				onkeydown={(e) => {
-					if (e.key === 'Enter' || e.key === ' ') {
-						e.preventDefault();
-						openModal(leader);
-					}
-				}}
-			>
-				{#if leader.image}
-					<div class="leaderCardImage">
-						<Image source={leader.image} altTag={leader.name} class="leaderImage" />
-					</div>
-				{/if}
-				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{leader.name}</h3>
-				<strong class="cardGridSimpleChild">{leader.role}</strong>
-			</div>
+			<LeaderCard {leader} {openModal} />
 		{/each}
 	</div>
 </section>
@@ -382,27 +433,7 @@
 	<h2 class="pageSectionTitle">Elected Operations</h2>
 	<div class="cardGridSimple">
 		{#each electedOperations as leader}
-			<div
-				class="leaderCard"
-				role="button"
-				tabindex="0"
-				aria-label={`${leader.name} - ${leader.role}. Click to view details.`}
-				onclick={() => openModal(leader)}
-				onkeydown={(e) => {
-					if (e.key === 'Enter' || e.key === ' ') {
-						e.preventDefault();
-						openModal(leader);
-					}
-				}}
-			>
-				{#if leader.image}
-					<div class="leaderCardImage">
-						<Image source={leader.image} altTag={leader.name} class="leaderImage" />
-					</div>
-				{/if}
-				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{leader.name}</h3>
-				<strong class="cardGridSimpleChild">{leader.role}</strong>
-			</div>
+			<LeaderCard {leader} {openModal} />
 		{/each}
 	</div>
 </section>
@@ -435,14 +466,24 @@
 			{#if selectedLeader.image}
 				<div class="leaderModalHeader">
 					<h2 id="modal-title" class="modalTitle">{selectedLeader.name}</h2>
-					<div class="leaderCardImage">
-						<Image source={selectedLeader.image} altTag={selectedLeader.name} class="leaderImage" />
+					<div class="modalCardImage">
+						<Image
+							source={selectedLeader.image}
+							altTag={selectedLeader.name}
+							class="modalLeaderImage"
+						/>
 					</div>
 				</div>
 			{:else}
 				<h2 id="modal-title" class="modalTitle">{selectedLeader.name}</h2>
 			{/if}
-			<strong class="modalRole">{selectedLeader.role}</strong>
+			{#if Array.isArray(selectedLeader.role)}
+				{#each selectedLeader.role as role}
+					<strong class="modalRole">{role}</strong>
+				{/each}
+			{:else}
+				<strong class="modalRole">{selectedLeader.role}</strong>
+			{/if}
 
 			<div class="modalDescription">
 				{#if Array.isArray(selectedLeader.description) && selectedLeader.description.length > 0}
@@ -461,56 +502,11 @@
 {/if}
 
 <style>
-	.leaderCard {
-		display: grid;
-		grid-template-rows: auto 1fr;
-		gap: 0.6rem;
-		padding: clamp(1.1rem, 2vw, 1.5rem);
-		border-radius: 20px;
-		box-shadow: 0 26px 42px color-mix(in oklch, black 50%, transparent);
-		position: relative;
-		align-items: self-start;
-		cursor: pointer;
+	.pageSection {
+		width: calc(100% - 2rem);
+		max-width: 1800px;
+		margin: 0 auto 4rem;
 	}
-
-	.leaderCard::before {
-		content: '';
-		position: absolute;
-		inset: 0;
-		border-radius: inherit;
-		background: linear-gradient(145deg, var(--accentColor), var(--primaryColor));
-		pointer-events: none;
-		z-index: 0;
-	}
-
-	.leaderCard::after {
-		content: '';
-		position: absolute;
-		inset: 5px;
-		border-radius: calc(20px - 5px);
-		background: color-mix(in oklch, var(--backgroundColor) 90%, black 10%);
-		pointer-events: none;
-		z-index: 1;
-	}
-
-	.leaderCard:hover {
-		transform: translateY(-2px);
-		transition: transform 0.2s ease;
-	}
-
-	.leaderCard h3,
-	.leaderCard strong,
-	.leaderCardImage {
-		position: relative;
-		z-index: 2;
-	}
-	.leaderCardImage {
-		width: calc(100% - 8rem);
-		max-width: 200px;
-		aspect-ratio: 1/1;
-		margin: 0 10px 0 0;
-	}
-
 	.modalBackdrop {
 		position: fixed;
 		inset: 0;
@@ -621,7 +617,16 @@
 		flex-wrap: wrap;
 	}
 
+	.modalCardImage {
+		max-width: 200px;
+		aspect-ratio: 1/1;
+		width: 100%;
+	}
+
 	.cardGridSimpleTitle {
 		font-size: clamp(1rem, 0.5vw + 2rem, 2rem);
+	}
+	.cardGridSimple {
+		grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
 	}
 </style>
