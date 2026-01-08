@@ -112,6 +112,20 @@
 
 	const deacons: Leader[] = [
 		{
+			name: 'George Aube',
+			role: 'Deacon',
+			email: 'georgea@gmavt.net',
+			description: '',
+			image: 'aube'
+		},
+		{
+			name: 'Claire Aube',
+			role: 'Deacon',
+			email: 'chiaube1950@gmail.com',
+			description: '',
+			image: 'aube'
+		},
+		{
 			name: 'Kevin McDonald',
 			role: 'Deacon',
 			email: 'treecamo1@aol.com',
@@ -133,26 +147,13 @@
 			image: 'donna'
 		},
 		{
-			name: 'Denver Wilson',
+			name: 'Terri Thibault',
 			role: 'Deacon',
-			email: 'denverwilson82@hotmail.com',
+			email: 'terri_norm@yahoo.com',
 			description: '',
-			image: 'wilson'
+			image: 'terri'
 		},
-		{
-			name: 'George Aube',
-			role: 'Deacon',
-			email: 'georgea@gmavt.net',
-			description: '',
-			image: 'aube'
-		},
-		{
-			name: 'Claire Aube',
-			role: 'Deacon',
-			email: 'chiaube1950@gmail.com',
-			description: '',
-			image: 'aube'
-		},
+
 		{
 			name: 'Brian Thon',
 			role: 'Deacon',
@@ -161,11 +162,11 @@
 			image: 'thon'
 		},
 		{
-			name: 'Terri Thibault',
+			name: 'Denver Wilson',
 			role: 'Deacon',
-			email: 'terri_norm@yahoo.com',
+			email: 'denverwilson82@hotmail.com',
 			description: '',
-			image: 'terri'
+			image: 'wilson'
 		}
 	];
 
@@ -213,11 +214,31 @@
 
 	const ministrySupport: Leader[] = [
 		{
+			name: 'George Aube',
+			role: 'Safety Team Leader',
+			description: '',
+			image: 'aube'
+		},
+		{
 			name: 'Ray & Carol Bulaga',
 			role: 'Community Group Coordinators',
 			description: '',
 			email: 'info@hinesburgcma.org',
 			image: 'bulaga'
+		},
+		{
+			name: 'Lance Fournier',
+			role: 'Grounds Coordinator',
+			description: '',
+			email: 'lance4nier@myfairpoint.net',
+			image: 'fourniers'
+		},
+		{
+			name: 'Josh Leckey',
+			role: 'Dominican Republic Team Leader',
+			description: '',
+			email: 'joshdleckey@gmail.com',
+			image: 'leckey'
 		},
 		{
 			name: 'Amy Mansfield',
@@ -227,62 +248,33 @@
 			image: 'MansfieldSA'
 		},
 		{
+			name: 'Liza Rixon',
+			role: ['Downtown Ministry', 'Dominican Republic Team Leader'],
+			description: '',
+			email: 'lizarixon@gmail.com',
+			image: 'liza'
+		},
+		{
 			name: 'Dave Russell',
 			role: "Men's Ministry",
 			description: '',
 			email: 'amansfield@hinesburgcma.org',
 			image: 'russellDJ'
 		},
-		{
-			name: 'George Aube',
-			role: 'Ministry Support',
-			description: '',
-			image: 'aube'
-		}
-	];
 
-	const electedMinistrySupport: Leader[] = [
-		{
-			name: 'Keith & Virgina Finn',
-			role: 'Missions Team',
-			description: 'Leading our church in local and global missions.',
-			email: 'huckleberryfinn1968@gmail.com',
-			image: 'finns'
-		},
-		{
-			name: 'Lance & Kelly Fournier',
-			role: 'Missions Team',
-			description: 'Leading our church in local and global missions.',
-			email: 'kellyfournier0@gmail.com',
-			image: 'fourniers'
-		},
-		{
-			name: 'Terri Thibault',
-			role: 'Care Team',
-			description: 'Providing care and support to our church community.',
-			email: 'terri_norm@yahoo.com',
-			image: 'terri'
-		},
 		{
 			name: 'Jesse Tipton',
-			role: 'Downtown Ministry Director',
+			role: 'Downtown Ministry',
 			description: '',
 			email: 'jessetipton4@gmail.com',
 			image: 'tipton'
 		},
 		{
-			name: 'Liza Rixon',
-			role: ['Downtown Ministry Director', 'Dominican Republic Team Leader'],
+			name: 'Matt Wheeler',
+			role: 'Mowing Coordinator',
 			description: '',
-			email: 'lizarixon@gmail.com',
-			image: 'liza'
-		},
-		{
-			name: 'Claire Aube',
-			role: 'Care Team',
-			description: '',
-			email: 'chiaube1950@gmail.com',
-			image: 'aube'
+			email: 'wheelemm@gmail.com',
+			image: 'mattandamandawheeler'
 		}
 	];
 
@@ -308,63 +300,6 @@
 			description: '',
 			email: 'lizarixon@gmail.com',
 			image: 'liza'
-		},
-		{
-			name: 'Lance Fournier',
-			role: 'Grounds Coordinator',
-			description: '',
-			email: 'lance4nier@myfairpoint.net',
-			image: 'fourniers'
-		},
-		{
-			name: 'Matt Wheeler',
-			role: 'Parsonage & Gardens Groundskeeping',
-			description: '',
-			email: 'wheelemm@gmail.com',
-			image: 'mattandamandawheeler'
-		},
-		{
-			name: 'Dianne Lampman',
-			role: 'CAC Cleaning Team',
-			description: '',
-			email: 'dlampman@sbschools.net',
-			image: 'diane'
-		},
-
-		{
-			name: 'Donna Myers',
-			role: 'CAC Cleaning Team',
-			description: '',
-			email: 'donnanalette@gmavt.net',
-			image: 'donna'
-		},
-		{
-			name: 'Fred Haulenbeek',
-			role: 'Assistant Treasurer',
-			description: '',
-			email: 'fredhaul@gmail.com',
-			image: 'haulenbeek'
-		},
-		{
-			name: 'Renee Durochia',
-			role: 'CAC Cleaning Team',
-			description: '',
-			email: 'Reneedurochia@example.com',
-			image: 'durochia'
-		},
-		{
-			name: 'Josh Leckey',
-			role: 'Dominican Republic Team Leader',
-			description: '',
-			email: 'joshdleckey@gmail.com',
-			image: 'leckey'
-		},
-		{
-			name: 'Brian Thon',
-			role: 'Safety Team',
-			description: '',
-			email: 'brian.thon@gmail.com',
-			image: 'thon'
 		}
 	];
 </script>
@@ -415,15 +350,6 @@
 	<h2 class="pageSectionTitle">Ministry Support</h2>
 	<div class="cardGridSimple">
 		{#each ministrySupport as leader}
-			<LeaderCard {leader} {openModal} />
-		{/each}
-	</div>
-</section>
-
-<section class="pageSection">
-	<h2 class="pageSectionTitle">Elected Ministry Support</h2>
-	<div class="cardGridSimple">
-		{#each electedMinistrySupport as leader}
 			<LeaderCard {leader} {openModal} />
 		{/each}
 	</div>
