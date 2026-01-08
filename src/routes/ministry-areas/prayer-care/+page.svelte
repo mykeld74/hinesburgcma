@@ -39,11 +39,13 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Prayer & Care</h1>
-	<p class="pageHeroChild pageHeroText">
-		You are not alone. Our pastors, prayer team, and care network walk beside you with compassion,
-		prayer, and practical help.
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Prayer & Care</h1>
+		<p class="pageHeroChild pageHeroText">
+			You are not alone. Our pastors, prayer team, and care network walk beside you with compassion,
+			prayer, and practical help.
+		</p>
+	</div>
 </section>
 
 <section class="pageSection">

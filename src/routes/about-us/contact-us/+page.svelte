@@ -10,11 +10,13 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Contact Us</h1>
-	<p class="pageHeroChild pageHeroText">
-		We would love to hear from you. Send a message, call the office, or stop by during the week—our
-		team is here to help.
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Contact Us</h1>
+		<p class="pageHeroChild pageHeroText">
+			We would love to hear from you. Send a message, call the office, or stop by during the week—our
+			team is here to help.
+		</p>
+	</div>
 </section>
 
 <section class="pageSection">

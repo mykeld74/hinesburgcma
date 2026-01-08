@@ -1,86 +1,38 @@
-<script lang="ts">
-	const teams = [
-		{
-			title: 'Hospitality',
-			description:
-				'Create a warm welcome in the lobby, at the Welcome Desk, and through Sunday refreshments.'
-		},
-		{
-			title: 'Kids & Students',
-			description:
-				'Invest in the next generation through teaching, small groups, and support roles.'
-		},
-		{
-			title: 'Worship & Production',
-			description:
-				'Lead our church in worship through music, audio, video, lighting, and creative arts.'
-		},
-		{
-			title: 'Prayer & Care',
-			description:
-				'Encourage others through prayer, visitation, counseling support, and meal deliveries.'
-		},
-		{
-			title: 'Facilities & Operations',
-			description:
-				'Serve behind the scenes with weekday projects, campus upkeep, and administrative needs.'
-		}
-	];
-
-	const process = [
-		'Attend the Serve Tour or connect with a ministry leader.',
-		'Complete a brief volunteer application and background check when required.',
-		'Shadow the team to learn rhythms and expectations.',
-		'Step into your role with ongoing coaching and community.'
-	];
-</script>
-
 <svelte:head>
 	<title>Serve - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Serving is one of the best ways to grow in discipleship, build relationships, and help others meet Jesus at CAC. Find your team and start serving today."
+		content="You were created on purpose, with purpose, by a God who thinks your life is way too important to let you spend it all on yourself. Discover and develop your life's purpose to serve and connect."
 	/>
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Serve</h1>
-	<p class="pageHeroChild pageHeroText">
-		Serving is one of the best ways to grow in discipleship, build relationships, and help others meet
-		Jesus at CAC.
-	</p>
-</section>
-
-<section class="pageSection">
-	<h2 class="pageSectionTitle">Find Your Team</h2>
-	<div class="cardGridSimple">
-		{#each teams as team}
-			<article>
-				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{team.title}</h3>
-				<p class="cardGridSimpleChild">{team.description}</p>
-			</article>
-		{/each}
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Use Your Skills and Gifts</h1>
+		<p class="pageHeroChild pageHeroText">
+			You were created <em>on</em> purpose, <em>with</em> purpose, by a God who thinks your life is way
+			too important to let you spend it all on yourself. Discover and develop your life's purpose to serve
+			and connect. Whether you are people-oriented or task-oriented, introverted or extroverted, we have
+			a team for you. We cannot reach the world for Jesus without our committed volunteer teams. We invite
+			you to get off the bench and into the game. Scroll through the different ministry areas below and
+			email the ministry leader to take your next step.
+		</p>
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2 class="pageSectionTitle">How Serving Works</h2>
-	<ul class="pageSectionList">
-		{#each process as step}
-			<li class="pageSectionListItem">{step}</li>
-		{/each}
-	</ul>
-</section>
-
-<section class="pageSection">
-	<h2 class="pageSectionTitle">Ready to Jump In?</h2>
 	<p class="pageSectionText">
-		Share your interests and availability. Our team will help you find the right spot and equip you
-		with everything you need.
+		<a
+			href="https://communityalliancechurch.churchcenter.com/people/forms/294243"
+			target="_blank"
+			rel="noopener noreferrer">Click HERE to browse some options and sign up for a serving team.</a
+		>
 	</p>
-	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Connect with Serving Team</a>
-		<a href="/visit-us/your-next-steps/">Attend Next Steps</a>
-	</div>
+	<p class="pageSectionText">
+		Or take an easy <a
+			href="https://hinesburgcma-my.sharepoint.com/:w:/g/personal/smansfield_hinesburgcma_org/EdHuZeJnUdVPv3zE9ilbcqMBPJfyioEyskHAaM5c7nCsMw?e=pZD6LD"
+			target="_blank"
+			rel="noopener noreferrer">ASSESSMENT</a
+		> to help you better understand how God has gifted you.
+	</p>
 </section>
-

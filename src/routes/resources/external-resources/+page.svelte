@@ -36,11 +36,13 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">External Resources</h1>
-	<p class="pageHeroChild pageHeroText">
-		Take next steps all week long with trusted resources that support spiritual growth, family
-		discipleship, and mission.
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">External Resources</h1>
+		<p class="pageHeroChild pageHeroText">
+			Take next steps all week long with trusted resources that support spiritual growth, family
+			discipleship, and mission.
+		</p>
+	</div>
 </section>
 
 <section class="pageSection">

@@ -10,7 +10,9 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Our Story</h1>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Our Story</h1>
+	</div>
 </section>
 
 <section class="pageSection blockSection">

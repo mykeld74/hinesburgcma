@@ -39,11 +39,13 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Your Next Steps</h1>
-	<p class="pageHeroChild pageHeroText">
-		You belong here. These pathways will help you build relationships, grow in faith, and live on
-		mission with our church family.
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Your Next Steps</h1>
+		<p class="pageHeroChild pageHeroText">
+			You belong here. These pathways will help you build relationships, grow in faith, and live on
+			mission with our church family.
+		</p>
+	</div>
 </section>
 
 <section class="pageSection">

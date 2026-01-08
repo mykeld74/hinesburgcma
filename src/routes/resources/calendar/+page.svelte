@@ -1,6 +1,10 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import FeaturedEventsCarousel from '$lib/components/FeaturedEventsCarousel.svelte';
+
 	type CalendarEvent = {
 		id: string;
+		eventId: string;
 		title: string;
 		description: string;
 		startDate: Date;
@@ -8,8 +12,11 @@
 		allDay: boolean;
 		location: string;
 		kind: string;
+		eventType: string | null;
+		visibleInChurchCenter: boolean | null;
 		publicUrl: string | null;
 		imageUrl: string | null;
+		featured: boolean | null;
 	};
 
 	let { data } = $props();
@@ -45,6 +52,16 @@
 	});
 
 	const error = $derived(data?.error);
+
+	// Featured events: computed on server, convert date strings to Date objects
+	const featuredEvents = $derived(
+		(data?.featuredEvents || []).map((event) => ({
+			...event,
+			startDate: typeof event.startDate === 'string' ? new Date(event.startDate) : event.startDate,
+			endDate:
+				event.endDate && typeof event.endDate === 'string' ? new Date(event.endDate) : event.endDate
+		}))
+	);
 
 	let selectedFilter = $state<string | null>(null);
 
@@ -272,21 +289,22 @@
 			);
 
 			if (!response.ok) {
-				console.error('Failed to fetch events for month:', response.statusText);
 				return;
 			}
 
 			const result = await response.json();
 			if (result.events && Array.isArray(result.events)) {
 				// Convert date strings to Date objects
-				const newEvents = result.events.map((event: CalendarEvent) => ({
+				const newEvents = result.events.map((event: any) => ({
 					...event,
 					startDate:
 						typeof event.startDate === 'string' ? new Date(event.startDate) : event.startDate,
 					endDate:
 						event.endDate && typeof event.endDate === 'string'
 							? new Date(event.endDate)
-							: event.endDate
+							: event.endDate,
+					visibleInChurchCenter: event.visibleInChurchCenter ?? null,
+					eventId: event.eventId
 				}));
 
 				// Merge with existing events, avoiding duplicates
@@ -301,7 +319,7 @@
 				loadedMonths.add(monthKey);
 			}
 		} catch (err) {
-			console.error('Error fetching events for month:', err);
+			// Silently handle errors
 		}
 	}
 
@@ -471,11 +489,13 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Calendar</h1>
-	<p class="pageHeroChild pageHeroText">
-		Stay up to date with everything happening at Community Alliance Church - Hinesburg. Filter by
-		ministry, add events to your calendar, and share with friends.
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Calendar</h1>
+		<p class="pageHeroChild pageHeroText">
+			Stay up to date with everything happening at Community Alliance Church - Hinesburg. Filter by
+			ministry, add events to your calendar, and share with friends.
+		</p>
+	</div>
 </section>
 
 {#if error}
@@ -503,6 +523,8 @@
 		</div>
 	</section>
 {/if}
+
+<FeaturedEventsCarousel events={featuredEvents} />
 
 {#if allEvents.length > 0}
 	<section class="pageSection">
@@ -574,13 +596,9 @@
 								{#each selectedDateEvents as event}
 									<article class="eventCard">
 										<h4 class="eventTitle">
-											{#if event.publicUrl}
-												<a href={event.publicUrl} target="_blank" rel="noopener noreferrer">
-													{event.title}
-												</a>
-											{:else}
+											<a href="/events/{event.eventId}">
 												{event.title}
-											{/if}
+											</a>
 										</h4>
 										{#if !event.allDay}
 											<div class="eventTime">
@@ -641,7 +659,9 @@
 
 <section class="pageSection">
 	<h2 class="pageSectionTitle">Need Help?</h2>
-	<p class="pageSectionText">Our team can help you register for events, volunteer opportunities, and retreats.</p>
+	<p class="pageSectionText">
+		Our team can help you register for events, volunteer opportunities, and retreats.
+	</p>
 	<div class="pageHeroActions">
 		<a href="mailto:info@hinesburgcma.org">Email the Office</a>
 		<a href="tel:+18024822132">Call (802) 482-2132</a>

@@ -1,81 +1,68 @@
 <script lang="ts">
-	const groupTypes = [
-		{
-			title: 'Community Groups',
-			description:
-				'Meet weekly in homes or on campus for conversation, prayer, and shared meals.'
-		},
-		{
-			title: 'Discipleship Groups',
-			description:
-				'Smaller circles of 3–5 people pursuing deeper accountability and spiritual practices.'
-		},
-		{
-			title: 'Short-Term Studies',
-			description:
-				'Focused studies lasting 6–8 weeks around Scripture, spiritual formation, or specific topics.'
-		},
-		{
-			title: 'Affinity Groups',
-			description:
-				'Groups built around life stage or shared interest, including young adults, parents, and more.'
-		}
-	];
-
-	const process = [
-		'Review available groups during our fall and spring semesters.',
-		'Attend Group Launch to meet leaders and choose the right fit.',
-		'Commit to the group rhythm and participate consistently.',
-		'Serve together and live on mission beyond weekly gatherings.'
-	];
 </script>
 
 <svelte:head>
 	<title>Groups - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="We grow best in community. Groups are where discipleship, friendship, and mission collide in the life of CAC. Find community groups, discipleship groups, and short-term studies."
+		content="Life is not meant to be lived alone. Community Groups gather regularly to hang out, serve together, study the Bible and pray together. Find a group that fits your life."
 	/>
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Groups</h1>
-	<p class="pageHeroChild pageHeroText">
-		We grow best in community. Groups are where discipleship, friendship, and mission collide in the
-		life of CAC.
-	</p>
-</section>
-
-<section class="pageSection">
-	<h2 class="pageSectionTitle">Types of Groups</h2>
-	<div class="cardGridSimple">
-		{#each groupTypes as group}
-			<article>
-				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{group.title}</h3>
-				<p class="cardGridSimpleChild">{group.description}</p>
-			</article>
-		{/each}
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">A Place For Everyone.</h1>
 	</div>
-</section>
-
-<section class="pageSection">
-	<h2 class="pageSectionTitle">How to Join</h2>
-	<ol class="pageSectionList">
-		{#each process as step}
-			<li class="pageSectionListItem">{step}</li>
-		{/each}
-	</ol>
-</section>
-
-<section class="pageSection">
-	<h2 class="pageSectionTitle">Lead a Group</h2>
-	<p class="pageSectionText">
-		We are always equipping new leaders. Reach out if you sense God calling you to disciple others
-		through community.
-	</p>
 	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Start the Conversation</a>
-		<a href="/grow-with-us/serve/">Serve as a Leader</a>
+		<a
+			href="https://communityalliancechurch.churchcenter.com/groups"
+			target="_blank"
+			rel="noopener noreferrer">Join A Group Here</a
+		>
 	</div>
 </section>
 
+<section class="pageSection">
+	<p class="pageSectionText">
+		Life is not meant to be lived alone. In fact, God <em>hates</em> loneliness. You were created to
+		experience life with other people, and that's why Community Groups within the church are vital for
+		all of us. Community Groups (CGs) gather on a regular basis to hang out, serve together, study the
+		Bible and most definitely to pray together. CGs come in all shapes and sizes: for men, women, students,
+		married couples or young adults; with kids, without kids, about kids; focused on serving, focused
+		on worship... the list goes on! CGs take place in different towns, on different days, at church and
+		out of the church. So no matter where you are in your life, there's a CG waiting to welcome you.
+	</p>
+	<p class="pageSectionText">
+		Ready to find community and be part of a family? Head over to our CAC App or Website, where you
+		can learn more about all of our <a
+			href="https://communityalliancechurch.churchcenter.com/groups"
+			target="_blank"
+			rel="noopener noreferrer">Current Community Groups</a
+		>.
+	</p>
+</section>
+
+<style>
+	.pageHero {
+		background: url('https://res.cloudinary.com/de6fzsubp/image/upload/v1767730209/groups.jpg')
+			no-repeat center 35% / cover;
+		height: 40vh;
+		place-content: center;
+		place-items: center;
+		text-align: center;
+		color: #fff;
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.5);
+		}
+	}
+
+	.pageHeroActions {
+		a {
+			color: #fff;
+			background: color-mix(in oklch, var(--primaryColor) 55%, transparent);
+		}
+	}
+</style>

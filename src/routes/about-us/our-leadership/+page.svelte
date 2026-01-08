@@ -313,11 +313,13 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Our Leadership</h1>
-	<p class="pageHeroChild pageHeroText">
-		We are guided by a team of pastors, staff, elders, and ministry leaders who serve together to
-		help our church follow Jesus on mission.
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Our Leadership</h1>
+		<p class="pageHeroChild pageHeroText">
+			We are guided by a team of pastors, staff, elders, and ministry leaders who serve together to
+			help our church follow Jesus on mission.
+		</p>
+	</div>
 </section>
 
 <section class="pageSection">

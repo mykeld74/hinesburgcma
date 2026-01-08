@@ -1,77 +1,63 @@
 <script lang="ts">
-	const foundations = [
-		{
-			title: 'Why Baptism?',
-			description:
-				'Baptism is a public declaration of faith in Jesus, symbolizing the cleansing of sin and new life in Christ.'
-		},
-		{
-			title: 'Who Should Be Baptized?',
-			description:
-				'Anyone who has trusted Jesus as Savior and Lord and desires to follow him in obedience.'
-		},
-		{
-			title: 'How We Baptize',
-			description:
-				'We baptize by immersion during Sunday gatherings and celebrate each story God is writing.'
-		}
-	];
-
-	const steps = [
-		'Attend a baptism conversation to explore the meaning and process together.',
-		'Share your story with a pastor or group leader.',
-		'Invite family and friends to celebrate with you.',
-		'Be baptized during an upcoming Sunday gathering.',
-		'Continue growing through a group or serving team.'
-	];
 </script>
 
 <svelte:head>
 	<title>Baptism - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="We love celebrating life change. If you are ready to take the next step of baptism, we would be honored to walk with you. Learn about biblical foundations and the baptism process."
+		content="Baptism is our first step in following Jesus. We believe the Bible teaches that those who have responded to the message of the gospel, repented, and confessed Jesus Christ as Lord and Savior, should then be baptized by water as an act of obedience."
 	/>
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Baptism</h1>
-	<p class="pageHeroChild pageHeroText">
-		We love celebrating life change. If you are ready to take the next step of baptism, we would be
-		honored to walk with you.
-	</p>
-</section>
-
-<section class="pageSection">
-	<h2 class="pageSectionTitle">Biblical Foundations</h2>
-	<div class="cardGridSimple">
-		{#each foundations as foundation}
-			<article>
-				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{foundation.title}</h3>
-				<p class="cardGridSimpleChild">{foundation.description}</p>
-			</article>
-		{/each}
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Baptism</h1>
+		<p class="pageHeroChild pageHeroText">Baptism is our first step in following Jesus.</p>
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2 class="pageSectionTitle">Steps Toward Baptism</h2>
-	<ol class="pageSectionList">
-		{#each steps as step}
-			<li class="pageSectionListItem">{step}</li>
-		{/each}
-	</ol>
-</section>
-
-<section class="pageSection">
-	<h2 class="pageSectionTitle">We Are Here for You</h2>
 	<p class="pageSectionText">
-		Reach out and we will help you discern your next step, answer questions, and prepare you for an
-		upcoming baptism gathering.
+		We believe the Bible teaches that those who have responded to the message of the gospel,
+		repented, and confessed Jesus Christ as Lord and Savior, should then be baptized by water as an
+		act of obedience as a new disciple of Jesus. In the book of <a
+			href="https://www.biblegateway.com/passage/?search=Acts+2%3A38-39&version=NIV">Acts</a
+		>, baptism was an immediate response for those who accepted Jesus Christ as Lord and Savior.
+		Baptism by immersion is symbolic of the death of one's old life, then the resurrection to a new
+		life following Jesus.
 	</p>
-	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Email a Pastor</a>
-		<a href="/visit-us/your-next-steps/">Attend Next Steps</a>
-	</div>
+	<blockquote class="pageSectionQuote">
+		<p>
+			"Therefore we have been buried with Him through baptism into death, so that as Christ was
+			raised from the dead through the glory of the Father, so we too might walk in newness of
+			life."
+		</p>
+		<cite>Romans 6:4-6</cite>
+	</blockquote>
 </section>
 
+<section class="pageSection">
+	<h2 class="pageSectionTitle">Next Steps</h2>
+	<p class="pageSectionText">
+		If you would like to speak to someone about baptism, or to schedule one, please complete this
+		<a href="https://communityalliancechurch.churchcenter.com/people/forms/294349">form</a>.
+	</p>
+</section>
+
+<style>
+	.pageHero {
+		background: url('https://res.cloudinary.com/de6fzsubp/image/upload/v1767730209/baptism.jpg')
+			no-repeat center 35% / cover;
+		height: 40vh;
+		place-content: center;
+		place-items: center;
+		text-align: center;
+		color: #fff;
+		&::before {
+			content: '';
+			position: absolute;
+			inset: 0;
+			background: rgba(0, 0, 0, 0.5);
+		}
+	}
+</style>

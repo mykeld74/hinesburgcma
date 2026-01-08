@@ -15,10 +15,12 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Your Next Steps</h1>
-	<p class="pageHeroChild pageHeroText">
-		<strong>What will YOUR NEXT STEPS be?</strong>
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Your Next Steps</h1>
+		<p class="pageHeroChild pageHeroText">
+			<strong>What will YOUR NEXT STEPS be?</strong>
+		</p>
+	</div>
 </section>
 
 <section class="pageSection">

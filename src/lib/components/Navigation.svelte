@@ -56,7 +56,6 @@
 		{
 			label: 'Resources',
 			items: [
-				{ label: 'Sermons & Media', href: '/resources/sermons-media/' },
 				{ label: 'Calendar', href: '/resources/calendar/' },
 				{ label: 'Giving', href: '/resources/giving/' },
 				{ label: 'CVU Parking', href: '/resources/cvu-parking/' },

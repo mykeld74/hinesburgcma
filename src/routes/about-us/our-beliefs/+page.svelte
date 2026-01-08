@@ -11,21 +11,23 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Our Beliefs</h1>
-	<ul class="beliefPrinciples">
-		<li>
-			<strong>In Essential beliefs</strong> – We have UNITY.
-			<span class="scriptureRef">John 17:23</span>
-		</li>
-		<li>
-			<strong>In Non-Essential beliefs</strong> – We have LIBERTY.
-			<span class="scriptureRef">Romans 14:1</span>
-		</li>
-		<li>
-			<strong>In ALL our beliefs</strong> – We show CHARITY.
-			<span class="scriptureRef">John 13:35</span>
-		</li>
-	</ul>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Our Beliefs</h1>
+		<ul class="beliefPrinciples">
+			<li>
+				<strong>In Essential beliefs</strong> – We have UNITY.
+				<span class="scriptureRef">John 17:23</span>
+			</li>
+			<li>
+				<strong>In Non-Essential beliefs</strong> – We have LIBERTY.
+				<span class="scriptureRef">Romans 14:1</span>
+			</li>
+			<li>
+				<strong>In ALL our beliefs</strong> – We show CHARITY.
+				<span class="scriptureRef">John 13:35</span>
+			</li>
+		</ul>
+	</div>
 </section>
 
 <section class="pageSection">
@@ -106,7 +108,7 @@
 	.beliefPrinciples {
 		list-style: none;
 		padding: 0;
-		margin: 0;
+		margin: 2rem 0 0;
 		display: grid;
 		gap: 1.5rem;
 	}

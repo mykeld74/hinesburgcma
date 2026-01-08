@@ -10,12 +10,14 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Our Campus</h1>
-	<p class="pageHeroChild pageHeroText">
-		We are located at 190 Pond Road, right across the street from CVU High School's athletic fields.
-		<br /> God calls us to share what we have and that includes our church building and grounds. We are
-		blessed to share our space with our community in a variety of ways:
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Our Campus</h1>
+		<p class="pageHeroChild pageHeroText">
+			We are located at 190 Pond Road, right across the street from CVU High School's athletic fields.
+			<br /> God calls us to share what we have and that includes our church building and grounds. We are
+			blessed to share our space with our community in a variety of ways:
+		</p>
+	</div>
 </section>
 
 <section class="pageSection blockSection">

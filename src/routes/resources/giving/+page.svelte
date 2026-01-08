@@ -39,11 +39,13 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Giving</h1>
-	<p class="pageHeroChild pageHeroText">
-		Your generosity accelerates the mission of Jesus in Hinesburg and beyond. Thank you for giving
-		cheerfully and faithfully.
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Giving</h1>
+		<p class="pageHeroChild pageHeroText">
+			Your generosity accelerates the mission of Jesus in Hinesburg and beyond. Thank you for giving
+			cheerfully and faithfully.
+		</p>
+	</div>
 </section>
 
 <section class="pageSection">

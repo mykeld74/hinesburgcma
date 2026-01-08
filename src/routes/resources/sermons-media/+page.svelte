@@ -45,11 +45,13 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Sermons & Media</h1>
-	<p class="pageHeroChild pageHeroText">
-		Access current and past teaching, worship gatherings, and resources that help you grow
-		throughout the week.
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Sermons & Media</h1>
+		<p class="pageHeroChild pageHeroText">
+			Access current and past teaching, worship gatherings, and resources that help you grow
+			throughout the week.
+		</p>
+	</div>
 </section>
 
 <section class="pageSection">

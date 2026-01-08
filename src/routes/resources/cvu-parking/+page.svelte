@@ -40,11 +40,13 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">CVU Parking</h1>
-	<p class="pageHeroChild pageHeroText">
-		On busy Sundays, we partner with Champlain Valley Union High School to provide additional parking.
-		Here is everything you need to know.
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">CVU Parking</h1>
+		<p class="pageHeroChild pageHeroText">
+			On busy Sundays, we partner with Champlain Valley Union High School to provide additional parking.
+			Here is everything you need to know.
+		</p>
+	</div>
 </section>
 
 <section class="pageSection">

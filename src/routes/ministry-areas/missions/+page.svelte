@@ -11,8 +11,10 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Missions</h1>
-	<p class="pageHeroChild pageHeroText">Missions Is: All of Jesus for All of the World</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Missions</h1>
+		<p class="pageHeroChild pageHeroText">Missions Is: All of Jesus for All of the World</p>
+	</div>
 </section>
 
 <section class="pageSection">

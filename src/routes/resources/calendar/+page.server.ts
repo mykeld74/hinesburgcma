@@ -1,63 +1,10 @@
-import { PLANNING_CENTER_APPLICATION_ID, PLANNING_CENTER_SECRET } from '$env/static/private';
 import type { PageServerLoad } from './$types';
-
-interface EventInstance {
-	id: string;
-	type: string;
-	attributes: {
-		starts_at?: string;
-		start_time?: string;
-		start?: string;
-		ends_at?: string;
-		end_time?: string;
-		end?: string;
-		location?: string;
-		all_day?: boolean;
-		[key: string]: unknown; // Allow other properties
-	};
-	relationships?: {
-		event?: {
-			data?: {
-				id: string;
-				type: string;
-			};
-		};
-	};
-}
-
-interface EventData {
-	id: string;
-	type: string;
-	attributes: {
-		name: string;
-		description?: string;
-		created_at: string;
-		updated_at: string;
-		starts_at?: string;
-		ends_at?: string;
-		all_day?: boolean;
-		location?: string;
-		kind?: string;
-		public_url?: string;
-		image_url?: string;
-		[key: string]: unknown;
-	};
-}
-
-interface PlanningCenterResponse {
-	data: EventInstance[];
-	included?: EventData[];
-	links?: {
-		next?: string;
-		prev?: string;
-		first?: string;
-		last?: string;
-	};
-}
+import { fetchCalendarEvents } from '$lib/utils/calendar';
 
 interface CachedData {
 	events: Array<{
 		id: string;
+		eventId: string;
 		title: string;
 		description: string;
 		startDate: Date;
@@ -65,6 +12,9 @@ interface CachedData {
 		allDay: boolean;
 		location: string;
 		kind: string;
+		eventType: string | null;
+		visibleInChurchCenter: boolean | null;
+		featured: boolean | null;
 		publicUrl: string | null;
 		imageUrl: string | null;
 	}>;
@@ -81,160 +31,40 @@ const CACHE_DURATION = 5 * 60 * 1000; // 5 minutes - serve fresh data
 const STALE_DURATION = 60 * 60 * 1000; // 1 hour - serve stale data while revalidating
 let isRevalidating = false; // Prevent multiple simultaneous revalidations
 
-// Auth configuration - determine once at startup
-let authHeader: string;
+// Helper function to compute featured events from a list of events
+function computeFeaturedEvents(events: CachedData['events']): CachedData['events'] {
+	const today = new Date();
+	today.setHours(0, 0, 0, 0); // Start of today
 
-function initializeAuth() {
-	const isPAT = PLANNING_CENTER_SECRET.startsWith('pco_pat_');
-	if (isPAT) {
-		// Use Basic Auth for Personal Access Tokens
-		const basicAuth = Buffer.from(
-			`${PLANNING_CENTER_APPLICATION_ID}:${PLANNING_CENTER_SECRET}`
-		).toString('base64');
-		authHeader = `Basic ${basicAuth}`;
-	} else {
-		// Use Bearer token for OAuth tokens
-		authHeader = `Bearer ${PLANNING_CENTER_SECRET}`;
-	}
-}
-
-// Initialize auth on module load
-initializeAuth();
-
-async function makeAuthenticatedRequest(url: string): Promise<Response> {
-	return fetch(url, {
-		headers: {
-			Authorization: authHeader,
-			Accept: 'application/json',
-			'X-API-Version': '2022-07-07'
-		}
+	// First filter by date (upcoming events)
+	const upcomingEvents = events.filter((event) => {
+		const eventDate = new Date(event.startDate);
+		eventDate.setHours(0, 0, 0, 0);
+		return eventDate >= today;
 	});
-}
 
-async function fetchAllEventInstances(
-	startDate: string,
-	endDate: string
-): Promise<{ instances: EventInstance[]; events: Map<string, EventData> }> {
-	const instances: EventInstance[] = [];
-	const eventsMap = new Map<string, EventData>();
+	// Filter by featured (must be true)
+	const featuredEvents = upcomingEvents.filter((event) => event.featured === true);
 
-	// Format dates as ISO strings for the API
-	const startDateISO = `${startDate}T00:00:00Z`;
-	const endDateISO = `${endDate}T23:59:59Z`;
-
-	let url: string | undefined =
-		`https://api.planningcenteronline.com/calendar/v2/event_instances?per_page=100&where[starts_at][gte]=${encodeURIComponent(startDateISO)}&where[starts_at][lte]=${encodeURIComponent(endDateISO)}&order=starts_at&include=event`;
-	let pageCount = 0;
-	const maxPages = 100; // Safety limit to prevent infinite loops
-
-	while (url && pageCount < maxPages) {
-		pageCount++;
-
-		try {
-			const response = await makeAuthenticatedRequest(url);
-
-			// Handle rate limiting with proper retry logic
-			if (response.status === 429) {
-				const retryAfter = response.headers.get('Retry-After');
-				const waitTime = retryAfter ? parseInt(retryAfter) * 1000 : 2000;
-				await new Promise((resolve) => setTimeout(resolve, waitTime));
-
-				const retryResponse = await makeAuthenticatedRequest(url);
-				if (!retryResponse.ok) {
-					break;
-				}
-				const retryData: PlanningCenterResponse = await retryResponse.json();
-				instances.push(...(retryData.data || []));
-				if (retryData.included) {
-					retryData.included.forEach((event) => {
-						if (event.type === 'Event') {
-							eventsMap.set(event.id, event);
-						}
-					});
-				}
-				url = retryData.links?.next;
-				continue;
-			}
-
-			if (!response.ok) {
-				const errorText = await response.text();
-				console.error(`API error (${response.status}): ${errorText.substring(0, 200)}`);
-				break;
-			}
-
-			const data: PlanningCenterResponse = await response.json();
-
-			// Add instances to our collection
-			instances.push(...(data.data || []));
-
-			// Store included event data
-			if (data.included) {
-				data.included.forEach((item) => {
-					if (item.type === 'Event') {
-						eventsMap.set(item.id, item);
-					}
-				});
-			}
-
-			// Check for next page
-			url = data.links?.next;
-		} catch (error) {
-			console.error(`Error fetching page ${pageCount}:`, error);
-			break;
-		}
-	}
-
-	return { instances, events: eventsMap };
-}
-
-async function fetchCalendarEvents(startDate: string, endDate: string) {
-	try {
-		// Fetch all event instances directly using the event_instances endpoint
-		const { instances, events: eventsMap } = await fetchAllEventInstances(startDate, endDate);
-
-		// Build a map of event instances grouped by event ID for easier lookup
-		const instancesByEventId = new Map<string, EventInstance[]>();
-		for (const instance of instances) {
-			const eventId = instance.relationships?.event?.data?.id;
-			if (eventId) {
-				if (!instancesByEventId.has(eventId)) {
-					instancesByEventId.set(eventId, []);
-				}
-				instancesByEventId.get(eventId)!.push(instance);
-			}
-		}
-
-		// Process instances into events
-		const processedEvents: Array<{
-			event: EventData;
-			instances: EventInstance[];
-		}> = [];
-
-		for (const [eventId, eventInstances] of instancesByEventId.entries()) {
-			const event = eventsMap.get(eventId);
-			if (event) {
-				processedEvents.push({
-					event,
-					instances: eventInstances
-				});
-			}
-		}
-
-		return processedEvents;
-	} catch (error) {
-		console.error('Error fetching calendar events:', error);
-		throw error;
-	}
+	return featuredEvents.slice(0, 6); // Limit to 6 featured events
 }
 
 // Background revalidation function for stale-while-revalidate
 async function revalidateCache(startDate: string, endDate: string): Promise<void> {
 	try {
-		const events = await fetchCalendarEvents(startDate, endDate);
+		const events = await fetchCalendarEvents(startDate, endDate, {
+			includeFields: true,
+			fetchEventDetails: true
+		});
 
 		// Format events for display - flatten instances into individual events
 		const formattedEvents = events.flatMap(({ event, instances }) => {
 			if (instances.length === 0) {
+				return [];
+			}
+
+			// Only include events where visible_in_church_center is true
+			if (event.attributes.visible_in_church_center !== true) {
 				return [];
 			}
 
@@ -256,6 +86,7 @@ async function revalidateCache(startDate: string, endDate: string): Promise<void
 
 					return {
 						id: `${event.id}-${instance.id}`,
+						eventId: event.id,
 						title: event.attributes.name,
 						description: event.attributes.description || '',
 						startDate: new Date(startsAt),
@@ -263,6 +94,9 @@ async function revalidateCache(startDate: string, endDate: string): Promise<void
 						allDay: instance.attributes?.all_day || event.attributes.all_day || false,
 						location: instance.attributes?.location || event.attributes.location || '',
 						kind: event.attributes.kind || '',
+						eventType: event.attributes.event_type || null,
+						visibleInChurchCenter: event.attributes.visible_in_church_center ?? null,
+						featured: event.attributes.featured ?? null,
 						publicUrl: event.attributes.public_url || null,
 						imageUrl: event.attributes.image_url || null
 					};
@@ -282,8 +116,8 @@ async function revalidateCache(startDate: string, endDate: string): Promise<void
 				end: endDate
 			}
 		};
-	} catch (error) {
-		console.error('Error revalidating cache:', error);
+	} catch {
+		// Silently fail revalidation
 	}
 }
 
@@ -313,8 +147,12 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 				'Cache-Control': `public, max-age=${Math.floor(CACHE_DURATION / 1000)}, stale-while-revalidate=${Math.floor(STALE_DURATION / 1000)}`
 			});
 
+			// Compute featured events from cached data
+			const featuredEvents = computeFeaturedEvents(cachedData.events);
+
 			return {
 				events: cachedData.events,
+				featuredEvents,
 				cached: true,
 				cacheStatus: 'fresh'
 			};
@@ -335,8 +173,12 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 				'Cache-Control': `public, max-age=0, stale-while-revalidate=${Math.floor(STALE_DURATION / 1000)}`
 			});
 
+			// Compute featured events from cached data
+			const featuredEvents = computeFeaturedEvents(cachedData.events);
+
 			return {
 				events: cachedData.events,
+				featuredEvents,
 				cached: true,
 				cacheStatus: 'stale-revalidating'
 			};
@@ -348,11 +190,19 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 		});
 
 		// Fetch fresh data
-		const events = await fetchCalendarEvents(startDate, endDate);
+		const events = await fetchCalendarEvents(startDate, endDate, {
+			includeFields: true,
+			fetchEventDetails: true
+		});
 
 		// Format events for display - flatten instances into individual events
 		const formattedEvents = events.flatMap(({ event, instances }) => {
 			if (instances.length === 0) {
+				return [];
+			}
+
+			// Only include events where visible_in_church_center is true
+			if (event.attributes.visible_in_church_center !== true) {
 				return [];
 			}
 
@@ -375,6 +225,7 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 
 					return {
 						id: `${event.id}-${instance.id}`,
+						eventId: event.id,
 						title: event.attributes.name,
 						description: event.attributes.description || '',
 						startDate: new Date(startsAt),
@@ -382,6 +233,9 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 						allDay: instance.attributes?.all_day || event.attributes.all_day || false,
 						location: instance.attributes?.location || event.attributes.location || '',
 						kind: event.attributes.kind || '',
+						eventType: event.attributes.event_type || null,
+						visibleInChurchCenter: event.attributes.visible_in_church_center ?? null,
+						featured: event.attributes.featured ?? null,
 						publicUrl: event.attributes.public_url || null,
 						imageUrl: event.attributes.image_url || null
 					};
@@ -391,6 +245,10 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 
 		// Sort by start date
 		formattedEvents.sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
+
+		// Compute featured events: upcoming events starting from today (first 6)
+		// Filter by visible_in_church_center === true
+		const featuredEvents = computeFeaturedEvents(formattedEvents);
 
 		// Cache the results
 		cachedData = {
@@ -404,11 +262,13 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 
 		return {
 			events: formattedEvents,
+			featuredEvents,
 			cached: false
 		};
 	} catch (error) {
 		return {
 			events: [],
+			featuredEvents: [],
 			error: error instanceof Error ? error.message : 'Unknown error'
 		};
 	}

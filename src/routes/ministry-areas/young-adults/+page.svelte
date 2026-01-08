@@ -7,10 +7,12 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Young Adults</h1>
-	<p class="pageHeroChild pageHeroText">
-		Making friends as a young adult can be hard (for real, we know!)
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Young Adults</h1>
+		<p class="pageHeroChild pageHeroText">
+			Making friends as a young adult can be hard (for real, we know!)
+		</p>
+	</div>
 </section>
 
 <section class="pageSection">

@@ -45,10 +45,12 @@
 </svelte:head>
 
 <section class="pageHero">
-	<h1 class="pageHeroChild pageHeroTitle">Plan Your Visit</h1>
-	<p class="pageHeroChild pageHeroText">
-		<strong>New to Community Alliance Church? If so...</strong>
-	</p>
+	<div class="pageHeroContent">
+		<h1 class="pageHeroChild pageHeroTitle">Plan Your Visit</h1>
+		<p class="pageHeroChild pageHeroText">
+			<strong>New to Community Alliance Church? If so...</strong>
+		</p>
+	</div>
 </section>
 <section class="infoSection">
 	<h2>Hello and Welcome!</h2>

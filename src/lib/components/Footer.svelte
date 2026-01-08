@@ -45,6 +45,7 @@
 		padding: clamp(1rem, 2vw, 2rem) clamp(1rem, 5vw, 3rem);
 		color: color-mix(in oklab, var(--contrastColor) 90%, white);
 		font-size: 0.85rem;
+		margin-top: 5rem;
 	}
 
 	.footerInner {
