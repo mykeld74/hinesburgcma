@@ -1,41 +1,18 @@
 <script lang="ts">
-	const details = [
-		{
-			title: 'On-Site Parking',
-			description:
-				'Arrive via Pond Road and follow signage to the main lot behind the church building.'
-		},
-		{
-			title: 'CVU Overflow',
-			description:
-				'When the main lot is full, park at the Champlain Valley Union High School athletic fields across the street.'
-		},
-		{
-			title: 'Shuttle & Crossing',
-			description:
-				'Team members assist with crossing Pond Road safely. On high-volume Sundays, a shuttle runs every 10 minutes.'
-		},
-		{
-			title: 'Accessible Parking',
-			description:
-				'Reserved ADA-accessible spots are available near the main entrance. Let our team know if you need assistance.'
+	const statusMessage = {
+		current: 'At this time, parking is FULL for the 2024-2025 school year.',
+		nextYear: {
+			date: 'May 19th at 4pm',
+			link: 'CVU Parking 2025-2026 - Community Alliance Church'
 		}
-	];
-
-	const tips = [
-		'Arrive 15 minutes early to allow time for parking and check-in.',
-		'Dress for the weather—VT seasons can shift quickly.',
-		'Follow the direction of our parking volunteers for a smooth flow.',
-		'Families with young kids may find the south entrance most convenient.',
-		'Consider carpooling with friends or neighbors when possible.'
-	];
+	};
 </script>
 
 <svelte:head>
 	<title>CVU Parking - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="On busy Sundays, we partner with Champlain Valley Union High School to provide additional parking. Learn about on-site parking, CVU overflow, shuttle service, and accessible parking options."
+		content="CAC offers parking spaces in our front parking lot for juniors (11th grade) attending CVU. Passes are available for 35 parking spots for the school year."
 	/>
 </svelte:head>
 
@@ -43,41 +20,76 @@
 	<div class="pageHeroContent">
 		<h1 class="pageHeroChild pageHeroTitle">CVU Parking</h1>
 		<p class="pageHeroChild pageHeroText">
-			On busy Sundays, we partner with Champlain Valley Union High School to provide additional parking.
-			Here is everything you need to know.
+			CAC is grateful to support Champlain Valley Union High School by offering parking spaces in
+			our front parking lot, for juniors (11th grade) attending CVU. When we can, we also love to
+			come out with our coffee cart to bless our students with coffee during cold months, and with
+			cold refreshments near the end of the year!
+		</p>
+	</div>
+</section>
+
+<section class="pageSection alertSection">
+	<div class="pageSectionText">
+		<p><strong>{statusMessage.current}</strong></p>
+		<p>
+			<strong
+				>Parking will open for the 2025-2026 school year on {statusMessage.nextYear.date}:</strong
+			>
+			<a
+				href="https://communityalliancechurch.churchcenter.com/registrations/events/2897978"
+				target="_blank"
+				rel="noopener noreferrer">{statusMessage.nextYear.link}</a
+			>
 		</p>
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2 class="pageSectionTitle">Parking Overview</h2>
-	<div class="cardGridSimple">
-		{#each details as detail}
-			<article>
-				<h3 class="cardGridSimpleChild cardGridSimpleTitle">{detail.title}</h3>
-				<p class="cardGridSimpleChild">{detail.description}</p>
-			</article>
-		{/each}
+	<h2 class="pageSectionTitle">Parking Pass Information</h2>
+	<div class="pageSectionText">
+		<p>
+			Passes are available for 35 parking spots and typically are reserved during the spring
+			<em>preceding</em> the school year for which the pass will be valid. Passes are issued on a first-come,
+			first-served basis, and are good for the duration of the school year. Physical passes are distributed
+			to students at the start of the fall school semester, so there's no chance of losing them over
+			the summer. The fee for reserving a spot is $50. This fee is used to support the work of the Hinesburg
+			Community Resource Center's Food Shelf.
+		</p>
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2 class="pageSectionTitle">Helpful Tips</h2>
-	<ul class="pageSectionList">
-		{#each tips as tip}
-			<li class="pageSectionListItem">{tip}</li>
-		{/each}
-	</ul>
+	<h2 class="pageSectionTitle">Shared Parking Lot</h2>
+	<div class="pageSectionText">
+		<p>
+			Our parking lot is shared with church staff, the Community Garden members and First Roots
+			Hinesburg. In addition, the children attending Wild Roots, the childcare center next to CAC,
+			frequently are seen heading out for adventures through our parking lot. Please remember to use
+			caution when parking here.
+		</p>
+	</div>
 </section>
 
 <section class="pageSection">
-	<h2 class="pageSectionTitle">Need Assistance?</h2>
+	<h2 class="pageSectionTitle">Contact</h2>
 	<p class="pageSectionText">
-		If you have mobility needs or questions before you arrive, please reach out so we can support you.
+		If you are interested in learning more about parking at CAC, please contact Connor Durochia.
 	</p>
 	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Email the Team</a>
-		<a href="tel:+18024822132">Call (802) 482-2132</a>
+		<a
+			href="https://communityalliancechurch.churchcenter.com/registrations/events/2897978"
+			target="_blank"
+			rel="noopener noreferrer">Register Here</a
+		>
 	</div>
 </section>
 
+<style>
+	.alertSection {
+		background: color-mix(in oklch, var(--primaryColor) 10%, transparent);
+		border: 1px solid color-mix(in oklch, var(--primaryColor) 40%, transparent);
+		border-radius: 18px;
+		padding: 1rem;
+		margin-bottom: 1rem;
+	}
+</style>

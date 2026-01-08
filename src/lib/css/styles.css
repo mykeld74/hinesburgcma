@@ -169,10 +169,14 @@ body.dark-mode {
 
 .pageSection {
 	max-width: 1100px;
-	margin: 0 auto clamp(2.5rem, 4vw, 4rem);
-	padding: 0 clamp(1.5rem, 5vw, 3rem);
+	margin: 0 auto clamp(1rem, 2vw, 2rem);
+	padding: 0.5rem clamp(1.5rem, 5vw, 3rem) clamp(1rem, 2vw, 2rem);
 	display: grid;
 	gap: clamp(1rem, 3vw, 2rem);
+	border-bottom: 1px solid color-mix(in oklch, var(--primaryColor) 40%, transparent);
+	&:last-child {
+		border-bottom: none;
+	}
 }
 
 .pageSectionTitle {
@@ -323,6 +327,28 @@ body.dark-mode {
 	font-weight: 700;
 	color: var(--contrastColor);
 	position: relative;
+}
+
+.cardGridSimpleLink {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 0.65rem 1.4rem;
+	border-radius: 999px;
+	font-weight: 600;
+	border: 1px solid color-mix(in oklch, var(--primaryColor) 45%, transparent);
+	color: var(--contrastColor);
+	background: color-mix(in oklch, var(--primaryColor) 25%, transparent);
+	transition: transform 0.3s ease-in-out;
+	text-decoration: none;
+	margin-top: 0.75rem;
+	position: relative;
+	z-index: 2;
+
+	&:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 20px 36px color-mix(in oklch, black 50%, transparent);
+	}
 	text-decoration: underline;
 	z-index: 2;
 }
