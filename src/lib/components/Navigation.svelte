@@ -350,7 +350,13 @@
 							<ul class="mobileNavLinks">
 								{#each group.items as item}
 									<li>
-										<a href={item.href} onclick={closeDrawer}>{item.label}</a>
+										<a
+											href={item.href}
+											data-sveltekit-preload-data={item.href === '/resources/calendar/' ? '' : undefined}
+											onclick={closeDrawer}
+										>
+											{item.label}
+										</a>
 									</li>
 								{/each}
 							</ul>
@@ -383,7 +389,13 @@
 				<ul>
 					{#each activeGroup?.items ?? [] as item}
 						<li>
-							<a href={item.href} onclick={handleDropdownLinkClick}>{item.label}</a>
+							<a
+								href={item.href}
+								data-sveltekit-preload-data={item.href === '/resources/calendar/' ? '' : undefined}
+								onclick={handleDropdownLinkClick}
+							>
+								{item.label}
+							</a>
 						</li>
 					{/each}
 				</ul>

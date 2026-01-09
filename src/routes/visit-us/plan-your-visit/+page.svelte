@@ -40,7 +40,7 @@
 	<title>Plan Your Visit - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="New to Community Alliance Church? We welcome you! Learn about our service times, worship style, kids programming, and what to expect when you visit. Service at 10:30am, 190 Pond Road, Hinesburg VT."
+		content="Plan your visit to Community Alliance Church in Hinesburg. Sunday service at 10:30am, contemporary worship, relaxed atmosphere. Kids programming (CaMA Kids) and student ministry available. Located at 190 Pond Road."
 	/>
 </svelte:head>
 

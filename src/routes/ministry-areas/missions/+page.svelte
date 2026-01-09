@@ -6,7 +6,7 @@
 	<title>Missions - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Missions Is: All of Jesus for All of the World. Community Alliance Church supports M2535 Ministry in the Dominican Republic and partners with the Christian and Missionary Alliance to make Jesus known globally."
+		content="Missions at CAC: All of Jesus for All of the World. We support M2535 Ministry in the Dominican Republic, send annual mission teams, and partner with the Christian & Missionary Alliance to make Jesus known in 70+ countries."
 	/>
 </svelte:head>
 

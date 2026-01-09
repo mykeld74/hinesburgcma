@@ -2,7 +2,7 @@
 	<title>Young Adults - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Making friends as a young adult can be hard. The young adults at CAC gather to encourage one another and foster community. Join us for meals, Scripture study, and events."
+		content="Young Adults at Community Alliance Church. Making friends as a young adult can be hard—we get it! Join us for meals, Scripture study, barbecues, and events. Build real community with real people in the Bristol/Hinesburg area."
 	/>
 </svelte:head>
 

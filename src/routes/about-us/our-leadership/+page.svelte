@@ -308,7 +308,7 @@
 	<title>Our Leadership - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="We are guided by a team of pastors, staff, elders, and ministry leaders who serve together to help our church follow Jesus on mission. Meet our pastoral team and ministry directors."
+		content="Meet the leadership team at Community Alliance Church. Our pastors, elders, deacons, and ministry directors serve together to guide our church family in following Jesus on mission in Hinesburg and beyond."
 	/>
 </svelte:head>
 

@@ -5,7 +5,7 @@
 	<title>Our Story - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="We are a multi-generational church committed to practicing the way of Jesus together in Hinesburg and beyond. Learn about our history, values, and mission."
+		content="Learn the story of Community Alliance Church in Hinesburg. Our vision: help people find their way back to God. Our mission: make disciples who make disciples at church, home, school, work, and the neighborhood."
 	/>
 </svelte:head>
 

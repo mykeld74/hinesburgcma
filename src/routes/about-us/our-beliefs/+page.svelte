@@ -6,7 +6,7 @@
 	<title>Our Beliefs - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="As part of the Christian & Missionary Alliance, we hold to historic Christian orthodoxy centered on Jesus and rooted in Scripture. Explore our core doctrines and statement of faith."
+		content="Learn what Community Alliance Church believes. As part of the Christian & Missionary Alliance, we hold to historic Christian orthodoxy: one God in three persons (Trinity), Jesus as Savior, and the Bible as our authority."
 	/>
 </svelte:head>
 

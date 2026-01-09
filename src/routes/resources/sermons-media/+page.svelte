@@ -40,7 +40,7 @@
 	<title>Sermons & Media - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Access current and past teaching, worship gatherings, and resources that help you grow throughout the week. Watch sermons online, listen to podcasts, and download discussion guides."
+		content="Watch Sunday sermons on YouTube, listen to podcast teachings, and access discussion guides for small groups. Stay connected with Community Alliance Church teaching and worship throughout the week."
 	/>
 </svelte:head>
 

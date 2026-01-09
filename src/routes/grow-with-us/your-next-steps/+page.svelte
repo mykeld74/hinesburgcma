@@ -34,7 +34,7 @@
 	<title>Your Next Steps - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="You belong here. These pathways will help you build relationships, grow in faith, and live on mission with our church family. Attend Next Steps, join a group, or serve on a team."
+		content="Take your next steps at Community Alliance Church. Attend Next Steps Gathering, join a small group, serve on a team, or practice generosity. Build relationships, grow in faith, and live on mission with our church family."
 	/>
 </svelte:head>
 

@@ -2,7 +2,7 @@
 	<title>Adults Ministry - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Ministries for adults at CAC including Men's Ministry, Women's Ministry, and Small Groups. Opportunities to connect, grow, and live life together."
+		content="Connect with other adults through Men's Ministry, Women's Ministry, and Small Groups at Community Alliance Church. Build authentic relationships, study the Bible, and live life together in community."
 	/>
 </svelte:head>
 

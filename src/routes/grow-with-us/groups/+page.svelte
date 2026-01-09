@@ -5,7 +5,7 @@
 	<title>Groups - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Life is not meant to be lived alone. Community Groups gather regularly to hang out, serve together, study the Bible and pray together. Find a group that fits your life."
+		content="Join a Community Group at CAC. Groups for men, women, students, couples, and young adults meet regularly to study the Bible, pray together, serve, and build authentic friendships. Find your group today."
 	/>
 </svelte:head>
 

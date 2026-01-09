@@ -2,7 +2,7 @@
 	<title>Giving - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="As all blessings that we receive are gifts from God, it is right that we give back through tithes and offerings. Give online, in person, or by mail to Community Alliance Church."
+		content="Give generously to support ministries at Community Alliance Church and beyond. Give online securely, in person on Sundays, or by mail to PO Box 582, Hinesburg VT 05461."
 	/>
 </svelte:head>
 

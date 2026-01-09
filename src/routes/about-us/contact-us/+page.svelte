@@ -5,7 +5,7 @@
 	<title>Contact Us - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="We would love to hear from you. Send a message, call the office at (802) 482-2132, or stop by during the week—our team is here to help. Located at 190 Pond Road, Hinesburg VT."
+		content="Contact Community Alliance Church in Hinesburg. Call (802) 482-2132, email info@hinesburgcma.org, or visit us at 190 Pond Road. Our team is here to answer questions, provide support, and help you connect."
 	/>
 </svelte:head>
 

@@ -5,7 +5,7 @@
 	<title>Our Campus - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="We are located at 190 Pond Road, right across the street from CVU High School's athletic fields. God calls us to share what we have and that includes our church building and grounds."
+		content="Visit our campus at 190 Pond Road, Hinesburg VT. We share our space with the community through Growing Together Community Gardens, CVU student parking, First Roots childcare, AA meetings, and community gatherings."
 	/>
 </svelte:head>
 

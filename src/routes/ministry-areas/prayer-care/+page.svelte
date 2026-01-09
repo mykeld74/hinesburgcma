@@ -34,7 +34,7 @@
 	<title>Prayer & Care - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="You are not alone. Our pastors, prayer team, and care network walk beside you with compassion, prayer, and practical help. Submit prayer requests and access care resources."
+		content="Prayer & Care at Community Alliance Church. Submit prayer requests, access our care network for meals and transportation, get counseling referrals, or receive benevolence support. You are not alone."
 	/>
 </svelte:head>
 

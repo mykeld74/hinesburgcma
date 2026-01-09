@@ -5,7 +5,7 @@
 	<title>Baptism - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Baptism is our first step in following Jesus. We believe the Bible teaches that those who have responded to the message of the gospel, repented, and confessed Jesus Christ as Lord and Savior, should then be baptized by water as an act of obedience."
+		content="Take your first step in following Jesus through baptism at Community Alliance Church. We practice baptism by immersion as an act of obedience for those who have accepted Jesus as Lord and Savior."
 	/>
 </svelte:head>
 

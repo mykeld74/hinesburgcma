@@ -90,7 +90,7 @@
 	>
 	<meta
 		name="description"
-		content="We are a church family practicing the way of Jesus together—growing in faith, serving our neighbors, and sending hope to the world. Join us Sundays at 10:30am in Hinesburg, Vermont."
+		content="Community Alliance Church in Hinesburg, Vermont. A multi-generational church family practicing the way of Jesus together. Join us Sundays at 10:30am at 190 Pond Road. Find hope, community, and purpose."
 	/>
 </svelte:head>
 

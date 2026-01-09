@@ -12,7 +12,7 @@
 	<title>CVU Parking - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="CAC offers parking spaces in our front parking lot for juniors (11th grade) attending CVU. Passes are available for 35 parking spots for the school year."
+		content="CVU student parking at Community Alliance Church. Reserve a parking spot in our front lot for the school year. 35 spots available for CVU juniors. $50 fee supports the Hinesburg Food Shelf. Registration opens in spring."
 	/>
 </svelte:head>
 

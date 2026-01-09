@@ -7,7 +7,7 @@
 	<title>Kids Ministry - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Welcome to CaMA Kids! We partner with families to help kids meet, know, and follow Jesus through joyful gatherings and discipleship. Age-specific programming from birth through 5th grade."
+		content="CaMA Kids at Community Alliance Church: Children's ministry for PreK through 5th grade. Sunday school during service, monthly Club Night events, and summer VBS. We help kids meet, know, and follow Jesus."
 	/>
 </svelte:head>
 

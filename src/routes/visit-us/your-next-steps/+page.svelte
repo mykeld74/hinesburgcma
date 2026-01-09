@@ -10,7 +10,7 @@
 	<title>Your Next Steps - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Deepening your faith and your relationships requires action. Discover volunteer opportunities, join a group, and take your next steps at Community Alliance Church."
+		content="Take your next steps at Community Alliance Church. Discover volunteer opportunities, join a small group, practice generosity, and build deeper relationships with our church family in Hinesburg."
 	/>
 </svelte:head>
 
@@ -82,7 +82,7 @@
 		</p>
 	</div>
 	<div class="pageHeroActions">
-		<a href="/resources/calendar/">View Full Calendar</a>
+		<a href="/resources/calendar/" data-sveltekit-preload-data>View Full Calendar</a>
 	</div>
 </section>
 

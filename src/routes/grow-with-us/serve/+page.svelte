@@ -2,7 +2,7 @@
 	<title>Serve - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="You were created on purpose, with purpose, by a God who thinks your life is way too important to let you spend it all on yourself. Discover and develop your life's purpose to serve and connect."
+		content="Discover your purpose through serving at Community Alliance Church. Whether you're people-oriented or task-oriented, introverted or extroverted, we have a serving team for you. Use your gifts to make a difference."
 	/>
 </svelte:head>
 

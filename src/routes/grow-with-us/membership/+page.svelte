@@ -2,7 +2,7 @@
 	<title>Membership - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Thanks for taking the time to consider membership here at Community Alliance Church. We are a group of Christians from all walks of life, committed to sharing our lives together in Christ."
+		content="Become a member of Community Alliance Church in Hinesburg. We're a church for real life, committed to sharing our lives together in Christ and making disciples who make disciples. Learn about membership."
 	/>
 </svelte:head>
 

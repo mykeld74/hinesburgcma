@@ -2,7 +2,7 @@
 	<title>External Resources - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Access trusted Christian organizations and human service resources including RightNow Media, Grassroots Apologetics for Parents, and Assisted Living resources."
+		content="Access trusted resources for spiritual growth and community support. Free access to RightNow Media (20,000+ Bible study videos), Grassroots Apologetics for Parents, and Assisted Living resources for Vermont families."
 	/>
 </svelte:head>
 

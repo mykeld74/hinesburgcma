@@ -29,7 +29,7 @@
 	<title>Student Ministry - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Students in grades 6–12 find community, grow as disciples, and discover their calling to live on mission with Jesus. Weekly gatherings, retreats, and mission trips."
+		content="CAC Youth Group for students in grades 6-12. Sunday morning Bible study at 9am, monthly service projects, summer programming, retreats, and mission trips. Build relationships and grow as disciples of Jesus."
 	/>
 </svelte:head>
 

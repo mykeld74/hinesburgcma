@@ -484,7 +484,7 @@
 	<title>Calendar - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="Stay up to date with everything happening at Community Alliance Church - Hinesburg. Filter by ministry, add events to your calendar, and share with friends. View all-church gatherings, kids & students events, groups, and more."
+		content="View the Community Alliance Church calendar. Filter events by ministry area (all-church gatherings, kids & students, groups, serve & outreach, prayer & care). Add events to your calendar and stay connected."
 	/>
 </svelte:head>
 
