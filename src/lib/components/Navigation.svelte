@@ -47,9 +47,11 @@
 		{
 			label: 'Grow With Us',
 			items: [
-				{ label: 'Serve', href: '/grow-with-us/serve/' },
+				{ label: 'Follow', href: '/grow-with-us/follow/' },
 				{ label: 'Baptism', href: '/grow-with-us/baptism/' },
+				{ label: 'Share', href: '/grow-with-us/share/' },
 				{ label: 'Groups', href: '/grow-with-us/groups/' },
+				{ label: 'Serve', href: '/grow-with-us/serve/' },
 				{ label: 'Membership', href: '/grow-with-us/membership/' }
 			]
 		},
