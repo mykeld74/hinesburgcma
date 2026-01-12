@@ -60,4 +60,7 @@
 			background: rgba(0, 0, 0, 0.5);
 		}
 	}
+	.pageHeroText {
+		color: #fff;
+	}
 </style>
