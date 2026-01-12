@@ -2,6 +2,47 @@
 	import { useGsap } from '$lib/actions/gsap';
 	import type { Gsap } from '$lib/animations/gsap';
 	import Icon from '$lib/components/Icon.svelte';
+	import PortableText from '$lib/components/PortableText.svelte';
+	import SanityModal from '$lib/components/SanityModal.svelte';
+	import type { PortableTextBlock } from '@portabletext/types';
+
+	let { data } = $props();
+
+	const banner =
+		data.bannerContent && data.bannerContent.length > 0 ? (data.bannerContent[0] as Banner) : null;
+	const modal =
+		data.modalContent && data.modalContent.length > 0 ? (data.modalContent[0] as Modal) : null;
+
+	type Banner = {
+		_id: string;
+		_type: string;
+		title?: string;
+		content?: PortableTextBlock[];
+		enabled?: boolean;
+		_updatedAt?: string;
+		_createdAt?: string;
+	};
+
+	type ContentBlock = {
+		_type: string;
+		_key: string;
+		content?: PortableTextBlock[];
+		imageUrl?: string;
+		[key: string]: unknown;
+	};
+
+	type Modal = {
+		_id: string;
+		_type: string;
+		title?: string;
+		content?: PortableTextBlock[];
+		imageUrl?: string;
+		contentBlocks?: ContentBlock[];
+		enabled?: boolean;
+		_updatedAt?: string;
+		_createdAt?: string;
+		[key: string]: unknown;
+	};
 
 	type CardLink = {
 		title: string;
@@ -111,6 +152,16 @@
 	</div>
 </header>
 
+{#if banner && banner.content}
+	<section class="sanityBanner" aria-labelledby="banner-{banner._id}">
+		<div class="bannerContent">
+			<div class="bannerText">
+				<PortableText content={banner.content} />
+			</div>
+		</div>
+	</section>
+{/if}
+
 <div class="expectationsContainer">
 	<section class="expectations" aria-labelledby="expectations-heading">
 		<div class="sectionSurface">
@@ -212,6 +263,10 @@
 	</div>
 </section>
 
+{#if modal}
+	<SanityModal {modal} />
+{/if}
+
 <style>
 	.hero {
 		display: grid;
@@ -278,8 +333,7 @@
 	}
 
 	.expectations,
-	.pathways,
-	.events {
+	.pathways {
 		position: relative;
 		max-width: 1100px;
 		margin: 0 auto clamp(3rem, 6vw, 5rem);
@@ -497,14 +551,6 @@
 		}
 	}
 
-	@media (max-width: 680px) {
-		.events {
-			.sectionHeader {
-				grid-template-columns: 1fr;
-			}
-		}
-	}
-
 	.appButtons {
 		display: flex;
 		flex-direction: column;
@@ -539,5 +585,10 @@
 		grid-template-columns: 1fr;
 		grid-template-rows: auto 1fr;
 		color: #000;
+	}
+
+	.bannerContent {
+		display: grid;
+		gap: 1rem;
 	}
 </style>

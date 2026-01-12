@@ -352,7 +352,9 @@
 									<li>
 										<a
 											href={item.href}
-											data-sveltekit-preload-data={item.href === '/resources/calendar/' ? '' : undefined}
+											data-sveltekit-preload-data={item.href === '/resources/calendar/'
+												? ''
+												: undefined}
 											onclick={closeDrawer}
 										>
 											{item.label}

@@ -40,6 +40,9 @@
 		"vitest-browser-svelte": "^1.1.0"
 	},
 	"dependencies": {
+		"@portabletext/svelte": "^3.0.1",
+		"@portabletext/types": "^4.0.1",
+		"@sanity/client": "^7.14.0",
 		"gsap": "^3.13.0",
 		"hinesburgcma": "link:"
 	}

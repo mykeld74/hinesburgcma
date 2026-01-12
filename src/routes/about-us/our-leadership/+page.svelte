@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Image from '$lib/components/Image.svelte';
 	import LeaderCard from '$lib/components/LeaderCard.svelte';
+	import Modal from '$lib/components/Modal.svelte';
 
 	type Leader = {
 		name: string;
@@ -31,18 +31,6 @@
 			}
 		}, 300);
 		document.body.style.overflow = '';
-	}
-
-	function handleBackdropClick(e: MouseEvent) {
-		if (e.target === e.currentTarget) {
-			closeModal();
-		}
-	}
-
-	function handleKeydown(e: KeyboardEvent) {
-		if (e.key === 'Escape' && isModalOpen) {
-			closeModal();
-		}
 	}
 
 	const pastorsAndElders: Leader[] = [
@@ -378,56 +366,7 @@
 	</div>
 </section>
 
-{#if selectedLeader}
-	<div
-		class="modalBackdrop"
-		class:open={isModalOpen}
-		onclick={handleBackdropClick}
-		onkeydown={handleKeydown}
-		role="dialog"
-		aria-modal="true"
-		aria-labelledby="modal-title"
-		tabindex="-1"
-	>
-		<div class="modalContent" class:open={isModalOpen}>
-			<button class="modalClose" onclick={closeModal} aria-label="Close modal">×</button>
-			{#if selectedLeader.image}
-				<div class="leaderModalHeader">
-					<h2 id="modal-title" class="modalTitle">{selectedLeader.name}</h2>
-					<div class="modalCardImage">
-						<Image
-							source={selectedLeader.image}
-							altTag={selectedLeader.name}
-							class="modalLeaderImage"
-						/>
-					</div>
-				</div>
-			{:else}
-				<h2 id="modal-title" class="modalTitle">{selectedLeader.name}</h2>
-			{/if}
-			{#if Array.isArray(selectedLeader.role)}
-				{#each selectedLeader.role as role}
-					<strong class="modalRole">{role}</strong>
-				{/each}
-			{:else}
-				<strong class="modalRole">{selectedLeader.role}</strong>
-			{/if}
-
-			<div class="modalDescription">
-				{#if Array.isArray(selectedLeader.description) && selectedLeader.description.length > 0}
-					{#each selectedLeader.description as paragraph}
-						<p>{paragraph}</p>
-					{/each}
-				{:else if !Array.isArray(selectedLeader.description)}
-					<p>{selectedLeader.description}</p>
-				{/if}
-			</div>
-			{#if selectedLeader.email}
-				<a href="mailto:{selectedLeader.email}" class="modalEmail">Email {selectedLeader.name}</a>
-			{/if}
-		</div>
-	</div>
-{/if}
+<Modal leader={selectedLeader} isOpen={isModalOpen} onClose={closeModal} />
 
 <style>
 	.pageSection {
@@ -435,125 +374,7 @@
 		max-width: 1800px;
 		margin: 0 auto 4rem;
 	}
-	.modalBackdrop {
-		position: fixed;
-		inset: 0;
-		background: color-mix(in oklch, var(--backgroundColor) 85%, black 15%);
-		z-index: 1000;
-		opacity: 0;
-		pointer-events: none;
-		transition: opacity 0.5s ease;
-		display: grid;
-		place-items: center;
-	}
 
-	.modalBackdrop.open {
-		opacity: 1;
-		pointer-events: auto;
-	}
-
-	.modalContent {
-		width: calc(100% - 4rem);
-		max-width: 900px;
-		background: color-mix(in oklch, var(--backgroundColor) 96%, black 4%);
-		border-radius: 20px;
-		padding: clamp(2rem, 4vw, 3rem);
-		max-height: 85vh;
-		overflow-y: auto;
-		transform: translateY(100vh);
-		transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-		box-shadow: 0 -26px 42px color-mix(in oklch, black 50%, transparent);
-	}
-
-	.modalContent.open {
-		transform: translateY(0);
-	}
-
-	.modalClose {
-		position: absolute;
-		top: 1rem;
-		right: 1rem;
-		background: transparent;
-		border: none;
-		font-size: 2rem;
-		line-height: 1;
-		cursor: pointer;
-		color: var(--contrastColor);
-		width: 2.5rem;
-		height: 2.5rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		border-radius: 50%;
-		transition: background 0.2s ease;
-	}
-
-	.modalClose:hover {
-		background: color-mix(in oklch, var(--backgroundColor) 80%, black 20%);
-	}
-
-	.modalTitle {
-		margin: 0 0 0.5rem 0;
-		font-size: clamp(1.5rem, 3vw, 2.25rem);
-		text-transform: none;
-		letter-spacing: 0.02em;
-	}
-
-	.modalRole {
-		display: block;
-		margin-bottom: 1.5rem;
-		font-size: clamp(1rem, 2vw, 1.25rem);
-		color: var(--accentColor);
-	}
-
-	.modalDescription {
-		margin-bottom: 2rem;
-		line-height: 1.75;
-	}
-
-	.modalDescription p {
-		margin: 0 0 1rem 0;
-	}
-
-	.modalDescription p:last-child {
-		margin-bottom: 0;
-	}
-
-	.modalEmail {
-		display: inline-block;
-		padding: 0.75rem 1.5rem;
-		background: var(--accentColor);
-		color: var(--backgroundColor);
-		border-radius: 8px;
-		text-decoration: none;
-		font-weight: 600;
-		transition:
-			background 0.2s ease,
-			transform 0.2s ease;
-	}
-
-	.modalEmail:hover {
-		background: color-mix(in oklch, var(--accentColor) 90%, black 10%);
-		transform: translateY(-2px);
-	}
-
-	.leaderModalHeader {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		gap: 1rem;
-		flex-wrap: wrap;
-	}
-
-	.modalCardImage {
-		max-width: 200px;
-		aspect-ratio: 1/1;
-		width: 100%;
-	}
-
-	.cardGridSimpleTitle {
-		font-size: clamp(1rem, 0.5vw + 2rem, 2rem);
-	}
 	.cardGridSimple {
 		grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
 	}
