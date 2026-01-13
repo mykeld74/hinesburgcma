@@ -22,7 +22,7 @@
 
 <section class="pageSection contactSection">
 	<h2 class="pageSectionTitle">Reach the Team</h2>
-	<ContactForm sendTo="mike@msdweb.pro" />
+	<ContactForm sendTo="info@hinesburgcma.org" />
 	<div class="contactInfo">
 		<ul class="pageSectionList">
 			<li class="pageSectionListItem">
