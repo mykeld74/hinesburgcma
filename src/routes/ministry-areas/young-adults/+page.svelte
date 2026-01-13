@@ -1,3 +1,9 @@
+<script lang="ts">
+	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
+
+	let modalOpen = $state(false);
+</script>
+
 <svelte:head>
 	<title>Young Adults - Community Alliance Church - Hinesburg</title>
 	<meta
@@ -36,7 +42,33 @@
 		Feel free to reach out to Brandon Mansfield with any questions you may have or to find out how
 		to get involved.
 	</p>
-	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Contact Brandon</a>
-	</div>
+	<button class="contactButton" onclick={() => (modalOpen = true)}>Contact Us</button>
 </section>
+
+<ContactFormModal bind:isOpen={modalOpen} sendTo="bmansfield@hinesburgcma.org" />
+
+<style>
+	.contactButton {
+		display: inline-flex;
+		align-items: center;
+		width: fit-content;
+		justify-content: center;
+		padding: 0.7rem 1.6rem;
+		border-radius: 999px;
+		font-weight: 700;
+		color: #fff;
+		background-color: color-mix(in oklch, var(--primaryColor) 65%, transparent);
+		border: 1px solid color-mix(in oklch, var(--primaryColor) 80%, transparent);
+		cursor: pointer;
+		font-size: 1rem;
+		margin-top: 1rem;
+		transition:
+			background-color 0.2s ease,
+			transform 0.2s ease;
+
+		&:hover {
+			background-color: color-mix(in oklch, var(--primaryColor) 75%, transparent);
+			transform: translateY(-2px);
+		}
+	}
+</style>

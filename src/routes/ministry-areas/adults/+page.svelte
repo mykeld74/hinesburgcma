@@ -1,3 +1,9 @@
+<script lang="ts">
+	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
+
+	let modalOpen = $state(false);
+</script>
+
 <svelte:head>
 	<title>Adults Ministry - Community Alliance Church - Hinesburg</title>
 	<meta
@@ -43,10 +49,12 @@
 		Groups page to learn more about all of our active Small Groups.
 	</p>
 	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Email Us</a>
+		<button class="pageHeroActionLink" onclick={() => (modalOpen = true)}>Email Us</button>
 		<a href="/grow-with-us/groups/">Small Groups</a>
 	</div>
 </section>
+
+<ContactFormModal bind:isOpen={modalOpen} sendTo="info@hinesburgcma.org" />
 
 <section class="pageSection">
 	<h2 class="pageSectionTitle">Women's Ministry</h2>
@@ -88,3 +96,25 @@
 		<a href="/grow-with-us/groups/">Small Groups</a>
 	</div>
 </section>
+
+<style>
+	.pageHeroActionLink {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.65rem 1.4rem;
+		border-radius: 999px;
+		font-weight: 600;
+		border: 1px solid color-mix(in oklch, var(--primaryColor) 45%, transparent);
+		color: var(--contrastColor);
+		background: color-mix(in oklch, var(--primaryColor) 25%, transparent);
+		transition: transform 0.3s ease-in-out;
+		cursor: pointer;
+		font: inherit;
+	}
+
+	.pageHeroActionLink:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 20px 36px color-mix(in oklch, black 50%, transparent);
+	}
+</style>

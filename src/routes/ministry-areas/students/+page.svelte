@@ -1,28 +1,8 @@
 <script lang="ts">
 	import ScrollingHero from '$lib/components/ScrollingHero.svelte';
-	const rhythms = [
-		{
-			title: 'Sunday Nights',
-			description: 'Middle and high school students gather for worship, teaching, and small groups.'
-		},
-		{
-			title: 'Midweek Hangouts',
-			description:
-				'Grade-based meetups foster friendships, mentoring, and prayer throughout the year.'
-		},
-		{
-			title: 'Retreats & Trips',
-			description:
-				'Seasonal retreats and mission trips help students grow in faith and servant leadership.'
-		}
-	];
+	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
 
-	const commitments = [
-		'Safe adult leaders invested in the next generation.',
-		'Opportunities for students to serve on Sundays and across ministries.',
-		'Bible-centered teaching that addresses real-life questions.',
-		'Partnership with parents through regular communication and events.'
-	];
+	let modalOpen = $state(false);
 </script>
 
 <svelte:head>
@@ -87,3 +67,14 @@
 		</p>
 	</div>
 </section>
+
+<section class="infoSection">
+	<h2>Contact Us</h2>
+	<p>Have questions about our youth group? Want to get involved?</p>
+	<button class="contactButton" onclick={() => (modalOpen = true)}>Contact Us!</button>
+</section>
+
+<ContactFormModal bind:isOpen={modalOpen} sendTo="brandon@hinesburgcma.org" />
+
+<style>
+</style>

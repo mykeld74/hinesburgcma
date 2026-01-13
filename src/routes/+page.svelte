@@ -263,6 +263,26 @@
 	</div>
 </section>
 
+<div class="churchCenterLinkWrapper">
+	<a href="https://communityalliancechurch.churchcenter.com/home" target="_blank">
+		<p class="churchCenterLinkTitle">Church Center Login</p>
+		<div class="churchCenterLinkArrow">
+			<svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<path
+					d="M399.521 250.13C400.172 257.729 397.589 265.554 391.774 271.37L316.012 347.131C305.552 357.591 288.592 357.591 278.131 347.131C267.671 336.67 267.671 319.711 278.131 309.25L310.596 276.786L116.071 276.786C101.278 276.786 89.2853 264.793 89.2853 250C89.2853 235.207 101.278 223.214 116.071 223.214L310.333 223.214L278.131 191.013C267.671 180.552 267.671 163.592 278.131 153.132C288.592 142.671 305.551 142.671 316.012 153.132L391.773 228.893C397.588 234.708 400.17 242.531 399.521 250.13Z"
+					class="churchCenterLinkArrowPath"
+				/>
+				<path
+					fill-rule="evenodd"
+					clip-rule="evenodd"
+					d="M0 250C0 111.929 111.929 0 250 0C388.071 0 500 111.929 500 250C500 388.071 388.071 500 250 500C111.929 500 0 388.071 0 250ZM12 250C12 118.556 118.556 12 250 12C381.444 12 488 118.556 488 250C488 381.444 381.444 488 250 488C118.556 488 12 381.444 12 250Z"
+					class="churchCenterLinkArrowPath"
+				/>
+			</svg>
+		</div>
+	</a>
+</div>
+
 {#if modal}
 	<SanityModal {modal} />
 {/if}

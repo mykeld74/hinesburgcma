@@ -1,6 +1,7 @@
 <script lang="ts">
 	import LeaderCard from '$lib/components/LeaderCard.svelte';
 	import Modal from '$lib/components/Modal.svelte';
+	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
 
 	type Leader = {
 		name: string;
@@ -12,6 +13,7 @@
 
 	let selectedLeader: Leader | null = $state(null);
 	let isModalOpen = $state(false);
+	let modalOpen = $state(false);
 
 	function openModal(leader: Leader) {
 		selectedLeader = leader;
@@ -361,11 +363,11 @@
 		or help you take a next step.
 	</p>
 	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Email the Office</a>
-		<a href="/about-us/contact-us/">Contact Form</a>
+		<button class="contactButton" onclick={() => (modalOpen = true)}>Contact Us</button>
 	</div>
 </section>
 
+<ContactFormModal bind:isOpen={modalOpen} sendTo="info@hinesburgcma.org" />
 <Modal leader={selectedLeader} isOpen={isModalOpen} onClose={closeModal} />
 
 <style>

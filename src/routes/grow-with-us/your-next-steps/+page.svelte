@@ -1,9 +1,12 @@
 <script lang="ts">
+	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
+
+	let modalOpen = $state(false);
+
 	const pathways = [
 		{
 			title: 'Attend Next Steps Gathering',
-			description:
-				'Share your story, meet leaders, and discover how to grow deeper at CAC.'
+			description: 'Share your story, meet leaders, and discover how to grow deeper at CAC.'
 		},
 		{
 			title: 'Join a Group',
@@ -12,8 +15,7 @@
 		},
 		{
 			title: 'Serve on a Team',
-			description:
-				'Use your gifts to make a difference on Sundays and throughout the week.'
+			description: 'Use your gifts to make a difference on Sundays and throughout the week.'
 		},
 		{
 			title: 'Practice Generosity',
@@ -75,8 +77,31 @@
 		Reach out and let us know where you would like support. Our team would love to guide you.
 	</p>
 	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Email Our Team</a>
+		<button class="pageHeroActionLink" onclick={() => (modalOpen = true)}>Email Our Team</button>
 		<a href="/grow-with-us/serve/">Serve with Us</a>
 	</div>
 </section>
 
+<ContactFormModal bind:isOpen={modalOpen} sendTo="info@hinesburgcma.org" />
+
+<style>
+	.pageHeroActionLink {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.65rem 1.4rem;
+		border-radius: 999px;
+		font-weight: 600;
+		border: 1px solid color-mix(in oklch, var(--primaryColor) 45%, transparent);
+		color: var(--contrastColor);
+		background: color-mix(in oklch, var(--primaryColor) 25%, transparent);
+		transition: transform 0.3s ease-in-out;
+		cursor: pointer;
+		font: inherit;
+	}
+
+	.pageHeroActionLink:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 20px 36px color-mix(in oklch, black 50%, transparent);
+	}
+</style>

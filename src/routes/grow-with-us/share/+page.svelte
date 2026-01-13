@@ -73,13 +73,30 @@
 
 	<div class="stepSection">
 		<p class="pageSectionText">
-			<strong>4. Practice, practice, practice!</strong> You can never get enough practice. Here's some
+			<strong>4. Don't go it alone!</strong> We are a church for <strong>REAL Life</strong>! Jesus
+			was all about REAL Life! He <em>could</em> have shared the Gospel alone, but he chose to have
+			a
+			<strong>real</strong> team serving together as a <strong>real</strong> "three-dimensional"
+			(3-D) family. Jesus said <em>"I came to give them life, a</em> <strong><em>real</em></strong>
+			<em>and eternal life."</em> Jesus lived a <strong>real life</strong> in three dimensions:
+			<strong>UP, IN, and OUT.</strong> So ask the Pastor or the other elders to visit and pray with
+			you about God's Vision for CAC,
+			<a href="https://www.icloud.com/iclouddrive/098htgCbPaB_Yo-kH4o8a7bhg#CAC_Vision_copy"
+				>3-D Huddles & 3-D Families</a
+			>. This is the <strong>future of CAC</strong>;
+			<em>making disciples who make disciples in every day, real life.</em>
+		</p>
+	</div>
+
+	<div class="stepSection">
+		<p class="pageSectionText">
+			<strong>5. Practice, practice, practice!</strong> You can never get enough practice. Here's some
 			important tips on HOW to practice:
 		</p>
 		<ol class="pageSectionList">
 			<li class="pageSectionListItem">
 				<strong>Go to this</strong>
-				<a href="https://communityalliancechurch.churchcenter.com/pages/following-jesus">LINK</a>
+				<a href="/grow-with-us/follow/">LINK</a>
 				<strong>and start sharing the</strong> <strong>4 steps to follow Jesus</strong> in your own words
 				along with the Bible verses. This is much easier than you think. Practice with anyone who will
 				listen, including other believers who can take turns with you.
@@ -109,25 +126,7 @@
 			</li>
 		</ol>
 	</div>
-
-	<div class="stepSection">
-		<p class="pageSectionText">
-			<strong>5. Don't go it alone!</strong> We are a church for <strong>REAL Life</strong>! Jesus
-			was all about REAL Life! He <em>could</em> have shared the Gospel alone, but he chose to have
-			a
-			<strong>real</strong> team serving together as a <strong>real</strong> "three-dimensional"
-			(3-D) family. Jesus said <em>"I came to give them life, a</em> <strong><em>real</em></strong>
-			<em>and eternal life."</em> Jesus lived a <strong>real life</strong> in three dimensions:
-			<strong>UP, IN, and OUT.</strong> So ask the Pastor or the other elders to visit and pray with
-			you about God's Vision for CAC,
-			<a href="https://www.icloud.com/iclouddrive/098htgCbPaB_Yo-kH4o8a7bhg#CAC_Vision_copy"
-				>3-D Huddles & 3-D Families</a
-			>. This is the <strong>future of CAC</strong>;
-			<em>making disciples who make disciples in every day, real life.</em>
-		</p>
-	</div>
 </section>
-
 <section class="pageSection">
 	<p class="pageSectionText">
 		<a href="https://knowgod.com">Check This Out Too!</a>

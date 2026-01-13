@@ -1,3 +1,9 @@
+<script lang="ts">
+	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
+
+	let modalOpen = $state(false);
+</script>
+
 <svelte:head>
 	<title>External Resources - Community Alliance Church - Hinesburg</title>
 	<meta
@@ -26,7 +32,7 @@
 				is a streaming library of more than 20,000 Bible study videos for leaders to share with their
 				people. Think Netflix, but for Bible studies and resources! CAC pays for our congregation to
 				have yearly access to this valuable resource. If you'd like to have access,
-				<a href="mailto:info@hinesburgcma.org">email us</a> and we'll get you our login information.
+				<button class="inlineEmailLink" onclick={() => (modalOpen = true)}>email us</button> and we'll get you our login information.
 			</p>
 		</div>
 		<div class="resourceItem">
@@ -62,6 +68,8 @@
 	</div>
 </section>
 
+<ContactFormModal bind:isOpen={modalOpen} sendTo="info@hinesburgcma.org" />
+
 <style>
 	.resourceItem {
 		margin-bottom: 2rem;
@@ -80,5 +88,19 @@
 
 	.resourceItem p {
 		margin-bottom: 1rem;
+	}
+
+	.inlineEmailLink {
+		background: none;
+		border: none;
+		padding: 0;
+		color: var(--accentColor);
+		text-decoration: underline;
+		cursor: pointer;
+		font: inherit;
+	}
+
+	.inlineEmailLink:hover {
+		text-decoration: none;
 	}
 </style>

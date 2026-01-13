@@ -1,6 +1,9 @@
 <script lang="ts">
 	import ScrollingHero from '$lib/components/ScrollingHero.svelte';
 	import Accordion from '$lib/components/Accordion.svelte';
+	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
+
+	let modalOpen = $state(false);
 </script>
 
 <svelte:head>
@@ -194,11 +197,13 @@
 			</p>
 			<p>
 				<strong>Email:</strong>{' '}
-				<a href="mailto:info@hinesburgcma.org">info@hinesburgcma.org</a>
+				<button class="inlineEmailLink" onclick={() => (modalOpen = true)}>info@hinesburgcma.org</button>
 			</p>
 		</div>
 	</div>
 </section>
+
+<ContactFormModal bind:isOpen={modalOpen} sendTo="info@hinesburgcma.org" />
 
 <style>
 	.accordionContainer {
@@ -252,5 +257,19 @@
 		&:hover {
 			text-decoration: underline;
 		}
+	}
+
+	.inlineEmailLink {
+		background: none;
+		border: none;
+		padding: 0;
+		color: var(--accentColor);
+		text-decoration: underline;
+		cursor: pointer;
+		font: inherit;
+	}
+
+	.inlineEmailLink:hover {
+		text-decoration: none;
 	}
 </style>

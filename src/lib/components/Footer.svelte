@@ -1,16 +1,23 @@
 <script lang="ts">
 	import Icon from '$lib/components/Icon.svelte';
+	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
+
+	let modalOpen = $state(false);
 </script>
 
 <footer class="siteFooter">
 	<div class="footerInner">
 		<address>
 			<div>190 Pond Road Hinesburg, VT 05461</div>
+
+			<a href="https://communityalliancechurch.churchcenter.com/home" target="_blank"
+				>Church Center Login</a
+			>
 		</address>
 
 		<ul>
 			<li><a href="tel:+18024822132">Phone: (802) 482-2132</a></li>
-			<li><a href="mailto:info@hinesburgcma.org">Email: info@hinesburgcma.org</a></li>
+			<li><button class="footerEmailLink" onclick={() => (modalOpen = true)}>Email: info@hinesburgcma.org</button></li>
 		</ul>
 
 		<ul class="footerSocial">
@@ -38,6 +45,8 @@
 		<small>&copy;{new Date().getFullYear()} Community Alliance Church - Hinesburg</small>
 	</div>
 </footer>
+
+<ContactFormModal bind:isOpen={modalOpen} sendTo="info@hinesburgcma.org" />
 
 <style>
 	.siteFooter {
@@ -81,6 +90,21 @@
 	}
 
 	a:hover {
+		color: var(--accentColor);
+	}
+
+	.footerEmailLink {
+		background: none;
+		border: none;
+		padding: 0;
+		color: inherit;
+		font-weight: 500;
+		font: inherit;
+		cursor: pointer;
+		transition: color 0.3s ease;
+	}
+
+	.footerEmailLink:hover {
 		color: var(--accentColor);
 	}
 

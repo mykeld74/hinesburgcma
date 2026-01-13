@@ -1,4 +1,8 @@
 <script lang="ts">
+	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
+
+	let modalOpen = $state(false);
+
 	const channels = [
 		{
 			title: 'Watch Online',
@@ -87,7 +91,31 @@
 		share hope with others.
 	</p>
 	<div class="pageHeroActions">
-		<a href="mailto:info@hinesburgcma.org">Share a Story</a>
+		<button class="pageHeroActionLink" onclick={() => (modalOpen = true)}>Share a Story</button>
 		<a href="/grow-with-us/serve/">Join the Creative Team</a>
 	</div>
 </section>
+
+<ContactFormModal bind:isOpen={modalOpen} sendTo="info@hinesburgcma.org" />
+
+<style>
+	.pageHeroActionLink {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.65rem 1.4rem;
+		border-radius: 999px;
+		font-weight: 600;
+		border: 1px solid color-mix(in oklch, var(--primaryColor) 45%, transparent);
+		color: var(--contrastColor);
+		background: color-mix(in oklch, var(--primaryColor) 25%, transparent);
+		transition: transform 0.3s ease-in-out;
+		cursor: pointer;
+		font: inherit;
+	}
+
+	.pageHeroActionLink:hover {
+		transform: translateY(-4px);
+		box-shadow: 0 20px 36px color-mix(in oklch, black 50%, transparent);
+	}
+</style>

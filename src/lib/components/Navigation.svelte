@@ -61,7 +61,8 @@
 				{ label: 'Calendar', href: '/resources/calendar/' },
 				{ label: 'Giving', href: '/resources/giving/' },
 				{ label: 'CVU Parking', href: '/resources/cvu-parking/' },
-				{ label: 'External Resources', href: '/resources/external-resources/' }
+				{ label: 'External Resources', href: '/resources/external-resources/' },
+				{ label: 'Church Center Login', href: 'https://communityalliancechurch.churchcenter.com/' }
 			]
 		}
 	];
@@ -296,6 +297,7 @@
 			<span class="themeIcon" aria-hidden="true">{theme === 'light' ? '☾' : '☀︎'}</span>
 			<span class="themeText">{theme === 'light' ? 'Dark' : 'Light'} Mode</span>
 		</button>
+
 		<button
 			class="menuToggle"
 			type="button"

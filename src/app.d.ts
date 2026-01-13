@@ -10,4 +10,13 @@ declare global {
 	}
 }
 
+declare module 'imask' {
+	export interface MaskedInputOptions {
+		mask: string | RegExp | Array<string | RegExp>;
+		[key: string]: any;
+	}
+
+	export default function IMask(element: HTMLElement, options: MaskedInputOptions): any;
+}
+
 export {};
