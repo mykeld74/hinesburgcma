@@ -120,15 +120,26 @@ async function revalidateCache(startDate: string, endDate: string): Promise<void
 	}
 }
 
+// Validate date format (YYYY-MM-DD)
+function isValidDateFormat(dateString: string): boolean {
+	const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+	if (!dateRegex.test(dateString)) return false;
+	const date = new Date(dateString);
+	return !isNaN(date.getTime());
+}
+
 export const load: PageServerLoad = async ({ url, setHeaders }) => {
 	// Calculate default date range - use next month only for fast initial load
 	const now = new Date();
-	const startDate =
-		url.searchParams.get('startDate') ||
-		new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
-	const endDate =
-		url.searchParams.get('endDate') ||
-		new Date(now.getFullYear(), now.getMonth() + 1, 0).toISOString().split('T')[0];
+	const defaultStart = new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
+	const defaultEnd = new Date(now.getFullYear(), now.getMonth() + 1, 0).toISOString().split('T')[0];
+
+	// Validate URL params or use defaults
+	const urlStartDate = url.searchParams.get('startDate');
+	const urlEndDate = url.searchParams.get('endDate');
+
+	const startDate = urlStartDate && isValidDateFormat(urlStartDate) ? urlStartDate : defaultStart;
+	const endDate = urlEndDate && isValidDateFormat(urlEndDate) ? urlEndDate : defaultEnd;
 
 	const dateRange = { start: startDate, end: endDate };
 

@@ -1,12 +1,6 @@
 <script lang="ts">
 	let { data } = $props();
 
-	$effect(() => {
-		console.log('Event description:', data.event.description);
-		console.log('Description length:', data.event.description?.length || 0);
-		console.log('Description truthy:', !!data.event.description);
-	});
-
 	function hasDescriptionContent(description: string | undefined | null): boolean {
 		if (!description) return false;
 		// Remove HTML tags and whitespace to check if there's actual content

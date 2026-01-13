@@ -214,22 +214,17 @@
 	async function loadFullYearEvents() {
 		try {
 			const now = new Date();
-			const currentMonth = now.getMonth();
-			const currentYear = now.getFullYear();
 
 			// Start from month after current (since we already have current month)
-			let startMonth = currentMonth + 1;
-			let startYear = currentYear;
+			let chunkStart = new Date(now.getFullYear(), now.getMonth() + 1, 1);
 
 			// Fetch up to 11 more months (2 months at a time = 6 chunks)
 			for (let i = 0; i < 6; i++) {
-				// Calculate start and end dates for 2-month chunk
-				// Start: first day of startMonth
-				// End: last day of startMonth + 1 (which is day 0 of startMonth + 2)
-				const endYear = startMonth >= 11 ? startYear + 1 : startYear;
+				// Calculate end date: last day of the month after chunkStart
+				const chunkEnd = new Date(chunkStart.getFullYear(), chunkStart.getMonth() + 2, 0);
 
-				const startDate = new Date(startYear, startMonth, 1).toISOString().split('T')[0];
-				const endDate = new Date(endYear, startMonth + 2, 0).toISOString().split('T')[0]; // Last day of startMonth + 1
+				const startDate = chunkStart.toISOString().split('T')[0];
+				const endDate = chunkEnd.toISOString().split('T')[0];
 
 				// Fetch 2 months of events
 				const events = await fetchCalendarData(startDate, endDate);
@@ -247,11 +242,7 @@
 				});
 
 				// Move to next 2-month chunk
-				startMonth += 2;
-				if (startMonth > 11) {
-					startMonth = startMonth - 12;
-					startYear++;
-				}
+				chunkStart = new Date(chunkStart.getFullYear(), chunkStart.getMonth() + 2, 1);
 			}
 		} catch (err) {
 			// Silently fail background fetch - we already have next month's data
