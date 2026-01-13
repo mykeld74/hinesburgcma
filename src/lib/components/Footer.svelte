@@ -11,13 +11,17 @@
 			<div>190 Pond Road Hinesburg, VT 05461</div>
 
 			<a href="https://communityalliancechurch.churchcenter.com/home" target="_blank"
-				>Church Center Login</a
+				>CAC App Login</a
 			>
 		</address>
 
 		<ul>
 			<li><a href="tel:+18024822132">Phone: (802) 482-2132</a></li>
-			<li><button class="footerEmailLink" onclick={() => (modalOpen = true)}>Email: info@hinesburgcma.org</button></li>
+			<li>
+				<button class="footerEmailLink" onclick={() => (modalOpen = true)}
+					>Email: info@hinesburgcma.org</button
+				>
+			</li>
 		</ul>
 
 		<ul class="footerSocial">

@@ -62,7 +62,7 @@
 				{ label: 'Giving', href: '/resources/giving/' },
 				{ label: 'CVU Parking', href: '/resources/cvu-parking/' },
 				{ label: 'External Resources', href: '/resources/external-resources/' },
-				{ label: 'Church Center Login', href: 'https://communityalliancechurch.churchcenter.com/' }
+				{ label: 'CAC App Login', href: 'https://communityalliancechurch.churchcenter.com/' }
 			]
 		}
 	];
