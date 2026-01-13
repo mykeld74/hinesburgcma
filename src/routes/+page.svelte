@@ -265,7 +265,7 @@
 
 <div class="churchCenterLinkWrapper">
 	<a href="https://communityalliancechurch.churchcenter.com/home" target="_blank">
-		<p class="churchCenterLinkTitle">Church Center Login</p>
+		<p class="churchCenterLinkTitle">CAC App Login</p>
 		<div class="churchCenterLinkArrow">
 			<svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path
