@@ -196,14 +196,13 @@
 				<a href="tel:8024822132">(802) 482-2132</a>
 			</p>
 			<p>
-				<strong>Email:</strong>{' '}
-				<button class="inlineEmailLink" onclick={() => (modalOpen = true)}>info@hinesburgcma.org</button>
+				<button class="contactButton" onclick={() => (modalOpen = true)}>Contact Us</button>
 			</p>
 		</div>
 	</div>
 </section>
 
-<ContactFormModal bind:isOpen={modalOpen} sendTo="info@hinesburgcma.org" />
+<ContactFormModal bind:isOpen={modalOpen} sendTo="awheeler@hinesburgcma.org" />
 
 <style>
 	.accordionContainer {

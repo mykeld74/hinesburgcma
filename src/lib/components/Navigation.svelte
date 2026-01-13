@@ -8,6 +8,7 @@
 		label: string;
 		href: string;
 		description?: string;
+		target?: string;
 	};
 
 	type NavGroup = {
@@ -62,7 +63,11 @@
 				{ label: 'Giving', href: '/resources/giving/' },
 				{ label: 'CVU Parking', href: '/resources/cvu-parking/' },
 				{ label: 'External Resources', href: '/resources/external-resources/' },
-				{ label: 'CAC App Login', href: 'https://communityalliancechurch.churchcenter.com/' }
+				{
+					label: 'CAC App Login',
+					href: 'https://communityalliancechurch.churchcenter.com/',
+					target: '_blank'
+				}
 			]
 		}
 	];
@@ -356,6 +361,7 @@
 									<li>
 										<a
 											href={item.href}
+											target={item.target}
 											data-sveltekit-preload-data={item.href === '/resources/calendar/'
 												? ''
 												: undefined}
@@ -397,6 +403,7 @@
 						<li>
 							<a
 								href={item.href}
+								target={item.target}
 								data-sveltekit-preload-data={item.href === '/resources/calendar/' ? '' : undefined}
 								onclick={handleDropdownLinkClick}
 							>
