@@ -11,10 +11,18 @@ export const GET: RequestHandler = async ({ url }) => {
 			return json({ error: 'startDate and endDate are required' }, { status: 400 });
 		}
 
-		const processedEvents = await fetchCalendarEvents(startDate, endDate);
+		// Use includeFields only - fetchEventDetails makes slow sequential API calls
+		const processedEvents = await fetchCalendarEvents(startDate, endDate, {
+			includeFields: true
+		});
 
 		const formattedEvents = processedEvents.flatMap(({ event, instances }) => {
 			if (instances.length === 0) {
+				return [];
+			}
+
+			// Only include events where visible_in_church_center is true
+			if (event.attributes.visible_in_church_center !== true) {
 				return [];
 			}
 
@@ -45,6 +53,8 @@ export const GET: RequestHandler = async ({ url }) => {
 						location: instance.attributes?.location || event.attributes.location || '',
 						kind: event.attributes.kind || '',
 						eventType: event.attributes.event_type || null,
+						visibleInChurchCenter: event.attributes.visible_in_church_center ?? null,
+						featured: event.attributes.featured ?? null,
 						publicUrl: event.attributes.public_url || null,
 						imageUrl: event.attributes.image_url || null
 					};

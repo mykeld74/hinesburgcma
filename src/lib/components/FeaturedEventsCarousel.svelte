@@ -18,7 +18,7 @@
 		featured: boolean | null;
 	};
 
-	let { events }: { events: CalendarEvent[] } = $props();
+	let { events, isLoading = false }: { events: CalendarEvent[]; isLoading?: boolean } = $props();
 
 	// Carousel state
 	let currentIndex = $state(0);
@@ -139,9 +139,14 @@
 	});
 </script>
 
-{#if events.length > 0}
-	<section class="pageSection">
-		<h2 class="pageSectionTitle">Featured Events</h2>
+<section class="pageSection">
+	<h2 class="pageSectionTitle">Featured Events</h2>
+	{#if isLoading}
+		<div class="loadingState">
+			<div class="loadingSpinner"></div>
+			<p>Loading featured events...</p>
+		</div>
+	{:else if events.length > 0}
 		<div class="carouselWrapper">
 			<div class="carouselContainer">
 				<button
@@ -220,8 +225,8 @@
 				</div>
 			{/if} -->
 		</div>
-	</section>
-{/if}
+	{/if}
+</section>
 
 <style>
 	.carouselWrapper {
@@ -386,6 +391,31 @@
 			width: 100%;
 			max-width: 100%;
 			overflow-x: hidden;
+		}
+	}
+
+	.loadingState {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 3rem 2rem;
+		gap: 1.5rem;
+		text-align: center;
+	}
+
+	.loadingSpinner {
+		width: 48px;
+		height: 48px;
+		border: 4px solid color-mix(in oklab, var(--primaryColor) 20%, transparent);
+		border-top-color: var(--primaryColor);
+		border-radius: 50%;
+		animation: spin 0.8s linear infinite;
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
 		}
 	}
 </style>

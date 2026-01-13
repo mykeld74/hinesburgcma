@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import FeaturedEventsCarousel from '$lib/components/FeaturedEventsCarousel.svelte';
 	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
+	import { getCachedCalendarData, setCachedCalendarData } from '$lib/utils/calendarCache';
 
 	let modalOpen = $state(false);
 
@@ -23,48 +24,247 @@
 	};
 
 	let { data } = $props();
-	// Convert date strings back to Date objects (they get serialized as strings from server)
-	let allEvents = $state(
-		(data?.events || []).map((event) => ({
-			...event,
-			startDate: typeof event.startDate === 'string' ? new Date(event.startDate) : event.startDate,
-			endDate:
-				event.endDate && typeof event.endDate === 'string' ? new Date(event.endDate) : event.endDate
-		}))
+
+	// Loading state
+	let isLoading = $state(false);
+	let error = $state<string | null>(null);
+
+	// Initialize events from cache or empty array
+	function loadEventsFromCache(dateRange: { start: string; end: string }): CalendarEvent[] {
+		const cached = getCachedCalendarData(dateRange);
+		if (cached && cached.events) {
+			return cached.events.map(
+				(event): CalendarEvent => ({
+					...event,
+					startDate:
+						typeof event.startDate === 'string' ? new Date(event.startDate) : event.startDate,
+					endDate:
+						event.endDate && typeof event.endDate === 'string'
+							? new Date(event.endDate)
+							: event.endDate instanceof Date
+								? event.endDate
+								: null
+				})
+			);
+		}
+		return [];
+	}
+
+	// Compute featured events from events array
+	function computeFeaturedEvents(events: CalendarEvent[]): CalendarEvent[] {
+		const today = new Date();
+		today.setHours(0, 0, 0, 0);
+
+		const upcomingEvents = events.filter((event) => {
+			const eventDate = new Date(event.startDate);
+			eventDate.setHours(0, 0, 0, 0);
+			return eventDate >= today;
+		});
+
+		const featuredEvents = upcomingEvents.filter((event) => event.featured === true);
+		return featuredEvents.slice(0, 6);
+	}
+
+	// Initialize events from server data (if available) or cache
+	function initializeEvents(): CalendarEvent[] {
+		// First try server-provided data
+		if (data?.events && data.events.length > 0) {
+			return data.events.map((event: any) => ({
+				...event,
+				startDate:
+					typeof event.startDate === 'string' ? new Date(event.startDate) : event.startDate,
+				endDate:
+					event.endDate && typeof event.endDate === 'string'
+						? new Date(event.endDate)
+						: event.endDate instanceof Date
+							? event.endDate
+							: null
+			}));
+		}
+
+		// Fall back to client-side cache
+		const dateRange = data?.dateRange || {
+			start: new Date(new Date().getFullYear(), new Date().getMonth(), 1)
+				.toISOString()
+				.split('T')[0],
+			end: new Date(new Date().getFullYear(), new Date().getMonth() + 3, 0)
+				.toISOString()
+				.split('T')[0]
+		};
+		return loadEventsFromCache(dateRange);
+	}
+
+	// Get date range from data or calculate default
+	const dateRange = $derived(
+		data?.dateRange ||
+			(() => {
+				const now = new Date();
+				return {
+					start: new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0],
+					end: new Date(now.getFullYear(), now.getMonth() + 3, 0).toISOString().split('T')[0]
+				};
+			})()
 	);
+
+	// Initialize events from server data or cache
+	let allEvents = $state<CalendarEvent[]>(initializeEvents());
+
+	// Track if we have cached data (to determine if we should show loading state)
+	const hasCachedData = $derived(allEvents.length > 0);
+
+	// Featured events computed from current events
+	const featuredEvents = $derived(computeFeaturedEvents(allEvents));
 
 	// Track which months have been loaded (format: "YYYY-MM")
 	let loadedMonths = $state<Set<string>>(new Set());
 
-	// Initialize loaded months from initial data (current month + next 2 months)
+	// Initialize loaded months from current events
 	$effect(() => {
-		const now = new Date();
-		const currentMonth = new Date(now.getFullYear(), now.getMonth(), 1);
-		const nextMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
-		const twoMonthsAhead = new Date(now.getFullYear(), now.getMonth() + 2, 1);
-
-		loadedMonths.add(
-			`${currentMonth.getFullYear()}-${String(currentMonth.getMonth() + 1).padStart(2, '0')}`
-		);
-		loadedMonths.add(
-			`${nextMonth.getFullYear()}-${String(nextMonth.getMonth() + 1).padStart(2, '0')}`
-		);
-		loadedMonths.add(
-			`${twoMonthsAhead.getFullYear()}-${String(twoMonthsAhead.getMonth() + 1).padStart(2, '0')}`
-		);
+		if (allEvents.length > 0) {
+			const monthsSet = new Set<string>();
+			for (const event of allEvents) {
+				const eventDate = new Date(event.startDate);
+				const monthKey = `${eventDate.getFullYear()}-${String(eventDate.getMonth() + 1).padStart(2, '0')}`;
+				monthsSet.add(monthKey);
+			}
+			loadedMonths = monthsSet;
+		}
 	});
 
-	const error = $derived(data?.error);
+	// Fetch calendar events from API
+	async function fetchCalendarData(startDate: string, endDate: string): Promise<CalendarEvent[]> {
+		try {
+			const response = await fetch(
+				`/resources/calendar/events?startDate=${encodeURIComponent(startDate)}&endDate=${encodeURIComponent(endDate)}`
+			);
 
-	// Featured events: computed on server, convert date strings to Date objects
-	const featuredEvents = $derived(
-		(data?.featuredEvents || []).map((event) => ({
-			...event,
-			startDate: typeof event.startDate === 'string' ? new Date(event.startDate) : event.startDate,
-			endDate:
-				event.endDate && typeof event.endDate === 'string' ? new Date(event.endDate) : event.endDate
-		}))
-	);
+			if (!response.ok) {
+				throw new Error('Failed to fetch calendar data');
+			}
+
+			const result = await response.json();
+
+			if (result.error) {
+				throw new Error(result.error);
+			}
+
+			if (!result.events || !Array.isArray(result.events)) {
+				return [];
+			}
+
+			return result.events.map((event: any) => ({
+				...event,
+				startDate:
+					typeof event.startDate === 'string' ? new Date(event.startDate) : event.startDate,
+				endDate:
+					event.endDate && typeof event.endDate === 'string'
+						? new Date(event.endDate)
+						: event.endDate
+			}));
+		} catch (err) {
+			throw err instanceof Error ? err : new Error('Unknown error');
+		}
+	}
+
+	// Merge events without duplicates
+	function mergeEvents(existing: CalendarEvent[], newEvents: CalendarEvent[]): CalendarEvent[] {
+		const existingIds = new Set(existing.map((e) => e.id));
+		const uniqueNewEvents = newEvents.filter((e) => !existingIds.has(e.id));
+		return [...existing, ...uniqueNewEvents].sort(
+			(a, b) => a.startDate.getTime() - b.startDate.getTime()
+		);
+	}
+
+	// Load calendar data (cache first, then fetch fresh)
+	async function loadCalendarData() {
+		const range = dateRange;
+		// Only set loading state if we don't have cached data
+		if (!hasCachedData) {
+			isLoading = true;
+		}
+		error = null;
+
+		try {
+			// Fetch fresh data
+			const events = await fetchCalendarData(range.start, range.end);
+
+			// Update state
+			allEvents = events;
+
+			// Update cache
+			const featured = computeFeaturedEvents(events);
+			setCachedCalendarData({
+				events,
+				featuredEvents: featured,
+				timestamp: Date.now(),
+				dateRange: range
+			});
+		} catch (err) {
+			error = err instanceof Error ? err.message : 'Unknown error';
+			// If we have cached data, keep showing it even if fetch fails
+			if (allEvents.length === 0) {
+				allEvents = loadEventsFromCache(range);
+			}
+		} finally {
+			isLoading = false;
+		}
+	}
+
+	// Load remaining months' events in the background (2 months at a time)
+	async function loadFullYearEvents() {
+		try {
+			const now = new Date();
+			const currentMonth = now.getMonth();
+			const currentYear = now.getFullYear();
+
+			// Start from month after current (since we already have current month)
+			let startMonth = currentMonth + 1;
+			let startYear = currentYear;
+
+			// Fetch up to 11 more months (2 months at a time = 6 chunks)
+			for (let i = 0; i < 6; i++) {
+				// Calculate start and end dates for 2-month chunk
+				// Start: first day of startMonth
+				// End: last day of startMonth + 1 (which is day 0 of startMonth + 2)
+				const endYear = startMonth >= 11 ? startYear + 1 : startYear;
+
+				const startDate = new Date(startYear, startMonth, 1).toISOString().split('T')[0];
+				const endDate = new Date(endYear, startMonth + 2, 0).toISOString().split('T')[0]; // Last day of startMonth + 1
+
+				// Fetch 2 months of events
+				const events = await fetchCalendarData(startDate, endDate);
+
+				// Merge with existing events
+				allEvents = mergeEvents(allEvents, events);
+
+				// Update cache with merged events
+				const featured = computeFeaturedEvents(allEvents);
+				setCachedCalendarData({
+					events: allEvents,
+					featuredEvents: featured,
+					timestamp: Date.now(),
+					dateRange: { start: startDate, end: endDate }
+				});
+
+				// Move to next 2-month chunk
+				startMonth += 2;
+				if (startMonth > 11) {
+					startMonth = startMonth - 12;
+					startYear++;
+				}
+			}
+		} catch (err) {
+			// Silently fail background fetch - we already have next month's data
+		}
+	}
+
+	// Load data when component mounts
+	onMount(() => {
+		loadCalendarData().then(() => {
+			// After initial load completes, fetch full year in background
+			loadFullYearEvents();
+		});
+	});
 
 	let selectedFilter = $state<string | null>(null);
 
@@ -326,39 +526,6 @@
 		}
 	}
 
-	// Fetch remaining months in the background after page loads
-	async function fetchRemainingMonths() {
-		const now = new Date();
-		const monthsToFetch: Array<{ year: number; month: number }> = [];
-
-		// Add previous month (one month before current)
-		const previousMonth = new Date(now.getFullYear(), now.getMonth() - 1, 1);
-		monthsToFetch.push({ year: previousMonth.getFullYear(), month: previousMonth.getMonth() });
-
-		// Add future months (3 months ahead to 2 years ahead)
-		for (let i = 3; i <= 24; i++) {
-			const futureMonth = new Date(now.getFullYear(), now.getMonth() + i, 1);
-			monthsToFetch.push({ year: futureMonth.getFullYear(), month: futureMonth.getMonth() });
-		}
-
-		// Fetch months in batches with delays to avoid overwhelming the API
-		for (const { year, month } of monthsToFetch) {
-			await fetchEventsForMonth(year, month);
-			// Small delay between requests
-			await new Promise((resolve) => setTimeout(resolve, 300));
-		}
-	}
-
-	// Start fetching remaining months after page loads
-	$effect(() => {
-		// Wait a bit for the page to render, then start background fetching
-		const timeoutId = setTimeout(() => {
-			fetchRemainingMonths();
-		}, 1000);
-
-		return () => clearTimeout(timeoutId);
-	});
-
 	function previousMonth() {
 		currentMonth = new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1);
 	}
@@ -527,16 +694,24 @@
 	</section>
 {/if}
 
-<FeaturedEventsCarousel events={featuredEvents} />
+<FeaturedEventsCarousel events={featuredEvents} {isLoading} />
 
-{#if allEvents.length > 0}
+{#if allEvents.length > 0 || !isLoading}
 	<section class="pageSection">
 		<div class="calendarHeader">
 			<h2 class="pageSectionTitle">Calendar</h2>
-			<div class="calendarNavigation">
-				<button type="button" class="calendarNavButton" onclick={previousMonth}>←</button>
-				<button type="button" class="calendarNavButton" onclick={goToToday}>Today</button>
-				<button type="button" class="calendarNavButton" onclick={nextMonth}>→</button>
+			<div class="calendarHeaderRight">
+				{#if isLoading && hasCachedData}
+					<div class="loadingIndicator">
+						<div class="loadingSpinnerSmall"></div>
+						<span>Updating...</span>
+					</div>
+				{/if}
+				<div class="calendarNavigation">
+					<button type="button" class="calendarNavButton" onclick={previousMonth}>←</button>
+					<button type="button" class="calendarNavButton" onclick={goToToday}>Today</button>
+					<button type="button" class="calendarNavButton" onclick={nextMonth}>→</button>
+				</div>
 			</div>
 		</div>
 		<div class="calendarMonthHeader">
@@ -684,6 +859,54 @@
 
 		h2 {
 			margin: 0;
+		}
+	}
+
+	.calendarHeaderRight {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.loadingIndicator {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		font-size: 0.85rem;
+		color: color-mix(in oklab, var(--contrastColor) 70%, transparent);
+	}
+
+	.loadingSpinnerSmall {
+		width: 14px;
+		height: 14px;
+		border: 2px solid color-mix(in oklab, var(--primaryColor) 20%, transparent);
+		border-top-color: var(--primaryColor);
+		border-radius: 50%;
+		animation: spin 0.6s linear infinite;
+	}
+
+	.loadingMessage {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 3rem 2rem;
+		gap: 1.5rem;
+		text-align: center;
+	}
+
+	.loadingSpinner {
+		width: 48px;
+		height: 48px;
+		border: 4px solid color-mix(in oklab, var(--primaryColor) 20%, transparent);
+		border-top-color: var(--primaryColor);
+		border-radius: 50%;
+		animation: spin 0.8s linear infinite;
+	}
+
+	@keyframes spin {
+		to {
+			transform: rotate(360deg);
 		}
 	}
 

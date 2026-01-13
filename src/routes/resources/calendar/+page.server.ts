@@ -53,8 +53,7 @@ function computeFeaturedEvents(events: CachedData['events']): CachedData['events
 async function revalidateCache(startDate: string, endDate: string): Promise<void> {
 	try {
 		const events = await fetchCalendarEvents(startDate, endDate, {
-			includeFields: true,
-			fetchEventDetails: true
+			includeFields: true
 		});
 
 		// Format events for display - flatten instances into individual events
@@ -122,93 +121,84 @@ async function revalidateCache(startDate: string, endDate: string): Promise<void
 }
 
 export const load: PageServerLoad = async ({ url, setHeaders }) => {
-	try {
-		// Get date range from URL params if provided, otherwise use default (3 months)
-		const startDateParam = url.searchParams.get('startDate');
-		const endDateParam = url.searchParams.get('endDate');
+	// Calculate default date range - use next month only for fast initial load
+	const now = new Date();
+	const startDate =
+		url.searchParams.get('startDate') ||
+		new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
+	const endDate =
+		url.searchParams.get('endDate') ||
+		new Date(now.getFullYear(), now.getMonth() + 1, 0).toISOString().split('T')[0];
 
-		const now = new Date();
-		// Default date range: current month and next 2 months (3 months total)
-		const startDate =
-			startDateParam || new Date(now.getFullYear(), now.getMonth(), 1).toISOString().split('T')[0];
-		const endDate =
-			endDateParam ||
-			new Date(now.getFullYear(), now.getMonth() + 3, 0).toISOString().split('T')[0];
+	const dateRange = { start: startDate, end: endDate };
 
-		const currentTime = Date.now();
-		const cacheAge = cachedData ? currentTime - cachedData.timestamp : Infinity;
-		const isSameDateRange =
-			cachedData?.dateRange.start === startDate && cachedData?.dateRange.end === endDate;
+	// Check server-side cache first
+	const currentTime = Date.now();
+	const cacheAge = cachedData ? currentTime - cachedData.timestamp : Infinity;
+	const isSameDateRange =
+		cachedData?.dateRange.start === dateRange.start && cachedData?.dateRange.end === dateRange.end;
 
-		// Check if cache is fresh (within CACHE_DURATION)
-		if (cachedData && isSameDateRange && cacheAge < CACHE_DURATION) {
-			// Set HTTP cache headers for browser/CDN caching
-			setHeaders({
-				'Cache-Control': `public, max-age=${Math.floor(CACHE_DURATION / 1000)}, stale-while-revalidate=${Math.floor(STALE_DURATION / 1000)}`
-			});
-
-			// Compute featured events from cached data
-			const featuredEvents = computeFeaturedEvents(cachedData.events);
-
-			return {
-				events: cachedData.events,
-				featuredEvents,
-				cached: true,
-				cacheStatus: 'fresh'
-			};
-		}
-
-		// Check if cache is stale but usable (within STALE_DURATION) - Stale-While-Revalidate
-		if (cachedData && isSameDateRange && cacheAge < STALE_DURATION) {
-			// Trigger background revalidation (non-blocking)
-			if (!isRevalidating) {
-				isRevalidating = true;
-				revalidateCache(startDate, endDate).finally(() => {
-					isRevalidating = false;
-				});
-			}
-
-			// Set HTTP cache headers - tell browser this is stale but acceptable
-			setHeaders({
-				'Cache-Control': `public, max-age=0, stale-while-revalidate=${Math.floor(STALE_DURATION / 1000)}`
-			});
-
-			// Compute featured events from cached data
-			const featuredEvents = computeFeaturedEvents(cachedData.events);
-
-			return {
-				events: cachedData.events,
-				featuredEvents,
-				cached: true,
-				cacheStatus: 'stale-revalidating'
-			};
-		}
-
-		// Set HTTP cache headers for fresh fetch
+	// If we have fresh cached data (within 5 minutes), return it immediately
+	if (cachedData && isSameDateRange && cacheAge < CACHE_DURATION) {
 		setHeaders({
 			'Cache-Control': `public, max-age=${Math.floor(CACHE_DURATION / 1000)}, stale-while-revalidate=${Math.floor(STALE_DURATION / 1000)}`
 		});
 
-		// Fetch fresh data
-		const events = await fetchCalendarEvents(startDate, endDate, {
-			includeFields: true,
-			fetchEventDetails: true
+		const featuredEvents = computeFeaturedEvents(cachedData.events);
+		return {
+			events: cachedData.events,
+			featuredEvents,
+			dateRange,
+			cached: true
+		};
+	}
+
+	// If we have stale cached data, return it and revalidate in background
+	if (cachedData && isSameDateRange && cacheAge < STALE_DURATION) {
+		setHeaders({
+			'Cache-Control': `public, max-age=0, stale-while-revalidate=${Math.floor(STALE_DURATION / 1000)}`
 		});
 
-		// Format events for display - flatten instances into individual events
+		// Trigger background revalidation
+		if (!isRevalidating) {
+			isRevalidating = true;
+			revalidateCache(startDate, endDate).finally(() => {
+				isRevalidating = false;
+			});
+		}
+
+		const featuredEvents = computeFeaturedEvents(cachedData.events);
+		return {
+			events: cachedData.events,
+			featuredEvents,
+			dateRange,
+			cached: true,
+			stale: true
+		};
+	}
+
+	// No cache or cache expired - fetch data on server (smaller range = faster)
+	setHeaders({
+		'Cache-Control': `public, max-age=${Math.floor(CACHE_DURATION / 1000)}, stale-while-revalidate=${Math.floor(STALE_DURATION / 1000)}`
+	});
+
+	try {
+		const events = await fetchCalendarEvents(startDate, endDate, {
+			includeFields: true
+		});
+
+		// Format events for display
 		const formattedEvents = events.flatMap(({ event, instances }) => {
 			if (instances.length === 0) {
 				return [];
 			}
 
-			// Only include events where visible_in_church_center is true
 			if (event.attributes.visible_in_church_center !== true) {
 				return [];
 			}
 
 			return instances
 				.map((instance) => {
-					// Handle different possible property names for start time
 					const startsAt =
 						instance.attributes?.starts_at ||
 						instance.attributes?.start_time ||
@@ -240,35 +230,32 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 						imageUrl: event.attributes.image_url || null
 					};
 				})
-				.filter((e) => e !== null); // Remove any null entries
+				.filter((e) => e !== null);
 		});
 
-		// Sort by start date
 		formattedEvents.sort((a, b) => a.startDate.getTime() - b.startDate.getTime());
 
-		// Compute featured events: upcoming events starting from today (first 6)
-		// Filter by visible_in_church_center === true
 		const featuredEvents = computeFeaturedEvents(formattedEvents);
 
-		// Cache the results
+		// Update server cache
 		cachedData = {
 			events: formattedEvents,
 			timestamp: currentTime,
-			dateRange: {
-				start: startDate,
-				end: endDate
-			}
+			dateRange
 		};
 
 		return {
 			events: formattedEvents,
 			featuredEvents,
+			dateRange,
 			cached: false
 		};
 	} catch (error) {
+		// If fetch fails, return empty arrays
 		return {
 			events: [],
 			featuredEvents: [],
+			dateRange,
 			error: error instanceof Error ? error.message : 'Unknown error'
 		};
 	}
