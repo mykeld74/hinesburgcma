@@ -53,14 +53,11 @@
 </svelte:head>
 
 <Navigation {theme} onToggleTheme={toggleTheme} />
-{#key pathname}
-	<main
-		class:isHome
-		in:fade={{ duration: 150, delay: 155 }}
-		out:fade={{ duration: 150 }}
-		class={pageClass}
-	>
-		{@render children()}
-	</main>
-{/key}
+<div class="pageTransitionWrapper">
+	{#key pathname}
+		<main class:isHome class={pageClass}>
+			{@render children()}
+		</main>
+	{/key}
+</div>
 <Footer />

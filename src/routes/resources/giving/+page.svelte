@@ -30,7 +30,8 @@
 		Mail a check made out to Community Alliance Church, with your desired fund* in the memo section.
 		Checks may be mailed to: PO Box 582, Hinesburg, VT 05461. (*For a list of desired funds, <a
 			href="https://communityalliancechurch.churchcenter.com/giving/to/general?open-in-church-center-modal=true"
-			>click here</a
+			target="_blank"
+			rel="noopener noreferrer">click here</a
 		> and view the funds in the drop-down menu.)
 	</p>
 </section>

@@ -29,6 +29,17 @@ body {
 	margin: 0;
 }
 
+/* Page transition wrapper - prevents content stacking during route transitions */
+.pageTransitionWrapper {
+	display: grid;
+	grid-template-areas: 'page';
+	min-height: calc(100vh - 320px);
+}
+
+.pageTransitionWrapper > main {
+	grid-area: page;
+}
+
 main {
 	display: block;
 	background: linear-gradient(
