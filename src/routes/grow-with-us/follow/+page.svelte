@@ -172,7 +172,7 @@
 		display: inline-block;
 		padding: 0.75rem 1.5rem;
 		background: var(--primaryColor);
-		color: var(--contrastColor);
+		color: #fff;
 		border-radius: 8px;
 		font-weight: 600;
 		text-decoration: none;
