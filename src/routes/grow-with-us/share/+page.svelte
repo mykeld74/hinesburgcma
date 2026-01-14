@@ -81,7 +81,7 @@
 			<em>and eternal life."</em> Jesus lived a <strong>real life</strong> in three dimensions:
 			<strong>UP, IN, and OUT.</strong> So ask the Pastor or the other elders to visit and pray with
 			you about God's Vision for CAC,
-			<a href="https://www.icloud.com/iclouddrive/098htgCbPaB_Yo-kH4o8a7bhg#CAC_Vision_copy"
+			<a href="/CAC_Vision.pdf" target="_blank" rel="noopener noreferrer"
 				>3-D Huddles & 3-D Families</a
 			>. This is the <strong>future of CAC</strong>;
 			<em>making disciples who make disciples in every day, real life.</em>
