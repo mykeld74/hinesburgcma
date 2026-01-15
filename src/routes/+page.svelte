@@ -19,6 +19,8 @@
 		title?: string;
 		content?: PortableTextBlock[];
 		enabled?: boolean;
+		startDate?: string;
+		endDate?: string;
 		_updatedAt?: string;
 		_createdAt?: string;
 	};
@@ -39,6 +41,8 @@
 		imageUrl?: string;
 		contentBlocks?: ContentBlock[];
 		enabled?: boolean;
+		startDate?: string;
+		endDate?: string;
 		_updatedAt?: string;
 		_createdAt?: string;
 		[key: string]: unknown;

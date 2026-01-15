@@ -74,7 +74,7 @@
 	<button class="contactButton" onclick={() => (modalOpen = true)}>Contact Us!</button>
 </section>
 
-<ContactFormModal bind:isOpen={modalOpen} sendTo="brandon@hinesburgcma.org" />
+<ContactFormModal bind:isOpen={modalOpen} sendTo="bmansfield@hinesburgcma.org" />
 
 <style>
 </style>

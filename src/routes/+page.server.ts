@@ -2,9 +2,15 @@ import type { PageServerLoad } from './$types';
 import { querySanity } from '$lib/utils/sanity';
 
 export const load: PageServerLoad = async () => {
+	const now = new Date().toISOString();
+
 	// Query for banner and modal content with rich text content field
+	// Filter by date: show if (no startDate OR startDate <= now) AND (no endDate OR endDate >= now)
 	const bannerContent = await querySanity(
-		`*[_type == "banner" && !(_id in path("drafts.**"))] | order(_updatedAt desc) {
+		`*[_type == "banner" && !(_id in path("drafts.**")) 
+			&& (!defined(startDate) || startDate <= $now)
+			&& (!defined(endDate) || endDate >= $now)
+		] | order(_updatedAt desc) {
 			_id,
 			_type,
 			title,
@@ -27,12 +33,18 @@ export const load: PageServerLoad = async () => {
 				"imageAlt": alt
 			},
 			enabled,
+			startDate,
+			endDate,
 			_updatedAt,
 			_createdAt
-		}`
+		}`,
+		{ now }
 	);
 	const modalContent = await querySanity(
-		`*[_type == "modal" && !(_id in path("drafts.**"))] | order(_updatedAt desc) {
+		`*[_type == "modal" && !(_id in path("drafts.**"))
+			&& (!defined(startDate) || startDate <= $now)
+			&& (!defined(endDate) || endDate >= $now)
+		] | order(_updatedAt desc) {
 			_id,
 			_type,
 			title,
@@ -55,6 +67,8 @@ export const load: PageServerLoad = async () => {
 				"imageAlt": alt
 			},
 			enabled,
+			startDate,
+			endDate,
 			_updatedAt,
 			_createdAt,
 			"imageUrl": image.asset->url,
@@ -107,7 +121,8 @@ export const load: PageServerLoad = async () => {
 					}
 				}
 			}
-		}`
+		}`,
+		{ now }
 	);
 
 	return {
