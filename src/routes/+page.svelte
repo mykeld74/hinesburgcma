@@ -142,10 +142,13 @@
 <header class="hero">
 	<div class="heroContent">
 		<span class="eyebrow">Get to Know CAC</span>
-		<h1 use:useGsap={{ init: cardsIn }}>Find hope, community, and purpose in Hinesburg.</h1>
+		<h1 use:useGsap={{ init: cardsIn }}>
+			A CHURCH FOR <span class="highlight">REAL</span>  LIFE...
+		</h1>
 		<p>
-			We are a church family practicing the way of Jesus together—growing in faith, serving our
-			neighbors, and sending hope to the world.
+			Helping <span class="highlight">real</span> people find <span class="highlight">real</span>
+			faith by serving our <span class="highlight">real</span> neighbors, sending hope to the world,
+			and discovering the <span class="highlight">real</span> Jesus.
 		</p>
 		<div class="heroActions">
 			<a class="primaryCta" href="/visit-us/plan-your-visit/">Plan Your Visit</a>
@@ -614,5 +617,9 @@
 	.bannerContent {
 		display: grid;
 		gap: 1rem;
+	}
+	.highlight {
+		color: var(--accentColor);
+		font-weight: 700;
 	}
 </style>
