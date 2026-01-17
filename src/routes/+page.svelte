@@ -143,12 +143,12 @@
 	<div class="heroContent">
 		<span class="eyebrow">Get to Know CAC</span>
 		<h1 use:useGsap={{ init: cardsIn }}>
-			A CHURCH FOR <span class="highlight">REAL</span>  LIFE...
+			A CHURCH FOR <span class="highlight">REAL</span> LIFE...
 		</h1>
 		<p>
 			Helping <span class="highlight">real</span> people find <span class="highlight">real</span>
-			faith by serving our <span class="highlight">real</span> neighbors, sending hope to the world,
-			and discovering the <span class="highlight">real</span> Jesus.
+			faith by serving our neighbors, sending hope to the world, and discovering the
+			<span class="highlight">real</span> Jesus.
 		</p>
 		<div class="heroActions">
 			<a class="primaryCta" href="/visit-us/plan-your-visit/">Plan Your Visit</a>
@@ -310,7 +310,7 @@
 			content: '';
 			position: absolute;
 			inset: 0;
-			background: rgba(0, 0, 0, 0.55);
+			background: rgba(0, 0, 0, 0.65);
 		}
 		box-shadow:
 			0 24px 80px color-mix(in oklab, black 55%, transparent),
@@ -505,33 +505,6 @@
 		padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 5vw, 3rem);
 	}
 
-	.events {
-		.sectionHeader {
-			align-items: center;
-			grid-template-columns: minmax(0, 1fr) auto;
-			gap: clamp(1rem, 3vw, 2rem);
-		}
-
-		.eventCard {
-			/* background-color: color-mix(in oklab, var(--surfaceColor) 88%, black 12%); */
-			border-radius: 18px;
-			border: 1px solid color-mix(in oklab, var(--primaryColor) 30%, transparent);
-			padding: clamp(1.25rem, 3vw, 1.75rem);
-			display: grid;
-			gap: 0.5rem;
-			margin-bottom: clamp(1rem, 2vw, 1.5rem);
-			box-shadow: 0 18px 40px color-mix(in oklab, black 48%, transparent);
-
-			.eventDate {
-				text-transform: uppercase;
-				letter-spacing: 0.12em;
-				font-size: 0.95rem;
-				font-weight: 700;
-				color: var(--accentColor);
-			}
-		}
-	}
-
 	.appBanner {
 		max-width: 900px;
 		margin: 0 auto clamp(3rem, 6vw, 5rem);
@@ -619,7 +592,7 @@
 		gap: 1rem;
 	}
 	.highlight {
-		color: var(--accentColor);
+		color: var(--highlightColor);
 		font-weight: 700;
 	}
 </style>

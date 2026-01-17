@@ -2,6 +2,7 @@
 	--primaryColor: oklch(0.4168 0.0939 254.8);
 	--accentColor: oklch(0.819 0.1656 122.08);
 	--contrastColor: oklch(0.98 0.03 250);
+	--highlightColor: oklch(0.7176 0.1489 253.96);
 	--backgroundColor: oklch(0.22 0.02 250);
 	--surfaceColor: color-mix(in oklch, var(--backgroundColor) 92%, black 8%);
 	--surfaceStrong: color-mix(in oklch, var(--backgroundColor) 82%, black 18%);
@@ -76,6 +77,7 @@ body.dark-mode {
 	--backgroundColor: oklch(1 0 0);
 	--contrastColor: oklch(0.3 0.04 255);
 	--accentColor: oklch(0.6226 0.1656 122.08);
+
 	--surfaceColor: color-mix(in oklch, white 90%, var(--backgroundColor) 10%);
 	--surfaceStrong: color-mix(in oklch, white 82%, var(--backgroundColor) 18%);
 	color-scheme: light;
