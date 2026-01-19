@@ -13,9 +13,10 @@
 	<div class="pageHeroContent">
 		<h1 class="pageHeroChild pageHeroTitle">Our Campus</h1>
 		<p class="pageHeroChild pageHeroText">
-			We are located at 190 Pond Road, right across the street from CVU High School's athletic fields.
-			<br /> God calls us to share what we have and that includes our church building and grounds. We are
-			blessed to share our space with our community in a variety of ways:
+			We are located at 190 Pond Road, right across the street from CVU High School's athletic
+			fields.
+			<br /> God calls us to share what we have and that includes our church building and grounds. We
+			are blessed to share our space with our community in a variety of ways:
 		</p>
 	</div>
 </section>
@@ -76,9 +77,7 @@
 			>
 			began utilizing some of our church's space to house the Hinesburg location of their newest program,
 			First Roots. This program offers quality, early childcare education using a nature-based curriculum,
-			for children ages birth to 2yrs. For more information about First Roots Hinesburg, please contact
-			director
-			<a href="mailto:ella@bewilder-vt.com">Ella Downey</a>.
+			for children ages birth to 2yrs.
 		</p>
 	</div>
 </section>

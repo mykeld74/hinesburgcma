@@ -48,6 +48,17 @@
 		</p>
 	</div>
 </section>
+<section class="pageSection blockSection">
+	<div class="blockSectionContent">
+		<h2 class="pageSectionTitle">Our How</h2>
+		<p class="pageSectionText">
+			Jesus lived a 3-Dimensional life: UP, IN, & OUT. So we want to grow <strong>UP</strong> toward
+			God through Sunday worship, prayer, and time in his Word; <strong>IN</strong> by caring for
+			one another in community groups; and <strong>OUT</strong> by loving and serving the world around
+			us.
+		</p>
+	</div>
+</section>
 
 <section class="pageSection blockSection">
 	<div class="blockSectionContent">
