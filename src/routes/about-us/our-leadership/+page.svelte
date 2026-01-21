@@ -77,7 +77,7 @@
 			image: 'bulaga'
 		},
 		{
-			name: 'Jeff & Kristen Hammond',
+			name: 'Jeff & Kristin Hammond',
 			email: 'streetmachine19@comcast.net',
 			role: 'Elder',
 			description: '',
