@@ -9,7 +9,7 @@
 
 	interface Props {
 		endpoint?: string;
-		sendTo?: string;
+		sendTo?: string | string[];
 		onSuccess?: () => void;
 		checkboxes?: CheckboxOption[];
 		resetKey?: number;

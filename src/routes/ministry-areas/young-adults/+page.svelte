@@ -2,6 +2,7 @@
 	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
 
 	let modalOpen = $state(false);
+	const sendTo = ['streetmachine19@comcast.net', 'equusvmt@yahoo.com'];
 </script>
 
 <svelte:head>
@@ -39,13 +40,13 @@
 <section class="pageSection">
 	<h2 class="pageSectionTitle">Connect Today</h2>
 	<p class="pageSectionText">
-		Feel free to reach out to Brandon Mansfield with any questions you may have or to find out how
-		to get involved.
+		Feel free to reach out to Jeff and Kristin Hammond with any questions you may have or to find
+		out how to get involved.
 	</p>
 	<button class="contactButton" onclick={() => (modalOpen = true)}>Contact Us</button>
 </section>
 
-<ContactFormModal bind:isOpen={modalOpen} sendTo="bmansfield@hinesburgcma.org" />
+<ContactFormModal bind:isOpen={modalOpen} {sendTo} />
 
 <style>
 	.contactButton {

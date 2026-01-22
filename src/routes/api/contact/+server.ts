@@ -15,7 +15,21 @@ const transporter = nodemailer.createTransport({
 export const POST = async ({ request }) => {
 	const { name, email, phone, message, sendTo, checkboxes } = await request.json();
 
-	const recipientEmail = sendTo || 'info@hinesburgcma.org';
+	// Normalize sendTo to an array of email addresses
+	let recipientEmails: string[] = [];
+	if (sendTo) {
+		if (Array.isArray(sendTo)) {
+			recipientEmails = sendTo;
+		} else if (typeof sendTo === 'string') {
+			// Handle comma-separated string
+			recipientEmails = sendTo.split(',').map((email) => email.trim()).filter(Boolean);
+		}
+	}
+	
+	// Fallback to default if no valid recipients
+	if (recipientEmails.length === 0) {
+		recipientEmails = ['info@hinesburgcma.org'];
+	}
 
 	// Format checkboxes for email
 	let checkboxesHtml = '';
@@ -35,7 +49,7 @@ export const POST = async ({ request }) => {
 	try {
 		await transporter.sendMail({
 			from: `"CAC Web Inquiry" <${env.GOOGLE_EMAIL}>`,
-			to: recipientEmail,
+			to: recipientEmails,
 			subject: `Web Form Submission from ${name}`,
 			html: `
 			<!DOCTYPE html>
