@@ -3,6 +3,21 @@
 	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
 
 	let modalOpen = $state(false);
+
+	const checkboxes = [
+		{
+			id: 'student',
+			label: "I'm a student"
+		},
+		{
+			id: 'parent',
+			label: "I'm a parent"
+		},
+		{
+			id: 'leader',
+			label: "I'd like to learn more about volunteering"
+		}
+	];
 </script>
 
 <svelte:head>
@@ -74,7 +89,7 @@
 	<button class="contactButton" onclick={() => (modalOpen = true)}>Contact Us!</button>
 </section>
 
-<ContactFormModal bind:isOpen={modalOpen} sendTo="bmansfield@hinesburgcma.org" />
+<ContactFormModal bind:isOpen={modalOpen} sendTo="bmansfield@hinesburgcma.org" {checkboxes} />
 
 <style>
 </style>
