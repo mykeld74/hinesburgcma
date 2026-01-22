@@ -396,21 +396,19 @@
 		border-radius: 0.5rem;
 		padding: 1rem;
 		margin: 0;
-		background: color-mix(in oklch, var(--backgroundColor) 50%, transparent);
 	}
 
 	.checkboxLegend {
 		font-weight: 600;
 		color: var(--textColor);
-		font-size: 1.1rem;
-		padding: 0 0.5rem;
+		font-size: 1.3rem;
+		margin-bottom: 0;
 	}
 
 	.checkboxContainer {
 		display: flex;
 		flex-direction: column;
 		gap: 0.75rem;
-		margin-top: 0.75rem;
 	}
 
 	.checkboxInput {
