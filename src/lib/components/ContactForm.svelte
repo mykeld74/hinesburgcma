@@ -2,21 +2,46 @@
 	import IMask from 'imask';
 	import { fade } from 'svelte/transition';
 
+	interface CheckboxOption {
+		id: string;
+		label: string;
+	}
+
 	interface Props {
 		endpoint?: string;
 		sendTo?: string;
 		onSuccess?: () => void;
+		checkboxes?: CheckboxOption[];
+		resetKey?: number;
 	}
 
-	let { endpoint = '/api/contact', sendTo = 'info@hinesburgcma.org', onSuccess }: Props = $props();
+	let {
+		endpoint = '/api/contact',
+		sendTo = 'info@hinesburgcma.org',
+		onSuccess,
+		checkboxes = [],
+		resetKey = 0
+	}: Props = $props();
 
 	const maskConfig = { mask: '(000) 000-0000' };
+
+	// Initialize checkbox state
+	function initializeCheckboxes() {
+		return checkboxes.reduce(
+			(acc, cb) => {
+				acc[cb.id] = false;
+				return acc;
+			},
+			{} as Record<string, boolean>
+		);
+	}
 
 	let formData = $state({
 		name: '',
 		email: '',
 		phone: '',
-		message: ''
+		message: '',
+		checkboxes: initializeCheckboxes()
 	});
 
 	let status = $state({
@@ -76,9 +101,21 @@
 		status.error = null;
 
 		try {
+			// Map checkbox IDs to labels for email
+			const checkboxData = checkboxes
+				.filter((cb) => formData.checkboxes[cb.id])
+				.map((cb) => ({ id: cb.id, label: cb.label }));
+
 			const response = await fetch(endpoint, {
 				method: 'POST',
-				body: JSON.stringify({ ...formData, sendTo }),
+				body: JSON.stringify({
+					name: formData.name,
+					email: formData.email,
+					phone: formData.phone,
+					message: formData.message,
+					checkboxes: checkboxData,
+					sendTo
+				}),
 				headers: {
 					'Content-Type': 'application/json'
 				}
@@ -88,7 +125,14 @@
 
 			if (result.success) {
 				status.success = true;
-				formData = { name: '', email: '', phone: '', message: '' };
+				const resetCheckboxes = checkboxes.reduce(
+					(acc, cb) => {
+						acc[cb.id] = false;
+						return acc;
+					},
+					{} as Record<string, boolean>
+				);
+				formData = { name: '', email: '', phone: '', message: '', checkboxes: resetCheckboxes };
 				if (onSuccess) {
 					onSuccess();
 				}
@@ -102,10 +146,25 @@
 		}
 	}
 
-	function handleInput(field: keyof typeof formData) {
+	function handleInput(field: 'name' | 'email' | 'phone' | 'message') {
 		errors[field] = '';
 		formIsValid = true;
 	}
+
+	function resetForm() {
+		const resetCheckboxes = initializeCheckboxes();
+		formData = { name: '', email: '', phone: '', message: '', checkboxes: resetCheckboxes };
+		status = { sending: false, success: false, error: null };
+		errors = { name: '', email: '', phone: '', message: '' };
+		formIsValid = false;
+	}
+
+	// Reset form when resetKey changes
+	$effect(() => {
+		if (resetKey > 0) {
+			resetForm();
+		}
+	});
 </script>
 
 <div class="contactContainer">
@@ -173,6 +232,27 @@
 				{/if}
 			</div>
 
+			{#if checkboxes.length > 0}
+				<div class="formGroup checkboxGroup">
+					<fieldset class="checkboxFieldset">
+						<legend class="checkboxLegend">I'm interested in:</legend>
+						<div class="checkboxContainer">
+							{#each checkboxes as checkbox}
+								<label class="checkboxLabel">
+									<input
+										type="checkbox"
+										bind:checked={formData.checkboxes[checkbox.id]}
+										value={checkbox.id}
+										class="checkboxInput"
+									/>
+									<span class="checkboxText">{checkbox.label}</span>
+								</label>
+							{/each}
+						</div>
+					</fieldset>
+				</div>
+			{/if}
+
 			<button class="submitButton" type="submit" disabled={status.sending}>
 				{status.sending ? 'Sending...' : 'Send Message'}
 			</button>
@@ -215,6 +295,15 @@
 		font-weight: 600;
 		color: var(--textColor);
 		font-size: 1.1rem;
+		&.checkboxLabel {
+			display: grid;
+			grid-template-columns: 1.25rem 1fr;
+			align-items: center;
+			gap: 0.75rem;
+			cursor: pointer;
+			font-size: 1rem;
+			color: var(--textColor);
+		}
 	}
 
 	.formGroup input,
@@ -296,5 +385,42 @@
 		color: var(--textColor);
 		font-size: 1.1rem;
 		margin: 0;
+	}
+
+	.checkboxGroup {
+		margin-top: 1.5rem;
+	}
+
+	.checkboxFieldset {
+		border: 1px solid var(--cardBorder);
+		border-radius: 0.5rem;
+		padding: 1rem;
+		margin: 0;
+		background: color-mix(in oklch, var(--backgroundColor) 50%, transparent);
+	}
+
+	.checkboxLegend {
+		font-weight: 600;
+		color: var(--textColor);
+		font-size: 1.1rem;
+		padding: 0 0.5rem;
+	}
+
+	.checkboxContainer {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+		margin-top: 0.75rem;
+	}
+
+	.checkboxInput {
+		width: 1.25rem;
+		height: 1.25rem;
+		cursor: pointer;
+		accent-color: var(--accentColor);
+	}
+
+	.checkboxText {
+		user-select: none;
 	}
 </style>

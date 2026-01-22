@@ -1,16 +1,24 @@
 <script lang="ts">
 	import ContactForm from '$lib/components/ContactForm.svelte';
 
+	interface CheckboxOption {
+		id: string;
+		label: string;
+	}
+
 	interface Props {
 		endpoint?: string;
 		sendTo?: string;
 		isOpen?: boolean;
 		onClose?: () => void;
+		checkboxes?: CheckboxOption[];
 	}
 
-	let { endpoint, sendTo, isOpen = $bindable(false), onClose }: Props = $props();
+	let { endpoint, sendTo, isOpen = $bindable(false), onClose, checkboxes }: Props = $props();
 
 	let autoCloseTimeout: ReturnType<typeof setTimeout> | null = null;
+	let resetKey = $state(0);
+	let wasOpen = $state(false);
 
 	function handleBackdropClick(e: MouseEvent) {
 		if (e.target === e.currentTarget) {
@@ -52,11 +60,19 @@
 	$effect(() => {
 		if (isOpen && typeof document !== 'undefined') {
 			document.body.style.overflow = 'hidden';
+			wasOpen = true;
 		} else if (!isOpen && typeof document !== 'undefined') {
 			document.body.style.overflow = '';
 			if (autoCloseTimeout) {
 				clearTimeout(autoCloseTimeout);
 				autoCloseTimeout = null;
+			}
+			// Reset form after modal close animation completes (0.5s transition)
+			if (wasOpen) {
+				setTimeout(() => {
+					resetKey++;
+					wasOpen = false;
+				}, 500);
 			}
 		}
 	});
@@ -75,7 +91,7 @@
 	<div class="modalContent" class:open={isOpen}>
 		<button class="modalClose" onclick={closeModal} aria-label="Close modal">×</button>
 		<h2 id="contact-modal-title" class="modalTitle">Contact Us</h2>
-		<ContactForm {endpoint} {sendTo} onSuccess={handleFormSuccess} />
+		<ContactForm {endpoint} {sendTo} {checkboxes} {resetKey} onSuccess={handleFormSuccess} />
 	</div>
 </div>
 

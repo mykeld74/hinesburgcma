@@ -47,9 +47,11 @@
 		serve in the M2535 community, typically during US students' spring break from school.
 	</p>
 	<p class="pageSectionText">
-		To learn more about missions at CAC, contact <a href="mailto:kellyfournier0@gmail.com">
-			Kelly Fornier</a
-		>. You can also learn more about M2535 Ministry on their
+		To learn more about missions at CAC, contact <a href="mailto:joshdleckey@gmail.com">
+			Josh Leckey</a
+		>
+		or <a href="mailto:lizarixon@gmail.com">Liza Rixon</a>. You can also learn more about M2535
+		Ministry on their
 		<a href="https://m2535.org" target="_blank" rel="noopener noreferrer">website</a>.
 	</p>
 </section>
