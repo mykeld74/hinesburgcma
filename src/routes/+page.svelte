@@ -362,7 +362,7 @@
 	.expectations,
 	.pathways {
 		position: relative;
-		max-width: 1100px;
+		max-width: min(1100px, calc(100vw - 2rem));
 		margin: 0 auto clamp(3rem, 6vw, 5rem);
 		z-index: 5;
 	}
@@ -482,7 +482,7 @@
 		gap: clamp(1.5rem, 3vw, 3rem);
 		grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
 		align-items: center;
-		max-width: 1100px;
+		max-width: min(1100px, calc(100vw - 2rem));
 		margin: 0 auto clamp(3rem, 6vw, 5rem);
 		padding: 0;
 		background: linear-gradient(
@@ -506,7 +506,7 @@
 	}
 
 	.appBanner {
-		max-width: 900px;
+		max-width: min(900px, calc(100vw - 2rem));
 		margin: 0 auto clamp(3rem, 6vw, 5rem);
 		padding: clamp(1.75rem, 4vw, 2.5rem);
 		background: linear-gradient(
