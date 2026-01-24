@@ -26,20 +26,21 @@
 
 		<ul class="footerSocial">
 			<li>
-				<a href="https://www.youtube.com/@HinesburgCAC" aria-label="YouTube"
+				<a href="https://www.youtube.com/@HinesburgCAC" aria-label="YouTube" target="_blank"
 					><Icon name="youtube4" /></a
 				>
 			</li>
 			<li>
 				<a
 					href="https://www.facebook.com/Community-Alliance-Church-70320201120"
+					target="_blank"
 					aria-label="Facebook"
 				>
 					<Icon name="facebook3" />
 				</a>
 			</li>
 			<li>
-				<a href="https://www.instagram.com/hinesburgcac/" aria-label="Instagram">
+				<a href="https://www.instagram.com/hinesburgcac/" aria-label="Instagram" target="_blank">
 					<Icon name="instagram4" />
 				</a>
 			</li>

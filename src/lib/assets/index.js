@@ -18,6 +18,11 @@ import Women2 from './banner/women/wow2.webp';
 import Women3 from './banner/women/wow3.webp';
 import Women4 from './banner/women/wow4.webp';
 import Women5 from './banner/women/wow5.webp';
+import Membership1 from './banner/membership/membership1.webp';
+import Membership2 from './banner/membership/membership2.webp';
+import Membership3 from './banner/membership/membership3.webp';
+import Membership4 from './banner/membership/membership4.webp';
+import Membership5 from './banner/membership/membership5.webp';
 
 export {
 	Kids1,
@@ -39,5 +44,10 @@ export {
 	Women2,
 	Women3,
 	Women4,
-	Women5
+	Women5,
+	Membership1,
+	Membership2,
+	Membership3,
+	Membership4,
+	Membership5
 };

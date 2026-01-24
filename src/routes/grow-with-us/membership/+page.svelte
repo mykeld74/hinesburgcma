@@ -1,3 +1,7 @@
+<script lang="ts">
+	import ScrollingHero from '$lib/components/ScrollingHero.svelte';
+</script>
+
 <svelte:head>
 	<title>Membership - Community Alliance Church - Hinesburg</title>
 	<meta
@@ -6,10 +10,8 @@
 	/>
 </svelte:head>
 
-<section class="pageHero">
-	<div class="pageHeroContent">
-		<h1 class="pageHeroChild pageHeroTitle">Membership</h1>
-	</div>
+<section class="bannerHero">
+	<ScrollingHero currentPage="membership" />
 </section>
 
 <section class="pageSection">

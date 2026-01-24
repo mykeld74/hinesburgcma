@@ -21,12 +21,18 @@
 		Women2,
 		Women3,
 		Women4,
-		Women5
+		Women5,
+		Membership1,
+		Membership2,
+		Membership3,
+		Membership4,
+		Membership5
 	} from '$lib/assets';
 	import Image from '$lib/components/Image.svelte';
 
 	let pages = $state<string[]>([]);
 	let logo = $state('');
+	let bannerText = $state('');
 	if (currentPage === 'kids') {
 		pages = [Kids1, Kids2, Kids3, Kids4, Kids5];
 		logo = 'logoKids';
@@ -39,6 +45,10 @@
 	} else if (currentPage === 'men') {
 		pages = [Men1, Men2, Men3, Men4, Men5];
 		logo = 'wmLogo';
+	} else if (currentPage === 'membership') {
+		pages = [Membership1, Membership2, Membership3, Membership4, Membership5];
+		logo = '';
+		bannerText = 'Membership';
 	}
 
 	let scrollers: Element[] = [];
@@ -67,7 +77,12 @@
 
 <div class="scrollerHero">
 	<div class={`scrollerLogoContainer ${currentPage}`}>
-		<Image source={logo} altTag="Banner Logo" />
+		{#if logo}
+			<Image source={logo} altTag="Banner Logo" />
+		{/if}
+		{#if bannerText}
+			<h1 class="bannerText">{bannerText}</h1>
+		{/if}
 	</div>
 	<div class="scrollerContainer" data-animationSpeed="slow">
 		<ul class="pages innerScroller">
@@ -149,6 +164,17 @@
 			height: 100%;
 			width: auto;
 		}
+	}
+
+	.bannerText {
+		font-size: clamp(2rem, 2vw + 1.7rem, 4rem);
+		font-weight: 700;
+		text-align: center;
+		color: #fff;
+		text-shadow: 0 0 10px oklch(0 0 0 / 0.75);
+	}
+	.membership {
+		width: fit-content;
 	}
 
 	@keyframes scroll {

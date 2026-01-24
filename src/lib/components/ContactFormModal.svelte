@@ -8,7 +8,7 @@
 
 	interface Props {
 		endpoint?: string;
-		sendTo?: string;
+		sendTo?: string | string[];
 		isOpen?: boolean;
 		onClose?: () => void;
 		checkboxes?: CheckboxOption[];
