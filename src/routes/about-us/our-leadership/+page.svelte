@@ -88,13 +88,15 @@
 			email: 'bmans09@gmail.com',
 			role: 'Elder',
 			description: [
-				'Brandon and Mary-Kate Mansfield lead our Student Ministry Team here at CAC and have been serving since September of 2022. As Student Ministry leaders, Brandon and Mary-Kate focus on creating and writing curriculum for the group (which we call Youth Group) as well as heading up local events and trips to camps throughout the year. Their passion is to continually disciple and share the gospel with youth and to compliment what students are learning at home, all while building real friendships with them.',
+				'Brandon and Mary-Kate Mansfield lead our Student Ministry Team here at CAC and have been serving since September of 2022. As Student Ministry leaders, Brandon and Mary-Kate focus on discipleship with teenagers in and outside of the church pertaining to Youth Group aged students (6th through 12th grade). They run youth group studies, events, and trips to camps/conferences throughout the year. Their passion is to continually disciple and share the gospel with youth and to compliment what students are learning at home, all while building real friendships with them. They also aim to grow youth ministry leadership by discipling other youth ministry leaders.',
 
-				"In addition to working at CAC, Brandon works for a construction company in Vergennes, runs their maple sugaring business and works on his family's diversified farm in Starksboro. Mary-Kate is a physical therapist for Addison County Home Health and Addison County Outpatient Therapy. Together, they also volunteer for Addison County YoungLife.",
+				"Together, they are also on Mission Staff for Addison County Young Life. The mission of Young Life compliments youth ministry well in going outside of the church, meeting youth where they're at, building relationships with teenagers, sharing the Good News. and discipling teens in the community.",
 
-				'Brandon and Mary-Kate both grew up in Addison County and were good friends and high school sweethearts at Mount Abraham. In October of 2022, Brandon and Mary-Kate were married. They currently reside in Bristol with their Aussie/Golden Retriever, Lady May. In their free time, Brandon and Mary-Kate can be found skiing, lifting weights, reading books by the water, playing pickleball, and going for walks with Lady May.',
+				"In addition to working at CAC, Brandon runs their maple sugaring business and works on his family's diversified farm in Starksboro. Mary-Kate is a Physical Therapist for Addison County Therapies.",
 
-				'Among their favorite things are: Chocolate Creemees (with chocolate sprinkles!); vacationing in Cape Cod; cooking up steak and potatoes, watching the Denver Broncos (Brandon) and Buffalo Bills (Mary-Kate).'
+				'Brandon and Mary-Kate both grew up in Addison County and were good friends and high school sweethearts at Mount Abraham and have been married since October, 2022. They currently reside in Bristol with their Aussie/Golden Retriever, Lady May. In their free time, Brandon and Mary-Kate can be found skiing, weight lifting, reading books by the water, playing pickleball, and going for walks with Lady May.',
+
+				'Among their favorite things are: Chocolate Creemees (with chocolate sprinkles!); vacationing in Cape Cod; cooking up steak and potatoes, and watching the Denver Broncos (Brandon) and Buffalo Bills (Mary-Kate).'
 			],
 			image: 'brandonandmarykate'
 		}
@@ -190,13 +192,15 @@
 			role: 'Students & Young Adult Ministries',
 			email: 'bmans09@gmail.com',
 			description: [
-				'Brandon and Mary-Kate Mansfield lead our Student Ministry Team here at CAC and have been serving since September of 2022. As Student Ministry leaders, Brandon and Mary-Kate focus on creating and writing curriculum for the group (which we call Youth Group) as well as heading up local events and trips to camps throughout the year. Their passion is to continually disciple and share the gospel with youth and to compliment what students are learning at home, all while building real friendships with them.',
+				'Brandon and Mary-Kate Mansfield lead our Student Ministry Team here at CAC and have been serving since September of 2022. As Student Ministry leaders, Brandon and Mary-Kate focus on discipleship with teenagers in and outside of the church pertaining to Youth Group aged students (6th through 12th grade). They run youth group studies, events, and trips to camps/conferences throughout the year. Their passion is to continually disciple and share the gospel with youth and to compliment what students are learning at home, all while building real friendships with them. They also aim to grow youth ministry leadership by discipling other youth ministry leaders.',
 
-				"In addition to working at CAC, Brandon works for a construction company in Vergennes, runs their maple sugaring business and works on his family's diversified farm in Starksboro. Mary-Kate is a physical therapist for Addison County Home Health and Addison County Outpatient Therapy. Together, they also volunteer for Addison County YoungLife.",
+				"Together, they are also on Mission Staff for Addison County Young Life. The mission of Young Life compliments youth ministry well in going outside of the church, meeting youth where they're at, building relationships with teenagers, sharing the Good News. and discipling teens in the community.",
 
-				'Brandon and Mary-Kate both grew up in Addison County and were good friends and high school sweethearts at Mount Abraham. In October of 2022, Brandon and Mary-Kate were married. They currently reside in Bristol with their Aussie/Golden Retriever, Lady May. In their free time, Brandon and Mary-Kate can be found skiing, lifting weights, reading books by the water, playing pickleball, and going for walks with Lady May.',
+				"In addition to working at CAC, Brandon runs their maple sugaring business and works on his family's diversified farm in Starksboro. Mary-Kate is a Physical Therapist for Addison County Therapies.",
 
-				'Among their favorite things are: Chocolate Creemees (with chocolate sprinkles!); vacationing in Cape Cod; cooking up steak and potatoes, watching the Denver Broncos (Brandon) and Buffalo Bills (Mary-Kate).'
+				'Brandon and Mary-Kate both grew up in Addison County and were good friends and high school sweethearts at Mount Abraham and have been married since October, 2022. They currently reside in Bristol with their Aussie/Golden Retriever, Lady May. In their free time, Brandon and Mary-Kate can be found skiing, weight lifting, reading books by the water, playing pickleball, and going for walks with Lady May.',
+
+				'Among their favorite things are: Chocolate Creemees (with chocolate sprinkles!); vacationing in Cape Cod; cooking up steak and potatoes, and watching the Denver Broncos (Brandon) and Buffalo Bills (Mary-Kate).'
 			],
 			image: 'brandonandmarykate'
 		}
