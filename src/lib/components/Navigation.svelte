@@ -223,8 +223,8 @@
 		onToggleTheme?.();
 	}
 
-	// const logoImg = $derived(theme === 'dark' ? logo : logoDark);
-	const logoImg = logoColor;
+	const logoImg = $derived(theme === 'dark' ? logo : logoColor);
+
 	$effect(() => {
 		if (typeof document !== 'undefined' && isDrawerOpen) {
 			document.body.style.overflow = 'hidden';
