@@ -73,8 +73,12 @@
 			name: 'Ray & Carol Bulaga',
 			email: 'rjbulaga@aol.com',
 			role: 'Elder',
-			description: '',
-			image: 'bulaga'
+			description: [
+				'Ray and Carol have been at CAC for over 25 years.  They are both retired and blessed to be part of the shepherding team at CAC.  Ray has served as an elder since 2025.',
+				'Ray and Carol have lived in Richmond since 1993, raising a daughter and a son.  They currently have two grandchildren.',
+				'Ray enjoys traveling with Carol, playing with grandchildren, biking, making sourdough bread, and repurposing old things.'
+			],
+			image: 'bulaga2'
 		},
 		{
 			name: 'Jeff & Kristin Hammond',
