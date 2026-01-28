@@ -3,6 +3,7 @@
 	import { tick } from 'svelte';
 	import logo from '$lib/assets/logo.webp';
 	import logoDark from '$lib/assets/logoDark.webp';
+	import logoColor from '$lib/assets/logoColor.webp';
 
 	type NavItem = {
 		label: string;
@@ -222,8 +223,8 @@
 		onToggleTheme?.();
 	}
 
-	const logoImg = $derived(theme === 'dark' ? logo : logoDark);
-
+	// const logoImg = $derived(theme === 'dark' ? logo : logoDark);
+	const logoImg = logoColor;
 	$effect(() => {
 		if (typeof document !== 'undefined' && isDrawerOpen) {
 			document.body.style.overflow = 'hidden';
