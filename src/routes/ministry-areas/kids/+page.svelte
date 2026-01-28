@@ -2,6 +2,7 @@
 	import ScrollingHero from '$lib/components/ScrollingHero.svelte';
 	import Accordion from '$lib/components/Accordion.svelte';
 	import ContactFormModal from '$lib/components/ContactFormModal.svelte';
+	import Image from '$lib/components/Image.svelte';
 
 	let modalOpen = $state(false);
 </script>
@@ -20,104 +21,113 @@
 
 <section class="pageSection">
 	<h1 class="pageHeroTitle">Welcome to CaMA Kids!</h1>
-	<p class="pageSectionText">
-		Here at CAC, we call our Children's Ministry Program, <strong>CaMA Kids</strong>. The "<strong
-			>CaMA</strong
-		>" part stands for <em>Christian & Missionary Alliance</em>, the denomination of which Community
-		Alliance Church is a part.
+	<p>
+		In the Bible, we see clearly that Jesus valued and loved children. We also find that God
+		intended for a child’s instruction in the faith to be rooted within the family.
 	</p>
-	<p class="pageSectionText">
-		Just as Jesus told His disciples, children should be welcomed into the church family and guided
-		into their own personal relationship with Him. <em>(Matthew 19:14)</em>. The staff and
-		volunteers in our Children's Ministry Program are blessed and excited to be able to share the
-		love of Christ with our children. We're passionate about helping them to recognize and
-		experience the wonders and blessings of a life pursuing Jesus Christ.
+	<p>
+		Children’s Ministry at Community Alliance Church (which we call CaMA Kids!) teaches that
+		children are an integral part of God’s family. We want them to learn:
+	</p>
+
+	<ul>
+		<li>Who God is and what he has to say about them</li>
+
+		<li>
+			That Jesus Christ offers each of us eternal life and forgiveness from sin, through our belief
+			in him and a lifelong relationship with him.
+		</li>
+
+		<li>About the wonder and joy that exists in a life spent following Jesus!</li>
+	</ul>
+
+	<p>
+		In tandem with these goals, we seek to support families as they love and teach their children in
+		the Christian faith.
 	</p>
 </section>
 
 <section class="pageSection">
 	<div class="accordionContainer">
-		<Accordion title="Does CAC hold a summertime Vacation Bible School?">
-			<p><strong>Yes, we sure do!</strong></p>
+		<Accordion title="Where should I take my children when I arrive at church?">
 			<p>
-				We are incredibly excited to be partnering again with Prindle-Baldwin Farm here in
-				Hinesburg, VT, to hold our summertime VBS (Vacation Bible School). Here are some details:
+				As you enter the front doors, you’ll want to head to the Children’s Ministry rooms: head
+				down the hallway on the right side of the lobby, go past the bathrooms and kitchen, and into
+				the children’s wing. You’ll typically find someone in the hallway with an orange lanyard and
+				name tag who can help you and your kids find their classroom. You can also ask a greeter at
+				the door where to go.
 			</p>
+
+			<p>Based on the week of the month and time of year, our Sunday school schedule can vary:</p>
+
 			<ul>
 				<li>
-					The 2025 dates for this year's VBS are Monday, June 23 through Friday, June 27. Camp runs
-					from 9:00am to 3:00pm.
+					During the school year, kids can attend CaMA Kids classes during the worship service,
+					beginning at 10:30am. The exception to this is on Communion Sundays, the first Sunday of
+					each month. During that service, all kids stay with their families in the sanctuary for
+					the duration of the service. Quiet activities, such as coloring pages, picture books and
+					quiet fidget toys are available at the back of the sanctuary. Kids are welcome to take
+					activities back to their seats with them and return them at the end of service.
 				</li>
+
 				<li>
-					Children entering grades 1 through 6 (or the homeschool equivalent) in the fall of 2025
-					are eligible to attend. Kids in any school district and of any - or no - church background
-					are welcome!
-				</li>
-				<li>
-					This is a FREE summer camp. Parents/caregivers are asked to provide a lunch for their
-					child, but drinking water and light snacks are provided.
-				</li>
-				<li>
-					The 2025 theme is "True North," and aims to teach kids that we can trust Jesus because He
-					is THE unchanging "True North" throughout all of our lives.
-				</li>
-				<li>
-					Camp days are spent mostly outdoors on the Prindle-Baldwin Farm, on Baldwin Road in
-					Hinesburg. The week provides many opportunities for enjoying what kids love so much about
-					summer: swimming, hiking, exploring nature, playing games and more!
+					In the summertime (i.e., when school breaks for summer), we often have a lighter class
+					schedule, which we call our "Sabbath Summer.” We let the congregation know what that
+					summer’s schedule will be prior to the end of the school year in June.
 				</li>
 			</ul>
 		</Accordion>
 
-		<Accordion title="Where should kids go during the Sunday morning service?">
-			<p><strong>This varies depending on the time of year:</strong></p>
+		<Accordion title="What ages does CaMA Kids Serve?">
 			<p>
-				During the school year, kids attend CaMA Kids Sunday school during the service, beginning at
-				10:30am. The exception to this is on Communion Sundays, the first Sunday of each month.
-				During that service, all kids stay with their families in the sanctuary for the duration of
-				the service. Quiet activities, such as coloring pages, picture books and quiet fidget toys
-				are available at the back of the sanctuary. Kids are welcome to take activities back to
-				their seats with them and return them at the end of service.
+				<strong>CaMA Kids programming serves kids in preschool (3 yrs) through 5th grade.</strong>
 			</p>
 			<p>
-				In the summer, we often switch up our typical Sunday morning lessons. We call this our
-				<em>Sabbath Summer</em>. This year, from July 13 - August 24, 2025,
-				<strong>all</strong>{' '}
-				children (grades PreK thru those entering 6th grade in the fall) will join together for{' '}
-				<strong>one</strong>, large Sunday morning class. We'll explore the theme "God is Our
-				Fortress" through short lessons and hands-on building and craft activities. Children still
-				will join their families in the sanctuary for the service on the 1st Sundays of August and
-				September, as well as on Sunday, August 31, when we will take an end-of-summer break.
-			</p>
-			<p>
-				Regular Sunday school classes for both CaMA Kids age groups will resume on September 14,
-				2025.
-			</p>
-			<p>
-				Our CaMA Kids classrooms are down the hallway that leads off from our lobby. If you're not
-				sure where to go, look for one of the CaMA Kids volunteers with an orange lanyard or ask one
-				of our greeters.
+				On Sunday mornings, we usually have two classrooms open based on age range: our CaMA Kids
+				Jr. room is for kids in preschool and kindergarten; and our CaMA Kids Elementary room is for
+				kids in grades 1st - 5th. From 6th grade on, kids join our Student Ministries! (Link to SM
+				page, please)
 			</p>
 		</Accordion>
 
-		<Accordion title="What ages does CaMA Kids serve?">
+
+		<Accordion title="What does CaMA Kids mean?">
 			<p>
-				When CaMA Kids is in session, we have separate classrooms open based on age range. Our CaMA
-				Kids Jr. room is for kids in preschool and kindergarten. Our CaMA Kids Elementary room is
-				for kids in grades 1st - 5th. From 6th grade on, kids head to our student youth group!
+				CaMA Kids stands for Christian and Missionary Alliance Kids. Our church is part of the
+				denomination known as the Christian and Missionary Alliance Church. You can learn more about
+				us on the <a href="https://cmalliance.org" target="_blank" rel="noopener noreferrer"
+					>denomination’s website</a
+				>.
 			</p>
 		</Accordion>
 
-		<Accordion title="Where do I take my infant/toddler?">
+		<Accordion title="Is there childcare for infants and toddlers?">
 			<p>
-				Our nursery room is always available, upon request, for anyone with an infant or toddler. We
-				do not consistently keep the infant room open, as we do not always have children in this age
-				range in attendance. However, if you arrive at church with an infant or toddler and need a
+				Since need fluctuates, we do not schedule this type of care for every week. (And kids are
+				always welcome in the service with you!) We do have volunteers ready to step in, however, if
+				you arrive and would like care for your infant or toddler. Toddlers are also welcome to try
+				joining our CaMA Kids Jr. class! If you arrive at church with a little one and need a
 				private or quiet space, please find a Children's Ministry worker (wearing an orange lanyard)
-				or ask a greeter at the door. In addition, our library is always open and has a TV with the
-				live service streaming, as well as toys and books for children. You're always welcome to
-				head there if your infant (or school-aged child!) needs a break from the sanctuary. We're
-				here to help so don't hesitate to ask!
+				or ask a greeter at the door.
+			</p>
+			<p>
+				In addition, our library is always available for children accompanied by their parents. It
+				has a TV with the live service streaming, as well as toys and books for children. You're
+				always welcome to head there if your infant (or school-aged child!) needs a break from the
+				sanctuary.
+			</p>
+		</Accordion>
+		<Accordion title="Can my child(ren) stay in the worship service with me?">
+			<p>
+				Absolutely they can! We have coloring pages and materials, along with books and quiet toys,
+				available for children who want to remain in the service. You can find them in the back
+				corner of our sanctuary or ask a greeter for assistance.
+			</p>
+
+			<p>
+				As mentioned above, we also have a library open to parents and their children if children
+				need a break from the sanctuary. The service is streaming live in the library so parents
+				don’t miss out.
 			</p>
 		</Accordion>
 
@@ -126,78 +136,115 @@
 			<ul>
 				<li>
 					Once kids have all gathered in their classrooms, leaders start the morning with a brief
-					welcome. Sometimes this is a song or game, or sometimes a teacher opens in prayer. However
-					it begins, the start of class is a chance to say hello and make sure everyone knows one
-					another.
+					welcome; often this is a game or opening prayer, a time to check in with each child and be
+					sure everyone knows one another.
 				</li>
+
 				<li>
-					In September 2023, we began using a curriculum called <strong>Wonder Ink</strong>. We are
-					so excited to have access to this program for both our PreK/K and our elementary rooms.
-					You can read more about this curriculum and its ministry{' '}
-					<a href="https://www.wonderink.org/" target="_blank" rel="noopener noreferrer">here</a>
-					.
+					In September 2023, we began using a curriculum called Wonder Ink. We are so excited to
+					have access to this program for both our Junior and Elementary rooms. You can read more
+					about this curriculum and its ministry <a
+						href="https://www.wonderink.org"
+						target="_blank"
+						rel="noopener noreferrer">here</a
+					>.
 				</li>
+
 				<li>
-					Most of the lessons taught are part of 4- to 5-week sessions. Each lesson includes
-					teaching about and helping children to understand a particular section of the Bible.
-					Activities such as games, question-and-answer times, object lessons and crafts, all
-					support the main idea learned from the Bible lesson. Kids also work on memorizing a verse
-					in the Bible pertinent to the current session. On some Sundays, a volunteer may join us to
-					teach us a song or the teens may join us to do a funny skit. The specifics vary based on
-					the gifting of that month's teacher.
+					Lessons usually are part of 4- to 5-week sessions. Each lesson includes teaching about a
+					particular section of or theme in the Bible. Activities such as games, question-and-answer
+					times, object lessons and crafts, all support the main idea and reinforce the Scripture
+					being taught. Class specifics vary based on the gifting of that month's teacher.
 				</li>
 			</ul>
 		</Accordion>
 
+		<Accordion title="Does CAC hold a summertime Vacation Bible School?">
+			<p>
+				<strong>Yes, we sure do!</strong> Please check back here in April when registration opens. In
+				the meantime, here are some details:
+			</p>
+
+			<ul>
+				<li>
+					Our 2026 Kids’ Week will be held Monday, June 29 through Friday, July 3. Camp runs from
+					9:00 am to 3:00 pm.
+				</li>
+
+				<li>
+					In recent years, we’ve held our summer camp at a local farm here in Hinesburg. This year,
+					however, the full week of camp will be held at CAC.
+				</li>
+
+				<li>
+					Children who will be entering grades 1 through 6 (or the homeschool equivalent) in the
+					fall of 2026 are eligible to attend. Kids in any school district and of any (or no) church
+					background are welcome!
+				</li>
+
+				<li>
+					This is a FREE summer camp. Parents/caregivers are asked to provide a lunch for their
+					child. Snacks are provided.
+				</li>
+			</ul>
+		</Accordion>
 		<Accordion title="Do you have other kids' events?">
 			<p>
-				We sure do! During the school year, we host a monthly event for elementary kids called{' '}
-				<em>Club Night</em>. This event takes place on the 3rd Thursday of each month, from
-				6:30-8:00pm at the church. Club Night is an event to which kids are encouraged to bring a
-				friend, as it's a very relaxed environment where kids can run, play games and sing loudly -
-				in short, be kids! The lesson is brief and is tailored to kids who might not have heard much
-				about the Bible or Christianity. Parents of newcomers will be asked to fill out a
-				registration form. All kids in grades 1st thru 5th are welcome! No pre-registration
-				necessary.
+				<strong>Yes!</strong> During the school year, we host a monthly event for elementary kids called
+				Club Night. This event happens monthly on the 3rd Thursday, from 6:00-7:30 pm, at the church.
+				Club Night is a time when kids are encouraged to bring a friend, as it's a very relaxed environment.
+				Kids play lots of games (almost always some form of tag!), do crafts, sing songs and have snack.
+				The lesson is brief and is tailored to kids who may not be familiar with the Bible or Christianity.
+				Parents of newcomers will be asked to fill out a registration form. All kids in grades 1st thru
+				5th are welcome! No pre-registration necessary.
 			</p>
 		</Accordion>
 
-		<Accordion title="Do adults that volunteer need to be background checked?">
+		<Accordion title="How do you keep kids safe while in your programs?">
 			<p>
 				Safety in our children's program is a must. All adults who volunteer with children must have
 				an up-to-date background check, which we initiate through our church. In addition, any
-				teenager serving in a classroom must always be with an adult volunteer, and be in frequent
-				and regular contact with a CAC staff person or volunteer for training and discipleship.
+				teenager serving in a classroom must always be with an adult volunteer and be in frequent
+				contact with a CAC staff person or adult volunteer for training and discipleship.
+			</p>
+
+			<p>
+				Our church also has an active Safety Team, who works together with staff and ministry
+				leaders to develop plans for emergencies and implement best practices for church safety.
 			</p>
 		</Accordion>
 	</div>
 </section>
 
 <section class="pageSection">
-	<p class="pageSectionText">
-		<strong>We can't wait to welcome you and your children into our church family!</strong>
+	<p >
+		If you still have questions or want to learn more, reach out to Amanda Wheeler. She'd love to chat with you!
 	</p>
 	<p class="pageSectionText">
-		Interested in knowing more? Reach out to Amanda Wheeler. She'd love to chat with you!
+		<strong>We can't wait to welcome you and your children into our church family!</strong>
 	</p>
 </section>
 
 <section class="pageSection">
 	<h2 class="pageSectionTitle">Our Staff</h2>
 	<div class="staffCard">
-		<h3 class="staffName">Amanda Wheeler</h3>
-		<p class="staffRole">Family Ministries Director</p>
-		<div class="staffContact">
-			<p>
-				<strong>Address:</strong> 190 Pond Road | Hinesburg, VT | 05461
-			</p>
-			<p>
-				<strong>Phone:</strong>{' '}
-				<a href="tel:8024822132">(802) 482-2132</a>
-			</p>
-			<p>
-				<button class="contactButton" onclick={() => (modalOpen = true)}>Contact Us</button>
-			</p>
+		<div class="staffRoleContainer">
+			<div class="staffRoleDescription">
+				<h3 class="staffName">Amanda Wheeler</h3>
+				<p class="staffRole">Family Ministries Director</p>
+				<div class="staffContact">			
+					<p>
+						<strong>Phone:</strong>{' '}
+						<a href="tel:8024822132">(802) 482-2132</a>
+					</p>
+					<p>
+						<button class="contactButton" onclick={() => (modalOpen = true)}>Contact Us</button>
+					</p>
+				</div>
+			</div>
+			<div class="staffImage">
+				<Image source="mattandamandawheeler" altTag="Amanda Wheeler" class="staffImage" />
+			</div>
 		</div>
 	</div>
 </section>
@@ -205,6 +252,9 @@
 <ContactFormModal bind:isOpen={modalOpen} sendTo="awheeler@hinesburgcma.org" />
 
 <style>
+	.pageSection {
+		display: block;
+	}
 	.accordionContainer {
 		display: grid;
 		gap: clamp(1rem, 2.5vw, 1.5rem);
@@ -258,17 +308,19 @@
 		}
 	}
 
-	.inlineEmailLink {
-		background: none;
-		border: none;
-		padding: 0;
-		color: var(--accentColor);
-		text-decoration: underline;
-		cursor: pointer;
-		font: inherit;
+	.staffRoleContainer {
+		display: grid;
+		grid-template-columns: 3fr 1fr;
+		gap: 1rem;
+		@media (max-width: 768px) {
+			grid-template-columns: 1fr;
+		}
 	}
-
-	.inlineEmailLink:hover {
-		text-decoration: none;
+	.staffImage {
+		width: 100%;
+		aspect-ratio: 1/1;
+		object-fit: cover;
+		border-radius: 18px;
+		overflow: hidden;
 	}
 </style>
