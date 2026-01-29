@@ -45,7 +45,7 @@
 	</p>
 
 	<p>
-		Whether it's the during school year or summer break, our programming typically involves a weekly
+		Whether it's during school year or summer break, our programming typically involves a weekly
 		Bible study and devotional time, rounded out with food, games and good conversation!
 	</p>
 </section>
