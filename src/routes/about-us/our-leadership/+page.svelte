@@ -55,7 +55,12 @@
 			name: 'Rolly & Kathy Delfausse',
 			role: 'Elder',
 			email: 'kdelfausse@myfairpoint.net',
-			description: '',
+			description: [
+				'Kathy and Rolly are long term residents of Williston and have been attending Community Alliance Church since the early 1980\’s.',
+				'They are both retired and have two sons and two grandchildren. ',
+				'They enjoy and appreciate attending our church because CAC proclaims the Bible is the sole authority of our Christian faith. CAC is filled with a great variety of people with different backgrounds. ',
+				'They both enjoy the outdoors by gardening and hikes.'
+			],
 			image: 'delfausse'
 		},
 		{
