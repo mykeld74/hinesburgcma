@@ -20,9 +20,6 @@ importers:
       gsap:
         specifier: ^3.13.0
         version: 3.13.0
-      hinesburgcma:
-        specifier: 'link:'
-        version: 'link:'
       imask:
         specifier: ^7.6.1
         version: 7.6.1
