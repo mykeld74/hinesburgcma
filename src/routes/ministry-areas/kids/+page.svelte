@@ -90,7 +90,6 @@
 			</p>
 		</Accordion>
 
-
 		<Accordion title="What does CaMA Kids mean?">
 			<p>
 				CaMA Kids stands for Christian and Missionary Alliance Kids. Our church is part of the
@@ -161,8 +160,12 @@
 
 		<Accordion title="Does CAC hold a summertime Vacation Bible School?">
 			<p>
-				<strong>Yes, we sure do!</strong> Please check back here in April when registration opens. In
-				the meantime, here are some details:
+				<strong>Yes, we sure do!</strong>
+				<a
+					href="https://communityalliancechurch.churchcenter.com/registrations/events/3507232"
+					target="_blank"
+					rel="noopener noreferrer">Click here to register your child now!</a
+				> Here are some details:
 			</p>
 
 			<ul>
@@ -217,8 +220,9 @@
 </section>
 
 <section class="pageSection">
-	<p >
-		If you still have questions or want to learn more, reach out to Amanda Wheeler. She'd love to chat with you!
+	<p>
+		If you still have questions or want to learn more, reach out to Amanda Wheeler. She'd love to
+		chat with you!
 	</p>
 	<p class="pageSectionText">
 		<strong>We can't wait to welcome you and your children into our church family!</strong>
@@ -232,7 +236,7 @@
 			<div class="staffRoleDescription">
 				<h3 class="staffName">Amanda Wheeler</h3>
 				<p class="staffRole">Family Ministries Director</p>
-				<div class="staffContact">			
+				<div class="staffContact">
 					<p>
 						<strong>Phone:</strong>{' '}
 						<a href="tel:8024822132">(802) 482-2132</a>

@@ -13,6 +13,7 @@ type CalendarEvent = {
 	featured: boolean | null;
 	publicUrl: string | null;
 	imageUrl: string | null;
+	registrationUrl: string | null;
 };
 
 interface CachedCalendarData {

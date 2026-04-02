@@ -21,6 +21,7 @@
 		publicUrl: string | null;
 		imageUrl: string | null;
 		featured: boolean | null;
+		registrationUrl: string | null;
 	};
 
 	let { data } = $props();
@@ -43,7 +44,8 @@
 							? new Date(event.endDate)
 							: event.endDate instanceof Date
 								? event.endDate
-								: null
+								: null,
+					registrationUrl: event.registrationUrl ?? null
 				})
 			);
 		}
@@ -78,7 +80,8 @@
 						? new Date(event.endDate)
 						: event.endDate instanceof Date
 							? event.endDate
-							: null
+							: null,
+				registrationUrl: event.registrationUrl ?? null
 			}));
 		}
 
@@ -159,7 +162,8 @@
 				endDate:
 					event.endDate && typeof event.endDate === 'string'
 						? new Date(event.endDate)
-						: event.endDate
+						: event.endDate,
+				registrationUrl: event.registrationUrl ?? null
 			}));
 		} catch (err) {
 			throw err instanceof Error ? err : new Error('Unknown error');
@@ -788,6 +792,18 @@
 												{event.location}
 											</div>
 										{/if}
+										{#if event.registrationUrl}
+											<div class="eventRegistration">
+												<a
+													href={event.registrationUrl}
+													target="_blank"
+													rel="noopener noreferrer"
+													class="eventRegisterLink"
+												>
+													Register for event →
+												</a>
+											</div>
+										{/if}
 										{#if event.description}
 											<div class="eventDescription">{@html event.description}</div>
 										{/if}
@@ -1244,6 +1260,24 @@
 
 		strong {
 			color: var(--contrastColor);
+		}
+	}
+
+	.eventRegistration {
+		margin-bottom: 0.75rem;
+	}
+
+	.eventRegisterLink {
+		display: inline-flex;
+		align-items: center;
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--primaryColor);
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+			color: color-mix(in oklab, var(--primaryColor) 80%, black);
 		}
 	}
 

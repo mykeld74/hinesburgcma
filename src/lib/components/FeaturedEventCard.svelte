@@ -11,6 +11,7 @@
 		kind: string;
 		publicUrl: string | null;
 		imageUrl: string | null;
+		registrationUrl?: string | null;
 	};
 
 	let { event, loading = 'lazy' }: { event: CalendarEvent; loading?: 'lazy' | 'eager' } = $props();
@@ -35,26 +36,27 @@
 	}
 </script>
 
-<a href="/events/{event.eventId}" class="featuredEventCard">
-	{#if event.imageUrl}
-		<div class="featuredEventImage">
-			<img src={event.imageUrl} alt={event.title} {loading} />
-		</div>
-	{/if}
-	<div class="featuredEventContent">
-		<div class="featuredEventHeader">
-			<h3 class="featuredEventTitle">
-				{event.title}
-			</h3>
-			<div class="featuredEventDate">
-				{formatDate(event.startDate)}
-				{#if !event.allDay}
-					<br />{' '}at{' '}
-					{formatTime(event.startDate)}
-				{/if}
+<div class="featuredEventCard">
+	<a href="/events/{event.eventId}" class="featuredEventMain">
+		{#if event.imageUrl}
+			<div class="featuredEventImage">
+				<img src={event.imageUrl} alt={event.title} {loading} />
 			</div>
-		</div>
-		<!-- {#if event.location}
+		{/if}
+		<div class="featuredEventContent">
+			<div class="featuredEventHeader">
+				<h3 class="featuredEventTitle">
+					{event.title}
+				</h3>
+				<div class="featuredEventDate">
+					{formatDate(event.startDate)}
+					{#if !event.allDay}
+						<br />{' '}at{' '}
+						{formatTime(event.startDate)}
+					{/if}
+				</div>
+			</div>
+			<!-- {#if event.location}
 			<div class="featuredEventLocation">
 				{event.location}
 			</div>
@@ -67,8 +69,21 @@
 				<span class="kindTag">{event.kind}</span>
 			</div>
 		{/if} -->
-	</div>
-</a>
+		</div>
+	</a>
+	{#if event.registrationUrl}
+		<div class="featuredEventFooter">
+			<a
+				href={event.registrationUrl}
+				target="_blank"
+				rel="noopener noreferrer"
+				class="featuredEventRegister"
+			>
+				Register →
+			</a>
+		</div>
+	{/if}
+</div>
 
 <style>
 	.featuredEventCard {
@@ -82,7 +97,6 @@
 		display: flex;
 		flex-direction: column;
 		box-sizing: border-box;
-		text-decoration: none;
 		color: inherit;
 		transition:
 			transform 0.2s ease,
@@ -103,6 +117,34 @@
 			flex: 0 0 100%;
 			width: 100%;
 			max-width: 100%;
+		}
+	}
+
+	.featuredEventMain {
+		display: flex;
+		flex-direction: column;
+		flex: 1;
+		min-height: 0;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.featuredEventFooter {
+		padding: 0 1.5rem 1.25rem;
+		margin-top: -0.25rem;
+	}
+
+	.featuredEventRegister {
+		display: inline-flex;
+		align-items: center;
+		font-size: 0.9rem;
+		font-weight: 600;
+		color: var(--primaryColor);
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+			color: color-mix(in oklab, var(--primaryColor) 80%, black);
 		}
 	}
 

@@ -17,6 +17,7 @@ interface CachedData {
 		featured: boolean | null;
 		publicUrl: string | null;
 		imageUrl: string | null;
+		registrationUrl: string | null;
 	}>;
 	timestamp: number;
 	dateRange: {
@@ -83,6 +84,13 @@ async function revalidateCache(startDate: string, endDate: string): Promise<void
 						instance.attributes?.end_time ||
 						instance.attributes?.end;
 
+					const eventAttrs = event.attributes as {
+						registration_url?: string;
+						registration_link?: string;
+					};
+					const registrationUrl =
+						eventAttrs.registration_url || eventAttrs.registration_link || null;
+
 					return {
 						id: `${event.id}-${instance.id}`,
 						eventId: event.id,
@@ -97,7 +105,8 @@ async function revalidateCache(startDate: string, endDate: string): Promise<void
 						visibleInChurchCenter: event.attributes.visible_in_church_center ?? null,
 						featured: event.attributes.featured ?? null,
 						publicUrl: event.attributes.public_url || null,
-						imageUrl: event.attributes.image_url || null
+						imageUrl: event.attributes.image_url || null,
+						registrationUrl
 					};
 				})
 				.filter((e) => e !== null);
@@ -224,6 +233,13 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 						instance.attributes?.end_time ||
 						instance.attributes?.end;
 
+					const eventAttrs = event.attributes as {
+						registration_url?: string;
+						registration_link?: string;
+					};
+					const registrationUrl =
+						eventAttrs.registration_url || eventAttrs.registration_link || null;
+
 					return {
 						id: `${event.id}-${instance.id}`,
 						eventId: event.id,
@@ -238,7 +254,8 @@ export const load: PageServerLoad = async ({ url, setHeaders }) => {
 						visibleInChurchCenter: event.attributes.visible_in_church_center ?? null,
 						featured: event.attributes.featured ?? null,
 						publicUrl: event.attributes.public_url || null,
-						imageUrl: event.attributes.image_url || null
+						imageUrl: event.attributes.image_url || null,
+						registrationUrl
 					};
 				})
 				.filter((e) => e !== null);

@@ -70,6 +70,13 @@ export const GET: RequestHandler = async ({ url }) => {
 						instance.attributes?.end_time ||
 						instance.attributes?.end;
 
+					const eventAttrs = event.attributes as {
+						registration_url?: string;
+						registration_link?: string;
+					};
+					const registrationUrl =
+						eventAttrs.registration_url || eventAttrs.registration_link || null;
+
 					return {
 						id: `${event.id}-${instance.id}`,
 						eventId: event.id,
@@ -84,7 +91,8 @@ export const GET: RequestHandler = async ({ url }) => {
 						visibleInChurchCenter: event.attributes.visible_in_church_center ?? null,
 						featured: event.attributes.featured ?? null,
 						publicUrl: event.attributes.public_url || null,
-						imageUrl: event.attributes.image_url || null
+						imageUrl: event.attributes.image_url || null,
+						registrationUrl
 					};
 				})
 				.filter((e) => e !== null);

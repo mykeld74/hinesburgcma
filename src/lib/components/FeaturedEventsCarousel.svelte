@@ -16,6 +16,7 @@
 		publicUrl: string | null;
 		imageUrl: string | null;
 		featured: boolean | null;
+		registrationUrl: string | null;
 	};
 
 	let { events, isLoading = false }: { events: CalendarEvent[]; isLoading?: boolean } = $props();

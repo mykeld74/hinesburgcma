@@ -84,7 +84,7 @@
 		{
 			title: 'For Kids & Teens',
 			description:
-				'Programming for <a href="/ministry-areas/kids/">kids</a> and <a href="/ministry-areas/students/">teens</a> before or during the service!  Check out the links for specifics.',
+				'Programming for <a href="/ministry-areas/kids/">kids</a> and <a href="/ministry-areas/students/">teens</a> before or during the service!  Register your child for <a href="https://communityalliancechurch.churchcenter.com/registrations/events/3507232" target="_blank" rel="noopener noreferrer">CAC Summer Kids’ Camp here!</a>',
 			href: '/ministry-areas/kids/'
 		},
 		{

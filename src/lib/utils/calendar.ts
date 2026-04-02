@@ -124,6 +124,8 @@ export async function fetchAllEventInstances(
 			'event_type',
 			'public_url',
 			'image_url',
+			'registration_url',
+			'registration_link',
 			'public',
 			'visibility',
 			'visible_in_church_center',
