@@ -1,18 +1,12 @@
 <script lang="ts">
-	const statusMessage = {
-		current: 'At this time, parking is FULL for the 2024-2025 school year.',
-		nextYear: {
-			date: 'May 19th at 4pm',
-			link: 'CVU Parking 2025-2026 - Community Alliance Church'
-		}
-	};
+	import Image from '$lib/components/Image.svelte';
 </script>
 
 <svelte:head>
 	<title>CVU Parking - Community Alliance Church - Hinesburg</title>
 	<meta
 		name="description"
-		content="CVU student parking at Community Alliance Church. Reserve a parking spot in our front lot for the school year. 35 spots available for CVU juniors. $50 fee supports the Hinesburg Food Shelf. Registration opens in spring."
+		content="CVU student parking at Community Alliance Church. 30 parking passes per school year after CVU's Junior Parking Lottery in May. $50 fee supports the Hinesburg Food Shelf."
 	/>
 </svelte:head>
 
@@ -30,39 +24,84 @@
 <section class="pageSection alertSection">
 	<div class="pageSectionText">
 		<p>
-			<strong>At this time, parking passes are SOLD OUT for the 2025-2026 school year. </strong>
+			CAC Student Parking Pass registration will be live beginning at 12:00am on Tuesday, May 19,
+			2026, and will close two days later, at 11:59pm on Thursday, May 21, 2026.
 		</p>
 		<p>
-			Registration for the 2026-2027 school year will open after results from the CVU Junior Parking
-			Lottery have been announced in mid-May 2026. Students who will be juniors in 2026-2027 and
-			were unable to secure a spot in J Lot will be given preference at the church lot. Check back
-			here in May for a live registration link!
+			<a
+				href="https://communityalliancechurch.churchcenter.com/registrations/events/3625551"
+				target="_blank"
+				rel="noopener noreferrer"
+				>This is the link for the 2026-2027 school year registration form</a
+			>. You can view it now, but it will only be active during the times noted above.
 		</p>
 	</div>
 </section>
 
 <section class="pageSection">
-	<h2 class="pageSectionTitle">Parking Pass Information</h2>
+	<Image source="CVU" altTag="CAC Student Parking Pass Process" width="1000" />
+	<h2 class="pageSectionTitle">The CAC Student Parking Pass Process</h2>
+	<div class="pageSectionText">
+		<ol class="passProcessList">
+			<li>There are 30 parking passes available each school year to students.</li>
+			<li>
+				Parking passes are reserved by students in the spring preceding the school year for which
+				the passes will be valid. Our registration form is live for two days in May, immediately
+				after the results from CVU's Junior Parking Lottery are released. During this time, any
+				rising junior or sophomore interested in securing a CAC parking space may register. Once the
+				registration is closed, CAC staff will review all entries and inform students via email,
+				within one week, whether a pass is available to them in the fall.
+			</li>
+			<li>
+				Preference for passes is as listed below, and in the order in which registrations are
+				received:
+				<ol class="prioritySublist" type="a">
+					<li>
+						First priority: students who will be juniors at CVU during the year the pass will be
+						valid and have a driver's license at the time of registration.
+					</li>
+					<li>
+						Second priority: students who will be juniors at CVU during the year the pass will be
+						valid and anticipate having a driver's license by August 31 of that school year.
+					</li>
+					<li>
+						Third priority: students who will be sophomores at CVU during the year the pass will be
+						valid and have a driver's license at the time of registration OR anticipate having it by
+						August 31 of that school year.
+					</li>
+				</ol>
+			</li>
+			<li>
+				For students able to secure a pass at CAC, an email will be sent in mid-August with
+				instructions about when and where students can pick up a parking pass sticker, provide
+				payment, and review and sign the CAC Student Parking Contract.
+			</li>
+			<li>
+				The cost of a parking pass at the church is $50 per year. This fee is used to support the
+				work of the Hinesburg Community Resource Center's Food Shelf.
+			</li>
+			<li>
+				Any student not able to secure a parking pass in the spring for the following school year
+				will be placed on a waiting list, which will be maintained and drawn from over the school
+				year, should a pass become available.
+			</li>
+		</ol>
+	</div>
+</section>
+
+<section class="pageSection">
+	<h2 class="pageSectionTitle">Additional Important Information</h2>
 	<div class="pageSectionText">
 		<p>
-			Parking passes are available for up to 30 spaces each school year in the CAC parking lot. The
-			fee for reserving a spot is $50. This fee is used to support the work of the Hinesburg
-			Community Resource Center's Food Shelf. Parking passes typically are reserved in the spring
-			preceding the school year for which the pass will be valid. Preference is given to students
-			who will be juniors at CVU during the year the pass will be valid. Arrangements are made with
-			student passholders to pick up the physical pass from the church, usually the week before
-			school begins in the fall.
+			We do not reserve parking passes or maintain a waiting list for years beyond the current
+			school year. You may email us any time during the current school year to have your name placed
+			on the list. Please be advised that the waiting list is typically 15-25 students long at any
+			time, and juniors with a driver's license will continue to receive priority, regardless of
+			when they are added to the list.
 		</p>
 		<p>
-			A waiting list is maintained for the current school year, should a pass/space become
-			available. You may email us any time during the current school year to have your name placed
-			on the list. Please be advised that the waiting list is typically 15-25 students long and CVU
-			juniors will be given priority. We do not reserve parking spaces for years beyond the current
-			school year.
-		</p>
-		<p>
-			CAC parking passes are NON-TRANSFERRABLE. CAC passholders may not give or loan passes out to
-			other students or family members at any time, regardless of current need or prior payment
+			CAC parking passes are NON-TRANSFERABLE. CAC student passholders may not give or loan out
+			passes to other students or family members at any time, regardless of need or prior payment
 			made. Any transfer of a CAC parking pass without direct consent of CAC will render the pass
 			inactive for that school year and the student(s) with the pass will no longer be authorized to
 			park at CAC.
@@ -117,5 +156,20 @@
 		border-radius: 18px;
 		padding: 1rem;
 		margin-bottom: 1rem;
+	}
+
+	.passProcessList {
+		display: grid;
+		gap: 1rem;
+		padding-left: 1.25rem;
+		margin: 0;
+	}
+
+	.prioritySublist {
+		margin: 0.75rem 0 0;
+		padding-left: 1.25rem;
+		display: grid;
+		gap: 0.5rem;
+		list-style-type: lower-alpha;
 	}
 </style>
